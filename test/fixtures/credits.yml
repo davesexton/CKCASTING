@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  People: 
+  credit_order: 1
+  credit_text: MyString
+
+two:
+  People: 
+  credit_order: 1
+  credit_text: MyString

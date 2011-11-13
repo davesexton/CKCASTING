@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @person.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @person.last_name %>
+</p>
+
+<p>
+  <b>Date of birth:</b>
+  <%= @person.date_of_birth %>
+</p>
+
+<p>
+  <b>Height feet:</b>
+  <%= @person.height_feet %>
+</p>
+
+<p>
+  <b>Height inches:</b>
+  <%= @person.height_inches %>
+</p>
+
+<p>
+  <b>Hair colour:</b>
+  <%= @person.hair_colour %>
+</p>
+
+<p>
+  <b>Eye colour:</b>
+  <%= @person.eye_colour %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @person.gender %>
+</p>
+
+<p>
+  <b>Postcode:</b>
+  <%= @person.postcode %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @person.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @person.longitude %>
+</p>
+
+<p>
+  <b>Telephone number:</b>
+  <%= @person.telephone_number %>
+</p>
+
+<p>
+  <b>Email address:</b>
+  <%= @person.email_address %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @person.status %>
+</p>
+
+<p>
+  <b>Last viewed at:</b>
+  <%= @person.last_viewed_at %>
+</p>
+
+<p>
+  <b>View count:</b>
+  <%= @person.view_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>

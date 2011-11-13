@@ -1,2 +1,12 @@
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Hello, Rails!</h1>
+<% ('1'..'10').each do |i| %>
+<%    if FileTest.exist?("app/assets/images/cast_images/#{i}.jpg") %>
+  <%= image_tag "cast_images/" + i + ".jpg", :width => 137, :height => 158 %>
+<% else %>
+  <%= image_tag "default_cast_image.jpg", :width => 137, :height => 158 %>
+<% 
+    end
+  end %>
+
+

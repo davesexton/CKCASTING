@@ -1,0 +1,23 @@
+<h1>Listing eye_colours</h1>
+
+<table>
+  <tr>
+    <th>Eye colour</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @eye_colours.each do |eye_colour| %>
+  <tr>
+    <td><%= eye_colour.eye_colour %></td>
+    <td><%= link_to 'Show', eye_colour %></td>
+    <td><%= link_to 'Edit', edit_eye_colour_path(eye_colour) %></td>
+    <td><%= link_to 'Destroy', eye_colour, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Eye colour', new_eye_colour_path %>

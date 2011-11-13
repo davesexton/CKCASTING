@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  date_of_birth: 2011-11-13
+  height_feet: 1
+  height_inches: 1
+  hair_colour: MyString
+  eye_colour: MyString
+  gender: MyString
+  postcode: MyString
+  latitude: 1.5
+  longitude: 1.5
+  telephone_number: MyString
+  email_address: MyString
+  status: MyString
+  last_viewed_at: 2011-11-13 01:03:41
+  view_count: 1
+
+two:
+  first_name: MyString
+  last_name: MyString
+  date_of_birth: 2011-11-13
+  height_feet: 1
+  height_inches: 1
+  hair_colour: MyString
+  eye_colour: MyString
+  gender: MyString
+  postcode: MyString
+  latitude: 1.5
+  longitude: 1.5
+  telephone_number: MyString
+  email_address: MyString
+  status: MyString
+  last_viewed_at: 2011-11-13 01:03:41
+  view_count: 1

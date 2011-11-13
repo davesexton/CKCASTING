@@ -1,0 +1,69 @@
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended to check this file into your version control system.
+
+ActiveRecord::Schema.define(:version => 20111113150456) do
+
+  create_table "credits", :force => true do |t|
+    t.integer  "People_id"
+    t.integer  "credit_order"
+    t.string   "credit_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "credits", ["People_id"], :name => "index_credits_on_People_id"
+
+  create_table "eye_colours", :force => true do |t|
+    t.string   "eye_colour"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hair_colours", :force => true do |t|
+    t.string   "hair_colour"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "date_of_birth"
+    t.integer  "height_feet"
+    t.integer  "height_inches"
+    t.string   "hair_colour"
+    t.string   "eye_colour"
+    t.string   "gender"
+    t.string   "postcode"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "telephone_number"
+    t.string   "email_address"
+    t.string   "status"
+    t.datetime "last_viewed_at"
+    t.integer  "view_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skills", :force => true do |t|
+    t.integer  "People_id"
+    t.integer  "skill_order"
+    t.string   "skill_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skills", ["People_id"], :name => "index_skills_on_People_id"
+
+end

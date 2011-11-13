@@ -1,4 +1,14 @@
 Ckcasting::Application.routes.draw do
+  resources :credits
+
+  resources :skills
+
+  resources :people
+
+  resources :eye_colours
+
+  resources :hair_colours
+
   get "home/index"
   root :to => 'home#index'
 

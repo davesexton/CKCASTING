@@ -1,0 +1,9 @@
+class CreateEyeColours < ActiveRecord::Migration
+  def change
+    create_table :eye_colours do |t|
+      t.string :eye_colour
+
+      t.timestamps
+    end
+  end
+end
