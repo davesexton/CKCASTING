@@ -3,19 +3,25 @@
 <head>
   <title>Ck Casting</title>
   <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "style" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header>
-<nav>
-<ul>
-<li>HOME</li>
-</ul>
-</nav>
-</header>
-
-<%= yield %>
-
+  <div id="container" class="container showgrid">
+    <header>
+      <nav>
+        <ul>
+          <li>HOME</li>
+        </ul>
+      </nav>
+    </header>
+    <div id="main" class="main">
+      <%= yield %>
+    </div>
+    <footer>
+      
+    </footer>
+  </div>
 </body>
 </html>

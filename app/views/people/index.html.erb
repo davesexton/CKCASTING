@@ -2,22 +2,18 @@
 
 <table>
   <tr>
+    <th>ID</th>
     <th>First name</th>
     <th>Last name</th>
     <th>Date of birth</th>
-    <th>Height feet</th>
-    <th>Height inches</th>
+    <th>Height</th>
     <th>Hair colour</th>
     <th>Eye colour</th>
     <th>Gender</th>
-    <th>Postcode</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Telephone number</th>
-    <th>Email address</th>
     <th>Status</th>
     <th>Last viewed at</th>
     <th>View count</th>
+    <th>Credits</th>
     <th></th>
     <th></th>
     <th></th>
@@ -25,22 +21,18 @@
 
 <% @people.each do |person| %>
   <tr>
+    <td><%= person.id %></td>
     <td><%= person.first_name %></td>
     <td><%= person.last_name %></td>
     <td><%= person.date_of_birth %></td>
-    <td><%= person.height_feet %></td>
-    <td><%= person.height_inches %></td>
+    <td><%= person.height_feet %>'&nbsp;<%= person.height_inches %>"</td>
     <td><%= person.hair_colour %></td>
     <td><%= person.eye_colour %></td>
     <td><%= person.gender %></td>
-    <td><%= person.postcode %></td>
-    <td><%= person.latitude %></td>
-    <td><%= person.longitude %></td>
-    <td><%= person.telephone_number %></td>
-    <td><%= person.email_address %></td>
     <td><%= person.status %></td>
     <td><%= person.last_viewed_at %></td>
     <td><%= person.view_count %></td>
+    <td><%= person.Credits %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>

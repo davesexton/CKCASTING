@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20111113150456) do
 
   create_table "credits", :force => true do |t|
-    t.integer  "People_id"
-    t.integer  "credit_order"
+    t.integer  "Person_id"
+    t.integer  "display_order"
     t.string   "credit_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "credits", ["People_id"], :name => "index_credits_on_People_id"
+  add_index "credits", ["Person_id"], :name => "index_credits_on_Person_id"
 
   create_table "eye_colours", :force => true do |t|
     t.string   "eye_colour"
@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(:version => 20111113150456) do
   end
 
   create_table "skills", :force => true do |t|
-    t.integer  "People_id"
-    t.integer  "skill_order"
+    t.integer  "Person_id"
+    t.integer  "display_order"
     t.string   "skill_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "skills", ["People_id"], :name => "index_skills_on_People_id"
+  add_index "skills", ["Person_id"], :name => "index_skills_on_Person_id"
 
 end

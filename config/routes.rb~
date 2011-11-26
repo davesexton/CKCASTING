@@ -1,5 +1,18 @@
 Ckcasting::Application.routes.draw do
+  resources :castbooks
+
+  resources :credits
+
+  resources :skills
+
+  resources :people
+
+  resources :eye_colours
+
+  resources :hair_colours
+
   get "home/index"
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

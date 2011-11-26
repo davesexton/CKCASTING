@@ -1,0 +1,16 @@
+@import "blueprint_grid_mixin.sass";
+
+* {font-size:10pt; 
+   font-family:Verdana;}
+.castImage {background-image:url('cast_image_frame.gif');
+            width:316px;
+            height:363px;
+            padding:0px;
+            position:relative;
+  img {position:absolute;
+       left:27px;
+       top:30px;
+      }         
+            }
+
+

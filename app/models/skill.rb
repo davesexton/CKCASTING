@@ -1,3 +1,3 @@
 class Skill < ActiveRecord::Base
-  belongs_to :People
+  belongs_to :Person
 end

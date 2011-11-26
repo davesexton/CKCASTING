@@ -1,0 +1,21 @@
+<h1>Listing castbooks</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @castbooks.each do |castbook| %>
+  <tr>
+    <td><%= link_to 'Show', castbook %></td>
+    <td><%= link_to 'Edit', edit_castbook_path(castbook) %></td>
+    <td><%= link_to 'Destroy', castbook, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Castbook', new_castbook_path %>

@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+<div>
+<%= image_tag("cast_images/#{@castbook.id}.jpg", 
+     :alt => @castbook.full_name,
+     :class => 'castImage') %>
+</div>
+
+<table>
+<tr>
+  <td colspan="2">
+    <h1><%= @castbook.full_name %></h1>
+  </td>
+</tr>
+<tr>
+  <td>
+    Height:
+  </td>
+  <td>
+    <%= @castbook.height_feet %>'&nbsp;
+    <%= @castbook.height_inches %>"
+  </td>
+<tr>
+<tr>
+  <td>
+    Hair Colour:
+  </td>
+  <td>
+    <%= @castbook.hair_colour %>
+  </td>
+<tr>
+<tr>
+  <td>
+    Eye Colour:
+  </td>
+  <td>
+    <%= @castbook.eye_colour %>
+  </td>
+<tr>
+<tr>
+  <td>
+    Gender:
+  </td>
+  <td>
+    <%= @castbook.gender %>
+  </td>
+<tr>
+<tr>
+  <td>
+    Last viewed:
+  </td>
+  <td>
+    <%= @castbook.last_viewed_at.strftime("%d-%b-%Y") %>
+  </td>
+<tr>
+<tr>
+  <td>
+    View count:
+  </td>
+  <td>
+    <%= @castbook.view_count %>
+  </td>
+<tr>
+<tr>
+  <td>
+    URL:
+  </td>
+  <td>http://www.ckcasting.co.uk/castbook/<%= @castbook.id %>
+  </td>
+<tr>
+</table>
+
+<%= link_to 'Edit', edit_castbook_path(@castbook) %> |
+<%= link_to 'Back', castbook_path %>
