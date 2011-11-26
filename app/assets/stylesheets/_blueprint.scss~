@@ -1,0 +1,40 @@
+/* BLUEPRINT */
+.container {
+  width: 950px;
+  margin: 0px auto;
+  display: inline-block;
+  display :block;
+  &:after {
+    content: ".";
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden;
+  }
+}
+.showgrid { 
+  background-image: url(grid.png);
+}
+.clear {
+  clear: both;
+}
+.left-with-10px-margin {
+  float: left;
+  margin-right: 10px;
+}
+.last {
+  margin-right: 0;
+}
+
+@for $i from 1 through 24 {
+  .span-#{$i} {
+    width:($i * 40px) - 10px;
+    float: left;
+    margin-right: 10px;
+  }
+  .append-#{$i} {
+    padding-right:$i * 40px
+  }
+  prepend-1
+  :padding-left 40px
+}

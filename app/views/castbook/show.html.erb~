@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-<div>
+<div class="castImage">
 <%= image_tag("cast_images/#{@castbook.id}.jpg", 
-     :alt => @castbook.full_name,
-     :class => 'castImage') %>
+     :alt => @castbook.full_name) %>
 </div>
 
 <table>
