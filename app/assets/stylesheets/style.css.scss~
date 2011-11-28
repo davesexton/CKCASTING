@@ -24,7 +24,19 @@ header {
   @extend .span-24;
   @extend .last;
 }
-#main {
+footer {
   @extend .span-24;
   @extend .last;
-}        
+}
+#main {
+  @extend .span-24;
+}
+.column1 {
+  @extend .prepend-1;
+  @extend .span-9;
+}
+.column2 {
+  @extend .span-10;
+  @extend .last;
+  
+}
