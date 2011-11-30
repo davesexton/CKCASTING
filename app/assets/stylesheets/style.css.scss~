@@ -1,8 +1,8 @@
 @import 'blueprint';
 
 
-* {
-  font-size:10pt; 
+*, table {
+  font-size:12pt; 
   font-family:Verdana;}
 .castImage {
   background-image:url('cast_image_frame.gif');
@@ -36,7 +36,7 @@ footer {
   @extend .span-9;
 }
 .column2 {
-  @extend .span-10;
+  @extend .span-13;
   @extend .last;
   
 }

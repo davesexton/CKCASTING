@@ -64,11 +64,20 @@
     <td>
       URL:
     </td>
-    <td>http://www.ckcasting.co.uk/castbook/<%= @castbook.id %>
+    <td>http://www.ckcasting.co.uk/castbook/<%= @castbook.url %>
     </td>
   <tr>
+  <tr>
+    <td>
+      Skills:
+    </td>
+    <td>
+    <% skill = '' %>
+    <% @skill.each { |s| skill += s.skill_text + ', ' } %>
+    <%= skill.chomp!(', ') %>
+    </td>
+  </tr>
   </table>
-  <input type="password" />
   <%= link_to 'Edit', edit_castbook_path(@castbook) %> |
   <%= link_to 'Back', castbook_path %>
 </div>
