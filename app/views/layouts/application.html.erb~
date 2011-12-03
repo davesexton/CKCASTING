@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Ck Casting</title>
-  <%= stylesheet_link_tag    "application", :debug => true %>
+  <%= stylesheet_link_tag    "application" %>
   
   <!--[if lte IE 8]>
 			<%= stylesheet_link_tag    "ie" %>
@@ -10,7 +10,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%=  %>">
   <div id="container" class="container showgrid">
     <header>
       <nav>

@@ -2,18 +2,18 @@
 
 
 *, table {
-  font-size:12pt; 
-  font-family:Verdana;}
+  font-size: 12pt; 
+  font-family: Verdana;}
 .castImage {
-  background-image:url('cast_image_frame.gif');
-  width:316px;
-  height:363px;
-  padding:0px;
-  position:relative;
+  background-image: url('cast_image_frame.gif');
+  width: 316px;
+  height: 363px;
+  padding: 0px;
+  position: relative;
   img {
-    position:absolute;
-    left:27px;
-    top:30px;
+    position: absolute;
+    left: 27px;
+    top: 30px;
   }         
 }
 
@@ -31,12 +31,21 @@ footer {
 #main {
   @extend .span-24;
 }
-.column1 {
-  @extend .prepend-1;
-  @extend .span-9;
-}
-.column2 {
-  @extend .span-13;
-  @extend .last;
-  
+.castbook {
+  .columnCastImage {
+    @extend .prepend-1;
+    @extend .span-9;
+  }
+  .columnCastDetails {
+    @extend .span-13;
+    @extend .last; 
+  }
+  ,columnFilter {
+    @extend .prepend-1;
+    @extend .span-7;
+  }
+  .columnCastList {
+    @extend .span-15;
+    @extend .last; 
+  }
 }

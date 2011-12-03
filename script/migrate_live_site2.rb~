@@ -22,6 +22,10 @@ seed = "# encoding: utf-8\n"
   last_name = name.match(/\w*$/)[0]
   first_name = name.chomp(last_name).strip
 
+# ----- Get date of birth
+  date_of_birth = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HiddenFieldDOB"]').attr(:value)
+
+
 # ----- Get height
   feet = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HEIGHT_FTLabel"]').innerHTML
   inches = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HEIGHT_INLabel"]').innerHTML
@@ -40,6 +44,7 @@ seed = "# encoding: utf-8\n"
 # ----- Add to seed file
   seed += "Person.create(:first_name => '#{first_name}'" \
    + ", :last_name => '#{last_name}'" \
+   + ", :date_of_birth => '#{date_of_birth}'" \
    + ", :height_feet => #{feet}" \
    + ", :height_inches => #{inches}" \
    + ", :hair_colour => '#{hair}'" \

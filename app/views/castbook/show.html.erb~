@@ -4,7 +4,7 @@
        :alt => @castbook.full_name) %>
   </div>
 </div>
-<div class="column2">
+<div class="columnCastDetails">
   <table>
   <tr>
     <td colspan="2">
@@ -64,19 +64,37 @@
     <td>
       URL:
     </td>
-    <td>http://www.ckcasting.co.uk/castbook/<%= @castbook.url %>
+    <td><%= @castbook.url %>
     </td>
   <tr>
+  <% if @castbook.skill_list != '' %>
   <tr>
     <td>
       Skills:
     </td>
     <td>
-    <% skill = '' %>
-    <% @skill.each { |s| skill += s.skill_text + ', ' } %>
-    <%= skill.chomp!(', ') %>
+    <%= @castbook.skill_list %>
     </td>
   </tr>
+  <% end %>
+  <% if @credit.size != 0 %>
+  <tr>
+    <td colspan="2">
+      Credits(<%= @credit.size %>):
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <ul>
+      <% @credit.each do |c| %>
+      <li>
+      <%= c.credit_text %>
+      </li>
+      <% end %>
+      </ul>
+    </td>
+  </tr>
+  <% end %>
   </table>
   <%= link_to 'Edit', edit_castbook_path(@castbook) %> |
   <%= link_to 'Back', castbook_path %>

@@ -1,18 +1,35 @@
-<h1>Castbook</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @castbook.each do |castbook| %>
-  <tr>
+<div class="columnFilter">
+  <fieldset>
+    <legend>Filter by</legend>
+    Gender:<br />
+    <% @gender_group.each do |k, v|  %>
+    <input type="checkbox" name="gender" id="<%= k %>" value="<%= k %>" />
+    <label for="<%= k %>"><%= "#{k} (#{v})" %></label><br />
+    <% end %>
+    <hr />
     
-    <td><%= link_to 'Show', castbook %></td>
- </tr>
-<% end %>
-</table>
+  </fieldset>
+</div>
 
+
+<div class="columnCastList">
+
+
+  <table>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @castbook.each do |castbook| %>
+    <tr>
+      <td><%= castbook.full_name %></td>
+      <td><%= castbook.height_group %></td>
+      <td><%= castbook.height_feet %></td>
+      <td><%= link_to 'Show', castbook %></td>
+   </tr>
+  <% end %>
+  </table>
+</div>
 

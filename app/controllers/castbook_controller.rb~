@@ -1,12 +1,13 @@
 class CastbookController < ApplicationController
   before_filter :check_record, :only => [:show]
+  
   def index
+    @castbook = Person.order(:date_of_birth).all
+    @gender_group = Person.count(group: :gender)
+    @gender_group = Person.count(group: :gender)
     
-    # @cast_pages, @castbook = paginate(:people, 
-    #   :conditions => "status => 'Active'", 
-    #   :order => 'id DESC', 
-    #   :per_page => 16)
-    @castbook = Person.all
+    
+    #@age_group = Person.count(group: :age_group)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +18,8 @@ class CastbookController < ApplicationController
   
   def show
     # @castbook = Person.find(params[:id])
-    @skills = Skill.where(:person_id => @castbook.id)
+    @skill = (Skill.where(person_id: @castbook.id)).collect { |s| s.skill_text }.join(', ')
+    @credit = Credit.where(person_id: @castbook.id).order(:display_order)
   end
   
   def check_record
