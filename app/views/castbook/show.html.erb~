@@ -1,7 +1,7 @@
-<div class="column1">
+<div class="columnCastImage">
   <div class="castImage">
-  <%= image_tag("cast_images/#{@castbook.id}.jpg", 
-       :alt => @castbook.full_name) %>
+  <%= image_tag(@castbook.image_url, 
+       alt: @castbook.full_name) %>
   </div>
 </div>
 <div class="columnCastDetails">

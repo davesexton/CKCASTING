@@ -19,7 +19,12 @@ class Person < ActiveRecord::Base
   def url
     "http://www.ckcasting.co.uk/castbook/#{id}"
   end
-  
+  def image_url
+    "cast_images/#{id}.jpg"
+  end
+  def thumbnail_url
+    "cast_images/#{id}t.jpg"
+  end
   def skill_list 
     #x = (Skill.where(person_id: id)).collect { |s| s.skill_text }.join(', ')
     Skill.where(person_id: id).order(:skill_text).collect { |s| s.skill_text }.join(', ')

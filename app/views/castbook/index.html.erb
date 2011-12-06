@@ -25,7 +25,8 @@
   <% @castbook.each do |castbook| %>
     <tr>
       <td><%= castbook.full_name %></td>
-      <td><%= castbook.height_group %></td>
+      <td><%= image_tag("cast_images/#{castbook.id}b.jpg", 
+       alt: castbook.full_name) %></td>
       <td><%= castbook.height_feet %></td>
       <td><%= link_to 'Show', castbook %></td>
    </tr>

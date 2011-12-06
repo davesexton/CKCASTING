@@ -19,7 +19,12 @@ class Person < ActiveRecord::Base
   def url
     "http://www.ckcasting.co.uk/castbook/#{id}"
   end
-  
+  def image_url
+    "cast_images/#{id}.jpg"
+  end
+  def thumbnail_url
+    "/cast_images/#{id}t.jpg"
+  end
   def skill_list 
     #x = (Skill.where(person_id: id)).collect { |s| s.skill_text }.join(', ')
     Skill.where(person_id: id).order(:skill_text).collect { |s| s.skill_text }.join(', ')
@@ -41,8 +46,8 @@ class Person < ActiveRecord::Base
     height = (height_feet * 12) + height_inches
     if height < 36 then "Under 3 foot"
     elsif height < 48 then "3 - 4 foot"
-    elsif height < 48 then "3 - 4 foot"
-    elsif height < 48 then "3 - 4 foot"
+    elsif height < 60 then "4 - 5 foot"
+    elsif height < 72 then "5 - 6 foot"
     else "Over 6 foot"
     end
   end

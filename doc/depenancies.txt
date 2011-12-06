@@ -1,0 +1,3 @@
+ImageMagik Install
+
+sudo aptitude install build-essential imagemagick libmagickcore-dev libmagickwand-dev

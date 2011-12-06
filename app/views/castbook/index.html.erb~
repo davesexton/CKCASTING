@@ -4,7 +4,7 @@
     Gender:<br />
     <% @gender_group.each do |k, v|  %>
     <input type="checkbox" name="gender" id="<%= k %>" value="<%= k %>" />
-    <label for="<%= k %>"><%= "#{k}(#{v})" %></label><br />
+    <label for="<%= k %>"><%= "#{k} (#{v})" %></label><br />
     <% end %>
     <hr />
     
@@ -25,7 +25,7 @@
   <% @castbook.each do |castbook| %>
     <tr>
       <td><%= castbook.full_name %></td>
-      <td><%= castbook.height_group %></td>
+      <td><%= image_tag "#{castbook.id}b.jpg" %></td>
       <td><%= castbook.height_feet %></td>
       <td><%= link_to 'Show', castbook %></td>
    </tr>

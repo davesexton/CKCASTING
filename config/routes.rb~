@@ -1,5 +1,5 @@
 Ckcasting::Application.routes.draw do
-  resources :castbooks
+  resources :castbook
 
   resources :credits
 
