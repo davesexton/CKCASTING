@@ -5,7 +5,7 @@ require 'open-uri'
 require "net/http"
 
 # ----- Delete images
-Dir.chdir('/home/dave/websites/ckcasting/app/assets/images/cast_images')
+Dir.chdir('/home/dave/websites/ckcasting/app/assets/images/cast')
 Dir['*.jpg'].each { |f| File.delete f }
 
 # ----- Set variables

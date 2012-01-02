@@ -10,26 +10,18 @@
     
   </fieldset>
 </div>
-
+<%= @gender %>
 
 <div class="columnCastList">
-
-
-  <table>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-
+  Pages:
+  <% (1..@nav).each do |n| %>
+    <%= link_to n, :controller => "castbook", :action => "index", :id => n %>
+  <% end %><br />
   <% @castbook.each do |castbook| %>
-    <tr>
-      <td><%= castbook.full_name %></td>
-      <td><%= image_tag "#{castbook.id}b.jpg" %></td>
-      <td><%= castbook.height_feet %></td>
-      <td><%= link_to 'Show', castbook %></td>
-   </tr>
+    <%= image_tag(castbook.thumbnail_url, 
+       alt: castbook.full_name) %>
+
   <% end %>
-  </table>
+
 </div>
 

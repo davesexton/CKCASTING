@@ -1,11 +1,31 @@
 class CastbookController < ApplicationController
-  #before_filter :check_record, :only => [:show]
-  
   def index
-    @castbook = Person.order(:date_of_birth).all
-    @gender_group = Person.count(group: :gender)
-    #@gender_group = Person.count(group: :gender)
+    if params[:id]
+      page = params[:id]
+    else
+      page = 1
+    end
+    gender = params[:gender]
+    page = page.to_i - 1
+    page_size = 16
+    offset = (page * page_size)
     
+    @castbook = Person.where('gender LIKE ?', params[:gender])
+      .order(:date_of_birth)
+      .limit(page_size).offset(offset)
+
+    path = './app/assets/images/cast_images/'
+    @nav = (Person.count.to_f / page_size).ceil
+    
+    @castbook.each do |c|
+      f = "#{path}#{c.id}.jpg"
+      t = f.sub('cast_images', 'cast_thumbs')
+      make_thumb f unless FileTest.exist?(t)
+    end
+    
+    @gender_group = Person.count(group: :gender)
+    
+    #@gender_group = Person.count(group: :gender)
     
     #@age_group = Person.count(group: :age_group)
 
@@ -32,10 +52,13 @@ class CastbookController < ApplicationController
     
   end
   
-  def check_record
-    @castbook = Person.find(params[:id])
-    rescue
-    flash[:error] = 'Castmember not found'
-    redirect_to :controller => 'castbook'
+  private
+  def make_thumb path
+    require 'RMagick'
+    thumb = path.sub('cast_images', 'cast_thumbs')
+    img = Magick::Image::read(path).first
+    img = img.crop_resized!(137, 158, Magick::NorthGravity)
+    #img = img.thumbnail(0.36)
+    img.write(thumb)
   end
 end
