@@ -12,30 +12,11 @@
     </td>
   </tr>
   <tr>
-    <td>
-      Height:
+    <td colspan="2" class="viewStat">
+      This profile has been viewed <%= @castbook.view_count %> times 
+      and was last viewed on the <%= @castbook.last_viewed_at.strftime("%d-%b-%Y") %>
     </td>
-    <td>
-      <%= @castbook.height_feet %>'&nbsp;
-      <%= @castbook.height_inches %>"
-    </td>
-  <tr>
-  <tr>
-    <td>
-      Hair Colour:
-    </td>
-    <td>
-      <%= @castbook.hair_colour %>
-    </td>
-  <tr>
-  <tr>
-    <td>
-      Eye Colour:
-    </td>
-    <td>
-      <%= @castbook.eye_colour %>
-    </td>
-  <tr>
+  </tr>
   <tr>
     <td>
       Gender:
@@ -43,30 +24,39 @@
     <td>
       <%= @castbook.gender %>
     </td>
-  <tr>
-  <tr>
-    <td>
-      Last viewed:
-    </td>
-    <td>
-      <%= @castbook.last_viewed_at.strftime("%d-%b-%Y") %>
-    </td>
-  <tr>
+  </tr>
   <tr>
     <td>
-      View count:
+      Hair Colour:
     </td>
     <td>
-      <%= @castbook.view_count %>
+      <%= @castbook.hair_colour %>
     </td>
+  </tr>
   <tr>
+    <td>
+      Eye Colour:
+    </td>
+    <td>
+      <%= @castbook.eye_colour %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Height:
+    </td>
+    <td>
+      <%= @castbook.height_feet %>'&nbsp;
+      <%= @castbook.height_inches %>"
+    </td>
+  </tr>
   <tr>
     <td>
       URL:
     </td>
     <td><%= @castbook.url %>
     </td>
-  <tr>
+  </tr>
   <% if @castbook.skill_list != '' %>
   <tr>
     <td>

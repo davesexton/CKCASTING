@@ -10,29 +10,30 @@ class CastbookController < ApplicationController
     page_size = 16
     offset = (page * page_size)
     
-    @castbook = Person.where('gender LIKE ?', params[:gender])
-      .order(:date_of_birth)
-      .limit(page_size)
-      .offset(offset)
+    #@castbook = Person #.where('gender LIKE ?', params[:gender])
+    #  .order(:date_of_birth)
+    #  .limit(page_size)
+    #  .offset(offset)
 
-    path = './app/assets/images/cast_images/'
+    @castbook = Person.limit(page_size).offset(offset)
+
     @nav = (Person.count.to_f / page_size).ceil
     
-    @castbook.each do |c|
-      f = "#{path}#{c.id}.jpg"
-      t = f.sub('cast_images', 'cast_thumbs')
-      make_thumb f unless FileTest.exist?(t)
-    end
-    
     @gender_group = Person.count(group: :gender)
-    
+    #@age_group = Person.count(group: [:age_group, :age_group_id])
+
     #@gender_group = Person.count(group: :gender)
     
     #@age_group = Person.count(group: :age_group)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @castbook }
+      format.json { 
+        render json: 
+         @castbook.as_json(
+            only: [:id, :gender], 
+            methods: [:full_name, :height_group, :thumbnail_url]) 
+      }
       format.xml {render xml: @castbook }
     end
   end
@@ -48,18 +49,8 @@ class CastbookController < ApplicationController
       cast.last_viewed_at = Date.today
       cast.save
     else 
-      redirect_to :controller => 'castbook'
+      redirect_to controller: 'castbook'
     end
     
-  end
-  
-  private
-  def make_thumb path
-    require 'RMagick'
-    thumb = path.sub('cast_images', 'cast_thumbs')
-    img = Magick::Image::read(path).first
-    img = img.crop_resized!(137, 158, Magick::NorthGravity)
-    #img = img.thumbnail(0.36)
-    img.write(thumb)
   end
 end

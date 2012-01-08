@@ -1,6 +1,5 @@
 @import 'blueprint';
 
-
 *, table {
   font-size: 12pt; 
   font-family: Verdana;}
@@ -16,36 +15,71 @@
     top: 30px;
   }         
 }
+.castThumb {
+  float: left;
+  background-image: url('cast_thumb_frame.gif');
+  width: 166px;
+  height: 191px;
+  position: relative;
+  img {
+    left: 15px;
+    top: 17px;
+    position: absolute;
+  }
+}
 
 nav {
   background-color:#FF0000;
 }
 header {
-  @extend .span-24;
+  @include span(24);
   @extend .last;
 }
 footer {
-  @extend .span-24;
+  @include span(24);
   @extend .last;
 }
 #main {
-  @extend .span-24;
+  @include span(24);
 }
 .castbook {
   .columnCastImage {
-    @extend .prepend-1;
-    @extend .span-9;
+    @include prepend(1);
+    @include span(9);
   }
   .columnCastDetails {
-    @extend .span-13;
+    @include span(13);
     @extend .last; 
   }
-  ,columnFilter {
-    @extend .prepend-1;
-    @extend .span-7;
+  .columnFilter {
+    @include prepend(1);
+    @include span(5);
   }
   .columnCastList {
-    @extend .span-15;
+    @include span(17);
     @extend .last; 
+  }
+  .viewStat {
+    font-size: smaller;
+    font-style: italic;
+  }
+  .pageNav {
+    font-size: larger;
+    padding-left: 10px;
+    font-weight: bold;
+    a {
+      color: #ffffff;
+      background-color: #666666;
+      border: solid 1pt #333333;
+      width: 14pt;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        font-weight: bold;
+        background-color: #333333;
+      }
+    }
   }
 }
