@@ -1,6 +1,7 @@
 Ckcasting::Application.routes.draw do
   match 'castbook/(:id)' => 'castbook#index' 
   match 'castbook/cast/(:id)' => 'castbook#show'
+  match 'castbook/random' => 'castbook#random'
   #resources :castbook
   #resources :home
 
@@ -12,7 +13,7 @@ Ckcasting::Application.routes.draw do
 
   resources :eye_colours
 
-  resources :hasir_colours
+  resources :hair_colours
 
   get "home/index"
   root :to => 'home#index'

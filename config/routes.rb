@@ -1,6 +1,9 @@
 Ckcasting::Application.routes.draw do
+  
+  match 'castbook/random' => 'castbook#random'
   match 'castbook/(:id)' => 'castbook#index' 
   match 'castbook/cast/(:id)' => 'castbook#show'
+
   #resources :castbook
   #resources :home
 
