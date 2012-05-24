@@ -19,6 +19,9 @@ class Person < ActiveRecord::Base
   def url
     "http://www.ckcasting.co.uk/castbook/cast/#{id}"
   end
+  def relative_url
+    "/castbook/cast/#{id}"
+  end
   def image_url
      "cast_images/#{id}.jpg"
   end

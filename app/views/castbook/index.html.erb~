@@ -21,7 +21,7 @@
 <% @castbook.each do |castbook| %>
   <div class="castThumb">
   <%= link_to(image_tag(castbook.thumbnail_url, 
-     alt: castbook.full_name), {controller: "castbook", action: "cast", id: castbook.id}) %>
+     alt: castbook.full_name), "/castbook/cast/#{castbook.id}") %>
   </div>
 <% end %>
 </div>

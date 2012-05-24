@@ -1,0 +1,5 @@
+module ApplicationHelper
+  def test_a
+    "blah blah"  
+  end
+end

@@ -20,11 +20,7 @@ class Person < ActiveRecord::Base
     "http://www.ckcasting.co.uk/castbook/cast/#{id}"
   end
   def image_url
-    path = "./app/assets/images/cast_images/#{id}.jpg"
-    make_cast_image "#{id}.jpg" unless FileTest.exist?(path)
-    write_attribute(:image_url, "cast_images/#{id}.jpg")
-    
-    "cast_images/#{id}.jpg"
+     "cast_images/#{id}.jpg"
   end
   def thumbnail_url
     path = "./app/assets/images/cast_thumbs/#{id}.jpg"
@@ -85,18 +81,7 @@ class Person < ActiveRecord::Base
   end
   
   private
-  def make_cast_image img
-    require 'RMagick'
-    path = "./app/assets/images/cast_images/#{img}"
-    upload = "./app/assets/images/cast_upload/#{img}"
-    watermark = "./app/assets/images/watermark.png"
-    
-    img = Magick::Image::read(upload).first
-    wm = Magick::Image::read(watermark).first    
-    final = img.composite(wm, Magick::NorthGravity, Magick::OverCompositeOp)
-    final.write(path)
-  end
-  def make_cast_thumbnail img
+   def make_cast_thumbnail img
     require 'RMagick'
     path = "./app/assets/images/cast_images/#{img}"
     thumb = "./app/assets/images/cast_thumbs/#{img}"

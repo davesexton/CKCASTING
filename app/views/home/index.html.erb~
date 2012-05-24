@@ -1,20 +1,9 @@
-<h1>Home Page x</h1>
-<% ('1'..'10').each do |i| %>
-<%    if FileTest.exist?("app/assets/images/cast_images/#{i}.jpg") %>
-  <%= image_tag "cast_images/" + i + ".jpg", :width => 137, :height => 158 %>
-<% else %>
-  <%= image_tag "default_cast_image.jpg", :width => 137, :height => 158 %>
-<% 
-    end
-  end %>
-<canvas id="carousel" width="858" height="200">
-xx 
-</canvas>
+<h1>Home Page</h1>
 
 
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="858" height="200"
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="860" height="200"
     id="cast_carousel" align="middle">
-	<param name="movie" value="flash/cast_carousel.swf" />
+	<param name="movie" value="../../flash/cast_carousel.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#ffffff" />
 	<param name="play" value="true" />
@@ -29,7 +18,7 @@ xx
 	<object type="application/x-shockwave-flash" 
 	    data="flash/cast_carousel.swf" 
 	    width="858" height="200">
-	<param name="movie" value="flash/cast_carousel.swf" />
+	<param name="movie" value="../../flash/cast_carousel.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#ffffff" />
 	<param name="play" value="true" />
@@ -50,7 +39,4 @@ xx
 <!--<![endif]-->
 </object>
 
-<br />
-x<img id="pic" src="<%= asset_path('cast_carousel/11.png') %>" />x
-<br />
-<%= asset_path('cast_carousel/11.png') %>
+
