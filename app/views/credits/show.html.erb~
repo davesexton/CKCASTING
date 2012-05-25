@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Person:</b>
-  <%= @credit.Person_id %>
+  <b>People:</b>
+  <%= @credit.People %>
 </p>
 
 <p>
-  <b>Display order:</b>
-  <%= @credit.display_order %>
+  <b>Credit order:</b>
+  <%= @credit.credit_order %>
 </p>
 
 <p>

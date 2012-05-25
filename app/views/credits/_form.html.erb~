@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Person_id %><br />
-    <%= f.text_field :Person_id %>
+    <%= f.label :People %><br />
+    <%= f.text_field :People %>
   </div>
   <div class="field">
-    <%= f.label :display_order %><br />
-    <%= f.number_field :display_order %>
+    <%= f.label :credit_order %><br />
+    <%= f.number_field :credit_order %>
   </div>
   <div class="field">
     <%= f.label :credit_text %><br />

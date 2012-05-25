@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <b>Skill order:</b>
-  <%= @skill.skill_order %>
+  <b>Display order:</b>
+  <%= @skill.display_order %>
 </p>
 
 <p>

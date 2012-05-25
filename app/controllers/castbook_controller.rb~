@@ -62,7 +62,7 @@ class CastbookController < ApplicationController
     @castbook = Person.all
     respond_to do |format|
       format.xml {
-        render xml: @castbook.sample(30).to_xml(
+        render xml: @castbook.sample(25).to_xml(
             only: [:id], 
             methods: [:url, :carousel_url]) 
       }

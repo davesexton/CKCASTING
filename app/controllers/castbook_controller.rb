@@ -9,7 +9,7 @@ class CastbookController < ApplicationController
     page = page.to_i - 1
     page_size = 16
     offset = (page * page_size)
-    
+#TODO Add filtering system to castbook    
     #@castbook = Person #.where('gender LIKE ?', params[:gender])
     #  .order(:date_of_birth)
     #  .limit(page_size)

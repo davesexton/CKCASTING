@@ -39,5 +39,5 @@
 <!--<![endif]-->
 </object>
 
-x
-<%= controller.controller_name %>x
+
+<%= truncate("<b>hello jf lfdskfj jfdkjf djfk jfdkf ljfkdlf dkjf df lfsdkjflsjdfkdlfjlkdflkdjf df kdfj ksfkjdkfl kdjfljdkfdkjfkdklfjkdj f sdfjdk fljsflkjkdjf jsdf lkdjf lksd kfjklsdkflkjdlsfjsdj fjsl flj</b>") %>
