@@ -3,7 +3,7 @@
 
 <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="860" height="200"
     id="cast_carousel" align="middle">
-	<param name="movie" value="../../flash/cast_carousel.swf" />
+	<param name="movie" value="../flash/cast_carousel.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#ffffff" />
 	<param name="play" value="true" />
@@ -18,7 +18,7 @@
 	<object type="application/x-shockwave-flash" 
 	    data="flash/cast_carousel.swf" 
 	    width="858" height="200">
-	<param name="movie" value="../../flash/cast_carousel.swf" />
+	<param name="movie" value="../flash/cast_carousel.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#ffffff" />
 	<param name="play" value="true" />
@@ -39,4 +39,5 @@
 <!--<![endif]-->
 </object>
 
-
+x
+<%= controller.controller_name %>x

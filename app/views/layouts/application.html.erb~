@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ck Casting</title>
+  <title>Ck Casting - <%= controller.controller_name %></title>
   <%= stylesheet_link_tag    "application" %>
   <!--[if lte IE 8]>
 			<%= stylesheet_link_tag    "ie" %>
@@ -15,7 +15,7 @@
     <header>
       <nav>
         <ul>
-          <li><%= link_to "Home", controller: 'home' %></li>
+          <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Castbook", controller: 'castbook' %></li>
         </ul>
       </nav>

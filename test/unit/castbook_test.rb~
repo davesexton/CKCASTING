@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CreditTest < ActiveSupport::TestCase
+class CastbookTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end

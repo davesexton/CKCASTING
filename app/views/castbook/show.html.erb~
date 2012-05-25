@@ -27,15 +27,6 @@
   </tr>
   <tr>
     <td>
-      Height:
-    </td>
-    <td>
-      <%= @castbook.height_feet %>'&nbsp;
-      <%= @castbook.height_inches %>"
-    </td>
-  </tr>
-  <tr>
-    <td>
       Hair Colour:
     </td>
     <td>
@@ -50,7 +41,15 @@
       <%= @castbook.eye_colour %>
     </td>
   </tr>
-
+  <tr>
+    <td>
+      Height:
+    </td>
+    <td>
+      <%= @castbook.height_feet %>'&nbsp;
+      <%= @castbook.height_inches %>"
+    </td>
+  </tr>
   <tr>
     <td>
       URL:

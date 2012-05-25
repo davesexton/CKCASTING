@@ -2,10 +2,10 @@
 
 one:
   Person_id: 1 
-  display_order: 1
+  skill_order: 1
   skill_text: MyString
 
 two:
   Person_id: 2
-  display_order: 1
+  skill_order: 1
   skill_text: MyString

@@ -16,10 +16,10 @@ class Person < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
-  def url
+  def full_url
     "http://www.ckcasting.co.uk/castbook/cast/#{id}"
   end
-  def relative_url
+  def url
     "/castbook/cast/#{id}"
   end
   def image_url
