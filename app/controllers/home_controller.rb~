@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    debugger
+    @carousel = Person.all.sample(23)
   end
-
 end

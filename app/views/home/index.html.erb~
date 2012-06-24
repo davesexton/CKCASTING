@@ -1,9 +1,24 @@
-<h1>Home Page</h1>
+ <h1>
+Welcome to CK Casting - a new and exciting agency for babies &amp; toddlers to young
+adults. We specialise in film, TV, commercial and theatrical casting. We know that
+you will find working with our children a successful and pleasureable experience.
+</h1>
+<p><b>CK Casting offers so much more...</b></p>
+<ul>
+    <li>A specialised agency, solely representing children, young adults, siblings and twins.</li>
+    <li>A site designed exclusively for casting professionals.</li>
+    <li>Highly-experienced and trained child actors, singers and dancers.</li>
+    <li>Children attend regular classes to maintain a high standard of performance.</li>
+    <li>All children are based within easy access to Central London.</li>
+    <li>We are happy to arrange performance licences as required, quickly and free of charge.</li>
+    <li>We are constantly updating our files with new children joining throughout the year.</li>
+</ul>
+
 
 
 <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="860" height="200"
     id="cast_carousel" align="middle">
-	<param name="movie" value="../flash/cast_carousel.swf" />
+	<param name="movie" value="/cast_carousel.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#ffffff" />
 	<param name="play" value="true" />
@@ -16,9 +31,9 @@
 	<param name="allowScriptAccess" value="sameDomain" />
 <!--[if !IE]>-->
 	<object type="application/x-shockwave-flash" 
-	    data="flash/cast_carousel.swf" 
+	    data="/cast_carousel.swf" 
 	    width="858" height="200">
-	<param name="movie" value="../flash/cast_carousel.swf" />
+	<param name="movie" value="/cast_carousel.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#ffffff" />
 	<param name="play" value="true" />
@@ -38,6 +53,11 @@
 </object>
 <!--<![endif]-->
 </object>
-
-
-<%= truncate("<b>hello jf lfdskfj jfdkjf djfk jfdkf ljfkdlf dkjf df lfsdkjflsjdfkdlfjlkdflkdjf df kdfj ksfkjdkfl kdjfljdkfdkjfkdklfjkdj f sdfjdk fljsflkjkdjf jsdf lkdjf lksd kfjklsdkflkjdlsfjsdj fjsl flj</b>") %>
+<div id="xx"></div>
+<canvas width="858" height="200" id="carousel">
+</canvas>
+<div id="carouselImages">
+    <% @carousel.each do |c| %>
+        <%= image_tag c.carousel_url, id: "img#{c.id}" %>
+    <% end %>
+</div>

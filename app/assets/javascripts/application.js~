@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-#//= require_tree .
+//= require swf_fu
+//= require swfobject
+//= require_tree .

@@ -35,7 +35,7 @@ class CastbookController < ApplicationController
             methods: [:full_name, :height_group, :thumbnail_url]) 
       }
       format.xml {
-        render xml: @castbook.sample(30).to_xml(
+        render xml: @castbook.sample(25).to_xml(
             only: [:id], 
             methods: [:url, :thumbnail_url]) 
       }

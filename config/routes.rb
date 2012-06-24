@@ -1,9 +1,12 @@
 Ckcasting::Application.routes.draw do
-  
+
+  root :to => 'home#index'  
   match 'castbook/random' => 'castbook#random'
+  match 'cast_carousel' => redirect('/flash/cast_carousel.swf')
   match 'castbook/(:id)' => 'castbook#index' 
   match 'castbook/cast/(:id)' => 'castbook#show'
   match 'home/index' => 'home#index'
+  
 
   #resources :castbook
   #resources :home
@@ -19,7 +22,7 @@ Ckcasting::Application.routes.draw do
   resources :hair_colours
 
   get "home/index"
-  root :to => 'home#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
