@@ -9,7 +9,7 @@ class CastbookController < ApplicationController
     page = page.to_i - 1
     page_size = 16
     offset = (page * page_size)
-    
+#TODO Add filtering system to castbook    
     #@castbook = Person #.where('gender LIKE ?', params[:gender])
     #  .order(:date_of_birth)
     #  .limit(page_size)
@@ -34,7 +34,11 @@ class CastbookController < ApplicationController
             only: [:id, :gender], 
             methods: [:full_name, :height_group, :thumbnail_url]) 
       }
-      format.xml {render xml: @castbook }
+      format.xml {
+        render xml: @castbook.sample(25).to_xml(
+            only: [:id], 
+            methods: [:url, :thumbnail_url]) 
+      }
     end
   end
   
@@ -52,5 +56,16 @@ class CastbookController < ApplicationController
       redirect_to controller: 'castbook'
     end
     
+  end
+  
+  def random
+    @castbook = Person.all
+    respond_to do |format|
+      format.xml {
+        render xml: @castbook.sample(25).to_xml(
+            only: [:id], 
+            methods: [:url, :carousel_url]) 
+      }
+    end
   end
 end

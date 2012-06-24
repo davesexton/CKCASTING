@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  People: 
-  skill_order: 1
+  Person_id: 1 
+  display_order: 1
   skill_text: MyString
 
 two:
-  People: 
-  skill_order: 1
+  Person_id: 2
+  display_order: 1
   skill_text: MyString

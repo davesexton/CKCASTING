@@ -40,11 +40,11 @@ footer {
   @extend .last;
 }
 #main {
-  @include span(24);
+  @include prepend(1);
+  @include span(23);
 }
 .castbook {
   .columnCastImage {
-    @include prepend(1);
     @include span(9);
   }
   .columnCastDetails {
@@ -52,8 +52,7 @@ footer {
     @extend .last; 
   }
   .columnFilter {
-    @include prepend(1);
-    @include span(5);
+    @include span(4);
   }
   .columnCastList {
     @include span(17);

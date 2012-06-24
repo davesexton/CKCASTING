@@ -40,7 +40,8 @@ footer {
   @extend .last;
 }
 #main {
-  @include span(24);
+  @include prepend(1);
+  @include span(23);
 }
 .castbook {
   .columnCastImage {
@@ -52,8 +53,7 @@ footer {
     @extend .last; 
   }
   .columnFilter {
-    @include prepend(1);
-    @include span(5);
+    @include span(4);
   }
   .columnCastList {
     @include span(17);
@@ -75,6 +75,7 @@ footer {
       display: inline-block;
       text-align: center;
       text-decoration: none;
+      font-weight: none;
       &:hover {
         text-decoration: underline;
         font-weight: bold;

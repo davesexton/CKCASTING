@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>People</th>
-    <th>Credit order</th>
+    <th>Person</th>
+    <th>Display order</th>
     <th>Credit text</th>
     <th></th>
     <th></th>
@@ -12,8 +12,8 @@
 
 <% @credits.each do |credit| %>
   <tr>
-    <td><%= credit.People %></td>
-    <td><%= credit.credit_order %></td>
+    <td><%= credit.Person_id %></td>
+    <td><%= credit.display_order %></td>
     <td><%= credit.credit_text %></td>
     <td><%= link_to 'Show', credit %></td>
     <td><%= link_to 'Edit', edit_credit_path(credit) %></td>

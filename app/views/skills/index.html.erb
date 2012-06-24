@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Person id</th>
     <th>Display Order</th>
     <th>Skill Text</th>
     <th></th>
@@ -11,6 +12,7 @@
 
 <% @skills.each do |skill| %>
   <tr>
+    <td><%= skill.Person_id %></td>
     <td><%= skill.display_order %></td>
     <td><%= skill.skill_text %></td>
     <td><%= link_to 'Show', skill %></td>

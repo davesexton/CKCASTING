@@ -1,6 +1,13 @@
 Ckcasting::Application.routes.draw do
+
+  root :to => 'home#index'  
+  match 'castbook/random' => 'castbook#random'
+  match 'cast_carousel' => redirect('/flash/cast_carousel.swf')
   match 'castbook/(:id)' => 'castbook#index' 
   match 'castbook/cast/(:id)' => 'castbook#show'
+  match 'home/index' => 'home#index'
+  
+
   #resources :castbook
   #resources :home
 
@@ -12,10 +19,10 @@ Ckcasting::Application.routes.draw do
 
   resources :eye_colours
 
-  resources :hasir_colours
+  resources :hair_colours
 
   get "home/index"
-  root :to => 'home#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -72,5 +79,5 @@ Ckcasting::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+   match ':controller(/:action(/:id(.:format)))'
 end

@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ck Casting</title>
+  <title>Ck Casting - <%= controller.controller_name.capitalize %></title>
   <%= stylesheet_link_tag    "application" %>
-  
   <!--[if lte IE 8]>
 			<%= stylesheet_link_tag    "ie" %>
   <![endif]-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag %>
 </head>
 <body class="<%= controller.controller_name %>">
   <div id="container" class="container showgrid">
     <header>
       <nav>
         <ul>
-          <li>HOME</li>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Castbook", controller: 'castbook' %></li>
         </ul>
       </nav>
     </header>

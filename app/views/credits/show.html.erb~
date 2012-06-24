@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>People:</b>
+  <%= @credit.People %>
+</p>
+
+<p>
+  <b>Credit order:</b>
+  <%= @credit.credit_order %>
+</p>
+
+<p>
+  <b>Credit text:</b>
+  <%= @credit.credit_text %>
+</p>
+
+
+<%= link_to 'Edit', edit_credit_path(@credit) %> |
+<%= link_to 'Back', credits_path %>
