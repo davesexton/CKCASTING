@@ -17,11 +17,6 @@ $ ->
   if $('.home').length > 0
     $('#carouselImages').ready ->
       canvas = $("#carousel").get(0)
-      #window.addEventListener 'click', getMouse, true
-      
-      getMouse = (e)->
-        alert 'hi'
-        console.log 'hi'
       
       context = canvas.getContext "2d" 
       canvasWidth = canvas.width
@@ -32,21 +27,25 @@ $ ->
       centerY = (canvasHeight / 2) - 77
       speed = 0.015
       
-      imgObj = ->
-        this.img = new Image()
-        this.angle = 32
-      imgObj.prototype.x = ->
-        Math.cos(this.angle) * radiusX + centerX
-      imgObj.prototype.y = ->
-        Math.sin(this.angle) * radiusY + centerY
-      imgObj.prototype.scale = ->
-        ((70 + (15 * (this.y() / (centerY + radiusY)))) / 100)
-      imgObj.prototype.height = ->
-        this.scale() * this.img.height
-      imgObj.prototype.width = ->
-        this.scale() * this.img.width  
-      imgObj.prototype.toString = ->
-        return this.y()
+      $(canvas).mousemove (e)->
+        speed = (canvasWidth - centerX - e.pageX) / 10000
+      
+      class imgObj
+        img: new Image()
+        angle: 32
+        x: ->
+          Math.cos(@angle) * radiusX + centerX
+        y: ->
+          Math.sin(@angle) * radiusY + centerY
+        scale: ->
+          ((70 + (15 * (@y() / (centerY + radiusY)))) / 100)
+        height: ->
+          @scale() * @img.height
+        width: ->
+          @scale() * @img.width
+        toString: ->
+          @y()
+      
       imgSet = $('#carouselImages img')
       totImgs = imgSet.length
       imgSet.each((i, e) ->
