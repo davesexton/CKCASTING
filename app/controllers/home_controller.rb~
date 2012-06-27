@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @carousel = Person.all.sample(18)
+    @carousel = Person.all.sample(20)
   end
 end
