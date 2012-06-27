@@ -45,7 +45,7 @@ class Person < ActiveRecord::Base
   def carousel_url
     path = "./app/assets/images/cast_carousel/#{id}.jpg"
     make_cast_carousel "#{id}.jpg" unless FileTest.exist?(path)
-    write_attribute(:carousel_url, "#{root_url}/assets/cast_carousel/#{id}.jpg")
+    write_attribute(:carousel_url, "/assets/cast_carousel/#{id}.jpg")
   end
   def skill_list 
     Skill.where(person_id: id).order(:skill_text).collect { |s| s.skill_text }.join(', ')
