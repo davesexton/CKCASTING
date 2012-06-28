@@ -19,10 +19,19 @@ $ ->
       centerY = (canvasHeight / 2) - 77
       speed = 0.015
       
+      drawEllipse = (c, centerX, centerY, width, height) ->
+        c.beginPath()
+        c.moveTo centerX, centerY - height / 2 
+        c.bezierCurveTo centerX + width / 2, centerY - height / 2, centerX + width / 2, centerY + height / 2, centerX, centerY + height / 2
+        c.bezierCurveTo centerX - width / 2, centerY + height / 2, centerX - width / 2, centerY - height / 2, centerX, centerY - height / 2
+        c.fill()
+        c.closePath()	
+      
       $(canvas).mousemove (e)->
-        speed = (canvasWidth - centerX - e.pageX) / 10000
-        mouseX = e.pageX
-        mouseY = e.pageY
+        speed = (canvasWidth - centerX - e.pageX  - @offsetLeft) / 10000
+        mouseX = e.pageX - @offsetLeft
+        mouseY = e.pageY - @offsetTop
+        console.log mouseY
       
       class imgObj
         img: new Image()
@@ -56,15 +65,15 @@ $ ->
         toString: ->
           @y()
         draw: (c, s)->
-          @nangle += s
-          c.globalCompositeOperation = 'source-atop'
-          c.fillRect @x() - 10, @ny(), @width(), @nheight()
-          c.fillRect @x() + 10, @py(), @width(), @pheight() 
-          c.globalCompositeOperation = 'source-over'
+          if @img.complete
+            c.globalCompositeOperation = 'source-atop'
+            c.fillRect @x() - 10, @ny() + 10, @width(), @nheight() - 10
+            c.fillRect @x() + 10, @py() + 10, @width(), @pheight() - 10 
+            c.globalCompositeOperation = 'source-over'
           c.drawImage @img, @x(), @y() , @width(), @height()
           c.fillText @id, @x() + 10, @y() + 50
           #console.log "#{@angle} #{@nangle}" if @first == true
-          console.log mouseX
+          #console.log mouseX
           if mouseX > @x() and mouseX < @x() + @width and mouseY > @y() and mouseY < @y() + @height
             console.log "#{@id}"
           @angle += s
@@ -91,10 +100,12 @@ $ ->
           img.draw context, speed
   
           if i == Math.round(totImgs / 2)
-            context.fillStyle = "rgba(0, 0, 0, 1)"
-            context.globalCompositeOperation = 'source-over'
+            #context.fillStyle = "rgba(0, 0, 0, 1)"
+            context.globalCompositeOperation = 'destination-over'
             #context.fillText 'CK', 325, 150
-            context.fillStyle = "rgba(0, 0, 0, 0.2)"  
+            drawEllipse context, centerX, centerY + 117, radiusX * 2, radiusY * 2
+            #context.globalCompositeOperation = 'source-over'
+            #context.fillStyle = "rgba(0, 0, 0, 0.2)"  
         setTimeout animate, 33
       animate()
 
