@@ -2,7 +2,11 @@
 
 *, table {
   font-size: 12pt; 
-  font-family: Verdana;}
+  font-family: Verdana;
+}
+.nowrap {
+  white-space: nowrap;
+}
 .castImage {
   background-image: url('cast_image_frame.gif');
   width: 316px;

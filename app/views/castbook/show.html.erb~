@@ -18,7 +18,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Gender:
     </td>
     <td>
@@ -26,7 +26,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Hair Colour:
     </td>
     <td>
@@ -34,7 +34,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Eye Colour:
     </td>
     <td>
@@ -42,7 +42,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Height:
     </td>
     <td>
@@ -116,11 +116,11 @@
 </div>
 
 <object id="clippy" width="110" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
-<param value="../clippy.swf" name="movie">
+<param value="../../clippy.swf" name="movie">
 <param value="always" name="allowScriptAccess">
 <param value="high" name="quality">
 <param value="noscale" name="scale">
 <param value="text=gem install hpricot" name="FlashVars">
 <param value="transparent" name="wmode">
-<embed width="110" wmode="transparent" flashvars="text=gem install hpricot" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowscriptaccess="always" quality="high" name="clippy" src="../clippy.swf">
+<embed width="110" wmode="transparent" flashvars="text=gem install hpricot" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowscriptaccess="always" quality="high" name="clippy" src="../../clippy.swf">
 </object>

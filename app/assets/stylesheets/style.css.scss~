@@ -2,7 +2,11 @@
 
 *, table {
   font-size: 12pt; 
-  font-family: Verdana;}
+  font-family: Verdana;
+}
+td {
+  white-space: nowrap;
+}
 .castImage {
   background-image: url('cast_image_frame.gif');
   width: 316px;
@@ -45,7 +49,6 @@ footer {
 }
 .castbook {
   .columnCastImage {
-    @include prepend(1);
     @include span(9);
   }
   .columnCastDetails {

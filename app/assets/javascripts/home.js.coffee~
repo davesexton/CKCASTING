@@ -6,8 +6,10 @@ imgs = []
 $ ->
   if $('.home').length > 0
     $('#carouselImages').ready ->
+
+#Global variables
+#----------------------------------------
       canvas = $("#carousel").get(0)
-      
       context = canvas.getContext "2d" 
       canvasWidth = canvas.width
       canvasHeight = canvas.height
@@ -15,11 +17,14 @@ $ ->
       radiusY = 20
       mouseX = 0
       mouseY = 0
+      showClick = false
       currentId = null
       centerX = (canvasWidth / 2) - 46
       centerY = (canvasHeight / 2) - 77
       speed = 0.015
       
+#Elipse function
+#----------------------------------------
       drawEllipse = (c, centerX, centerY, width, height) ->
         c.beginPath()
         c.moveTo centerX, centerY - height / 2 
@@ -27,25 +32,35 @@ $ ->
         c.bezierCurveTo centerX - width / 2, centerY + height / 2, centerX - width / 2, centerY - height / 2, centerX, centerY - height / 2
         c.fill()
         c.closePath()	
-      
+
+#Hover handler      
+#----------------------------------------
       $(canvas).mousemove (e)->
-        speed = (canvasWidth - centerX - e.pageX  - @offsetLeft) / 10000
         mouseX = e.pageX - @offsetLeft
         mouseY = e.pageY - @offsetTop
+        speed = ((canvasWidth / 2) - mouseX) / 10000
         currentId = null
         for img in imgs
           if mouseX > img.x() and 
           mouseX < img.x() + img.width() and 
           mouseY > img.y() and 
-          mouseY < img.y() + img.height()
+          mouseY < img.y() + (img.height() * 0.75)
             currentId = img.id
             $(@).css('cursor','pointer')
+            showClick = true
         if currentId == null
           $(@).css('cursor','auto')
-                    
+          showClick = false
+        
+
+#Click handler              
+#----------------------------------------      
       $(canvas).click (e)->
-        console.log currentId  
-      
+        showClick = false
+        window.location.href = currentId
+
+#Define image object      
+#----------------------------------------
       class imgObj
         img: new Image()
         angle: 32
@@ -61,48 +76,53 @@ $ ->
         py: ->
           Math.sin(@pangle) * radiusY + centerY
         scale: ->
-          @y() / (centerY + radiusY)
+          @y() / (centerY + radiusY) * @scale_factor
+        scale_factor: 1
         nscale: ->
           @ny() / (centerY + radiusY)
         pscale: ->
           @py() / (centerY + radiusY)
         height: ->
-          156 - 10 + (10 * @scale())  #* @img.height
+          156 - 10 + (10 * @scale())
         nheight: ->
           ((156 - 10 + (10 * @nscale())) * 0.75) - 5 - (@y() - @ny())
         pheight: ->
           ((156 - 10 + (10 * @pscale())) * 0.75) - 5 - (@y() - @py())
-
         width: ->
           @height() / 1.5333
         toString: ->
           @y()
         draw: (c, s)->
+          if @id == currentId
+            @scale_factor += 0.2 unless @scale_factor > 2
+          else
+            @scale_factor -= 0.2 unless @scale_factor <= 1
           if @img.complete
             c.globalCompositeOperation = 'source-atop'
             c.fillRect @x() - 10, @ny() + 10, @width(), @nheight() - 10
             c.fillRect @x() + 10, @py() + 10, @width(), @pheight() - 10 
             c.globalCompositeOperation = 'source-over'
           c.drawImage @img, @x(), @y() , @width(), @height()
-          #c.font="30px Arial";
-          #c.fillText @id, @x() + 10, @y() + 50
-          #console.log "#{@angle} #{@nangle}" if @first == true
-          #console.log mouseY if @id == 1
           @angle += s
           @nangle = @angle + s
           @pangle = @angle - s
-          
+ 
+#initalise image objects
+#----------------------------------------          
       imgSet = $('#carouselImages img')
       totImgs = imgSet.length
       imgSet.each((i, e) ->
         img = new imgObj()
         img.img = e
         img.angle = i * ((Math.PI * 2) / totImgs)
-        img.id = e.src
+        regex = new RegExp(/(\d+)\./)
+        img.id = '/castbook/cast/' + regex.exec(e.src)[1]
         imgs.push img
       )
       
-      #context.font = "24pt Arial"
+#animate function
+#----------------------------------------
+      context.font="12px Verdana"
       animate = ->
         context.clearRect 0, 0, canvasWidth, canvasHeight 
         
@@ -114,12 +134,17 @@ $ ->
           if i == Math.round(totImgs / 2)
             #context.fillStyle = "rgba(0, 0, 0, 1)"
             context.globalCompositeOperation = 'destination-over'
-            #context.fillText 'CK', 325, 150
+            #context.fillText 'click here', mouseX, moseY
             drawEllipse context, centerX, centerY + 117, radiusX * 2, radiusY * 2
             #context.globalCompositeOperation = 'source-over'
             #context.fillStyle = "rgba(0, 0, 0, 0.2)"  
+        if showClick
+          context.save()
+          context.fillStyle = "rgba(255, 255, 255, 0.8)"
+          context.fillRect mouseX - 5, mouseY - 25, 65, 20
+          context.font = "12px Verdana"
+          context.fillStyle = "rgba(0, 0, 0, 1)"
+          context.fillText 'click here', mouseX, mouseY - 10
+          context.restore()
         setTimeout animate, 33
       animate()
-
-      
-      

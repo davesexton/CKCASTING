@@ -51,7 +51,9 @@ q {
     content: '';
   }
 }
-a img {border:none;}
+a img {
+  border: none;
+}
 :focus {
   outline: 0;
 }
@@ -241,9 +243,12 @@ caption {
   margin-left: 0;
   padding-left: 0;
 }
-.last {
+@mixin last {
   margin-right: 0;
   padding-right: 0;
+}
+.last {
+  @include last;
 }
 .top {
   margin-top: 0;
@@ -362,7 +367,7 @@ form.inline {
 }
 
 /* grid.css */
-.container {
+@mixin container {
   width: 950px;
   margin: 0px auto;
   display :block;
@@ -375,28 +380,46 @@ form.inline {
     overflow: hidden;
   }
 }
-.showgrid { 
+.container {
+  @include container;
+}
+@mixin showgrid { 
   background-image: url(grid.png);
 }
-.border {
+.showgrid {
+  @include showgrid;
+}
+@mixin border {
   padding-right: 4px;
   margin-right: 5px;
   border-right: 1px solid #ddd;
 }
-.colborder {
+.border {
+  @include border;
+}
+@mixin colborder {
   padding-right: 24px;
   margin-right: 25px;
   border-right: 1px solid #ddd;
 }
-.clear {
+.colborder {
+  @include colborder;
+}
+@mixin clear {
   clear: both;
 }
-.box {
+.clear {
+  @include clear;
+}
+@mixin box {
   padding: 1.5em;
   margin-bottom: 1.5em;
   background: #E5ECF9;
 }
-.clearfix {
+.box {
+  @include box;
+}
+@mixin clearfix {
   display: block;
   &:after {
     content: "\0020";
@@ -406,34 +429,89 @@ form.inline {
     visibility: hidden;
   }
 }
-.column {
-  float: left;
-  margin-right: 10px;
+.clearfix {
+  @include clearfix
 }
+
+$columnwidth: 40px;
+$marginwidth: 10px;
+
+@mixin column {
+  float: left;
+  margin-right: $marginwidth;
+}
+.column {
+  @include column;
+}
+
+@mixin span($size) {
+  @if $size < 1 {$size: 1} 
+  @if $size > 24 {$size: 24} 
+  width: ($size * $columnwidth) - $marginwidth;
+  float: left;
+  @if $size == 24 {
+    margin-right: 0px;
+  } 
+  @else {
+    margin-right: $marginwidth;
+  }
+}
+@mixin append($size) {
+  padding-right: $size * $columnwidth;
+}
+@mixin prepend($size) {
+  padding-left: $size * $columnwidth;
+}
+@mixin pull($size) {
+  margin-left: ($size * -$columnwidth);
+  float: left;
+  position: relative;
+}
+@mixin push($size) {
+  margin: 0 ($size * -$columnwidth) 1.5em ($size * $columnwidth);
+  float: left;
+  position: relative;
+}
+@mixin input-span($size) {
+  @include span($size);
+  width:($size * $columnwidth) - 22px;   
+  border: {
+    left-width: 1px;
+    right-width: 1px;
+  }
+  padding: {
+    left: 5px;
+    right: 5px;
+  }
+}
+@mixin textarea-span($size) {
+ @include input-span($size);
+}
+
 @for $i from 1 through 24 {
   .span-#{$i} {
-    width: ($i * 40px) - 10px;
+    width: ($i * $columnwidth) - $marginwidth;
     float: left;
-    margin-right: 10px;
+    margin-right: $marginwidth;
   }
   .append-#{$i} {
-    padding-right: $i * 40px;
+    padding-right: $i * $columnwidth;
   }
   .prepend-#{$i} {
-    padding-left: $i * 40px;
+    padding-left: $i * $columnwidth;
   }
   .pull-#{$i} {
-    margin-left: ($i * -40px);
+    margin-left: ($i * $columnwidth);
     float: left;
     position: relative;
   }
   .push-#{$i} {
-    margin: 0 ($i * -40px) 1.5em ($i * 40px);
+    margin: 0 ($i * -$columnwidth) 1.5em ($i * $columnwidth);
     float: left;
     position: relative;
   }
   input.span-#{$i}, textarea.span-#{$i} {
-    width:($i * 40px) - 22px;   
+    width:($i * $columnwidth) - 22px;   
     border-left-width: 1px;
     border-right-width: 1px;
     padding-left: 5px;

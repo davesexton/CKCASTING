@@ -18,7 +18,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Gender:
     </td>
     <td>
@@ -26,7 +26,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Hair Colour:
     </td>
     <td>
@@ -34,7 +34,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Eye Colour:
     </td>
     <td>
@@ -42,7 +42,7 @@
     </td>
   </tr>
   <tr>
-    <td>
+    <td class="nowrap">
       Height:
     </td>
     <td>
@@ -54,33 +54,7 @@
     <td>
       URL:
     </td>
-    <td><%= @castbook.full_url %>
-    
- <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-              width="1100"
-              height="140"
-              id="clippy" >
-      <param name="movie" value="/cast_carousel.swf"/>
-      <param name="allowScriptAccess" value="always" />
-      <param name="quality" value="high" />
-      <param name="scale" value="noscale" />
-      <param NAME="FlashVars" value="text=test">
-      <param name="bgcolor" value="#FFFFFF">
-      <embed src="/clippy.swf"
-             width="110"
-             height="14"
-             nametest="/cast_carousel.swf"
-             quality="high"
-             allowScriptAccess="always"
-             type="application/x-shockwave-flash"
-             pluginspage="http://www.macromedia.com/go/getflashplayer"
-             FlashVars="text=test"
-             bgcolor="#FFFFFF"/>
-      </object>   
-      
-      
-    
-    </td>
+    <td><%= @castbook.full_url %></td>
   </tr>
   <% if @castbook.skill_list != '' %>
   <tr>
