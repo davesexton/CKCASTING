@@ -62,11 +62,10 @@ $ ->
 #Define image object      
 #----------------------------------------
       class imgObj
-        img: new Image()
-        angle: 32
-        nangle: 32
-        pangle: 32
-        id: 0
+        constructor: (@img, @angle, @id) ->
+        pangle: 0
+        nangle: 0
+        rawHeight: 156
         x: ->
           Math.cos(@angle) * radiusX + centerX
         y: ->
@@ -83,11 +82,11 @@ $ ->
         pscale: ->
           @py() / (centerY + radiusY)
         height: ->
-          156 - 10 + (10 * @scale())
+          @rawHeight - 10 + (10 * @scale())
         nheight: ->
-          ((156 - 10 + (10 * @nscale())) * 0.75) - 5 - (@y() - @ny())
+          ((@rawHeight - 10 + (10 * @nscale())) * 0.75) - 5 - (@y() - @ny())
         pheight: ->
-          ((156 - 10 + (10 * @pscale())) * 0.75) - 5 - (@y() - @py())
+          ((@rawHeight - 10 + (10 * @pscale())) * 0.75) - 5 - (@y() - @py())
         width: ->
           @height() / 1.5333
         toString: ->
@@ -112,11 +111,10 @@ $ ->
       imgSet = $('#carouselImages img')
       totImgs = imgSet.length
       imgSet.each((i, e) ->
-        img = new imgObj()
-        img.img = e
-        img.angle = i * ((Math.PI * 2) / totImgs)
         regex = new RegExp(/(\d+)\./)
-        img.id = '/castbook/cast/' + regex.exec(e.src)[1]
+        id = '/castbook/cast/' + regex.exec(e.src)[1]
+        angle = i * ((Math.PI * 2) / totImgs)
+        img = new imgObj(e, angle, id)
         imgs.push img
       )
       

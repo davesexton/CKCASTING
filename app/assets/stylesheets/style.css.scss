@@ -33,11 +33,45 @@
 }
 
 nav {
-  background-color:#FF0000;
+
+  li {
+    float: left;
+    display: block;
+    list-style-type: none;
+    marker-offset: 0;
+    margin {
+      right: 3em;
+      left: 0em;
+    }
+  }
+  div {
+    float: left;
+    padding: 0px 5px 7px 5px;
+    border: {
+      style: solid;
+      width: 0px 0px 6px 0px;
+      color: #FFFFFF;
+    }
+    margin-right: 5px;
+    font: {
+      size: 12pt;
+      family: Verdana;
+    }
+    a {
+      text-decoration: none;
+    }
+    &:hover {
+      border-color: #0000AA;
+    }
+  }
+  .activeNav {
+    border-color: #660000;
+  }
 }
 header {
-  @include span(24);
-  @extend .last;
+  @include prepend(1);
+  @include span(22);
+  @include append(1);
 }
 footer {
   @include span(24);
@@ -45,7 +79,8 @@ footer {
 }
 #main {
   @include prepend(1);
-  @include span(23);
+  @include span(22);
+  @include append(1);
 }
 .castbook {
   .columnCastImage {
@@ -63,8 +98,10 @@ footer {
     @extend .last; 
   }
   .viewStat {
-    font-size: smaller;
-    font-style: italic;
+    font: {
+      size: smaller;
+      style: italic;
+    }
   }
   .pageNav {
     font-size: larger;

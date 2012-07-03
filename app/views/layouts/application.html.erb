@@ -2,9 +2,9 @@
 <html>
 <head>
   <title>Ck Casting - <%= controller.controller_name.capitalize %></title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "application" %>
   <!--[if lte IE 8]>
-			<%= stylesheet_link_tag    "ie" %>
+			<%= stylesheet_link_tag "ie" %>
   <![endif]-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -14,10 +14,12 @@
   <div id="container" class="container showgrid">
     <header>
       <nav>
-        <ul>
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Castbook", controller: 'castbook' %></li>
-        </ul>
+        <div class="<%= 'activeNav' if controller.controller_name == 'home' %>">
+          <%= link_to "Home", root_path %>
+        </div>
+        <div <%= 'activeNav' if controller.controller_name == 'castbook' %>>
+          <%= link_to "Castbook", controller: 'castbook' %>
+        </div>
       </nav>
     </header>
     <section id="main">
