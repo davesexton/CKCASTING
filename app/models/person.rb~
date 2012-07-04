@@ -112,7 +112,8 @@ class Person < ActiveRecord::Base
     results = Magick::ImageList.new
     
     img = Magick::Image::read(path).first
-    img = img.crop_resized!(120, 138, Magick::NorthGravity)
+    #img = img.crop_resized!(120, 138, Magick::NorthGravity)
+    img = img.crop_resized!(101, 116, Magick::NorthGravity)
     
     results << img << img.wet_floor(0.5, 1)
     result = results.append(true)

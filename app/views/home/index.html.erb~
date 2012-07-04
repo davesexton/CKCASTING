@@ -1,9 +1,7 @@
-<h2>
-Welcome to CK Casting - a new and exciting agency for babies &amp; toddlers to young
-adults. We specialise in film, TV, commercial and theatrical casting. We know that
+<p>We specialise in film, TV, commercial and theatrical casting. We know that
 you will find working with our children a successful and pleasureable experience.
-</h2>
-<p><b>CK Casting offers so much more...</b></p>
+</p>
+<p>CK Casting offers so much more...</p>
 <ul>
     <li>A specialised agency, solely representing children, young adults, siblings and twins.</li>
     <li>A site designed exclusively for casting professionals.</li>
@@ -18,6 +16,6 @@ you will find working with our children a successful and pleasureable experience
 </canvas>
 <div id="carouselImages">
     <% @carousel.each do |c| %>
-        <%= image_tag c.carousel_url, id: "img#{c.id}" %>
+        <%= image_tag c.thumbnail_url, id: "img#{c.id}" %>
     <% end %>
 </div>

@@ -25,13 +25,25 @@ $ ->
       
 #Elipse function
 #----------------------------------------
-      drawEllipse = (c, centerX, centerY, width, height) ->
+      drawEllipse = (c, x, y, w, h) ->
         c.beginPath()
-        c.moveTo centerX, centerY - height / 2 
-        c.bezierCurveTo centerX + width / 2, centerY - height / 2, centerX + width / 2, centerY + height / 2, centerX, centerY + height / 2
-        c.bezierCurveTo centerX - width / 2, centerY + height / 2, centerX - width / 2, centerY - height / 2, centerX, centerY - height / 2
+        c.moveTo x + w, y 
+        c.bezierCurveTo x + w, y + h, x - w, y + h, x - w, y
+        c.bezierCurveTo x - w, y - h, x + w, y - h, x + w, y
         c.fill()
-        c.closePath()	
+        c.closePath()
+        
+#WetFloor function
+#----------------------------------------
+#      wetFloor = (imgObj, w, h) ->
+#        can = $('<canvas width="' + w + '" height="' + h + '"></canvas>').get(0)
+#        can.width = w
+#        can.height = h
+#        ctx = can.getContext "2d"
+#        ctx.drawImage imgObj, 0, 0, w, h
+#        imgData = ctx.getImageData(0, 0, 156, 30)
+#        data = imgData.data
+#        data
 
 #Hover handler      
 #----------------------------------------
@@ -65,7 +77,7 @@ $ ->
         constructor: (@img, @angle, @id) ->
         pangle: 0
         nangle: 0
-        rawHeight: 156
+        rawHeight: 156 / 4 * 3
         x: ->
           Math.cos(@angle) * radiusX + centerX
         y: ->
@@ -88,7 +100,7 @@ $ ->
         pheight: ->
           ((@rawHeight - 10 + (10 * @pscale())) * 0.75) - 5 - (@y() - @py())
         width: ->
-          @height() / 1.5333
+          @height() / (@img.height / @img.width)
         toString: ->
           @y()
         draw: (c, s)->
@@ -115,6 +127,7 @@ $ ->
         id = '/castbook/cast/' + regex.exec(e.src)[1]
         angle = i * ((Math.PI * 2) / totImgs)
         img = new imgObj(e, angle, id)
+        
         imgs.push img
       )
       
@@ -133,7 +146,7 @@ $ ->
             #context.fillStyle = "rgba(0, 0, 0, 1)"
             context.globalCompositeOperation = 'destination-over'
             #context.fillText 'click here', mouseX, moseY
-            drawEllipse context, centerX, centerY + 117, radiusX * 2, radiusY * 2
+            drawEllipse context, centerX, centerY + 110, radiusX, radiusY + 10
             #context.globalCompositeOperation = 'source-over'
             #context.fillStyle = "rgba(0, 0, 0, 0.2)"  
         if showClick

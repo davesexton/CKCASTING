@@ -1,0 +1,29 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.castbook {
+  .castImage {
+    background-image: url('cast_image_frame.gif');
+    width: 316px;
+    height: 363px;
+    padding: 0px;
+    position: relative;
+    img {
+      position: absolute;
+      left: 27px;
+      top: 30px;
+    }         
+  }
+  .castThumb {
+    float: left;
+    background-image: url('cast_thumb_frame.gif');
+    width: 166px;
+    height: 191px;
+    position: relative;
+    img {
+      left: 15px;
+      top: 17px;
+      position: absolute;
+    }
+  }
+}

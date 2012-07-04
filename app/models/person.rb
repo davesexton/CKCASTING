@@ -29,7 +29,7 @@ class Person < ActiveRecord::Base
   end
   
   def full_url
-    "http://www.ckcasting.co.uk/castbook/cast/#{id}"
+    "www.ckcasting.co.uk/castbook/cast/#{id}"
   end
   def url
     "/castbook/cast/#{id}"

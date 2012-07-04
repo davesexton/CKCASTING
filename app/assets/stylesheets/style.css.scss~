@@ -3,47 +3,15 @@
 *, table {
   font-size: 12pt; 
   font-family: Verdana;
+  color: #AAAAAA;
 }
 .nowrap {
   white-space: nowrap;
 }
-.castImage {
-  background-image: url('cast_image_frame.gif');
-  width: 316px;
-  height: 363px;
-  padding: 0px;
-  position: relative;
-  img {
-    position: absolute;
-    left: 27px;
-    top: 30px;
-  }         
-}
-.castThumb {
-  float: left;
-  background-image: url('cast_thumb_frame.gif');
-  width: 166px;
-  height: 191px;
-  position: relative;
-  img {
-    left: 15px;
-    top: 17px;
-    position: absolute;
-  }
-}
 
 nav {
-
-  li {
-    float: left;
-    display: block;
-    list-style-type: none;
-    marker-offset: 0;
-    margin {
-      right: 3em;
-      left: 0em;
-    }
-  }
+  height: 45px;
+  top: 15px;
   div {
     float: left;
     padding: 0px 5px 7px 5px;
@@ -54,7 +22,7 @@ nav {
     }
     margin-right: 5px;
     font: {
-      size: 12pt;
+      size: 1.2em;
       family: Verdana;
     }
     a {
@@ -63,7 +31,10 @@ nav {
     &:hover {
       border-color: #0000AA;
     }
-    .activeNav {
+  }
+  .activeNav {
+    border-color: #660000;
+    &:hover {
       border-color: #660000;
     }
   }
@@ -72,30 +43,67 @@ header {
   @include prepend(1);
   @include span(22);
   @include append(1);
+  hgroup {
+    height: 80px;
+  }
 }
 footer {
   @include span(24);
-  @extend .last;
+  @include last;
+  text-align: center;
+  height: 40px;
+  margin-top: 20px;
 }
 #main {
   @include prepend(1);
   @include span(22);
   @include append(1);
 }
+/* --- HOME --- */
+.home {
+    #carouselImages {
+        display: none;
+    }
+}
+/* --- CASTBOOK --- */
 .castbook {
+  .castImage {
+    background-image: url('cast_image_frame.gif');
+    width: 316px;
+    height: 363px;
+    padding: 0px;
+    position: relative;
+    img {
+      position: absolute;
+      left: 27px;
+      top: 30px;
+    }         
+  }
+  .castThumb {
+    float: left;
+    background-image: url('cast_thumb_frame.gif');
+    width: 166px;
+    height: 191px;
+    position: relative;
+    img {
+      left: 15px;
+      top: 17px;
+      position: absolute;
+    }
+  }
   .columnCastImage {
     @include span(9);
   }
   .columnCastDetails {
     @include span(13);
-    @extend .last; 
+    @include last;
   }
   .columnFilter {
-    @include span(4);
+    @include span(5);
   }
   .columnCastList {
     @include span(17);
-    @extend .last; 
+    @include last; 
   }
   .viewStat {
     font: {

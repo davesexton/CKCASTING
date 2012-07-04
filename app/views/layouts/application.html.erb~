@@ -11,13 +11,18 @@
   <%= favicon_link_tag %>
 </head>
 <body class="<%= controller.controller_name %>">
-  <div id="container" class="container showgrid">
+  <div id="container" class="container">
     <header>
+     <hgroup>
+     <h1>CK Casting</h1>
+     <h2>Welcome to CK Casting - a new and exciting agency for babies and toddlers to young
+         adults.</h2>
+     </hgroup>
       <nav>
         <div class="<%= 'activeNav' if controller.controller_name == 'home' %>">
           <%= link_to "Home", root_path %>
         </div>
-        <div>
+        <div class="<%= 'activeNav' if controller.controller_name == 'castbook' %>">
           <%= link_to "Castbook", controller: 'castbook' %>
         </div>
       </nav>

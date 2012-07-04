@@ -82,11 +82,11 @@ h1 {
   margin-bottom: 0.5em;
 }
 h2 {
-  font-size: 2em;
+  font-size: 1.2em;
   margin-bottom: 0.75em;
 }
 h3 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   line-height: 1;
   margin-bottom: 1em;
 }
@@ -198,7 +198,7 @@ th {
   }  
 }
 th, td, caption {
-  padding: 4px 10px 4px 5px;
+  padding: 4px 4px 4px 5px;
 }
 tbody tr:nth-child(even) td, tbody tr.even td {
   background: #e5ecf9;
