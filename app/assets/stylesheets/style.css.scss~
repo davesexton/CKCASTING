@@ -3,7 +3,7 @@
 *, table {
   font-size: 12pt; 
   font-family: Verdana;
-  color: #AAAAAA;
+  color: #444455;
 }
 .nowrap {
   white-space: nowrap;
@@ -129,6 +129,18 @@ footer {
         font-weight: bold;
         background-color: #333333;
       }
+    }
+  }
+}
+/* --- JOIN --- */
+.join {
+  .joinDetail {
+    @include span(22);
+    @include last;
+    & > div {
+      @include prepend(1);
+      @include span(20);
+      @include append(1);
     }
   }
 }

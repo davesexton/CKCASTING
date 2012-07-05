@@ -10,7 +10,7 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
 </head>
-<body class="<%= controller.controller_name %>">
+<body class="<%= controller.controller_name + 'Page' %>">
   <div id="container" class="container">
     <header>
      <hgroup>
@@ -25,13 +25,16 @@
         <div class="<%= 'activeNav' if controller.controller_name == 'castbook' %>">
           <%= link_to "Castbook", controller: 'castbook' %>
         </div>
+        <div class="<%= 'activeNav' if controller.controller_name == 'join' %>">
+          <%= link_to "Join Us", controller: 'join' %>
+        </div>
       </nav>
     </header>
     <section id="main">
       <%= yield %>
     </section>
     <footer>
-      footer
+      Copyright © 2008 CK Casting Agency 
     </footer>
   </div>
 </body>

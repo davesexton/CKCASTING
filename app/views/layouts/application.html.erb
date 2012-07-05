@@ -25,6 +25,9 @@
         <div class="<%= 'activeNav' if controller.controller_name == 'castbook' %>">
           <%= link_to "Castbook", controller: 'castbook' %>
         </div>
+        <div class="<%= 'activeNav' if controller.controller_name == 'join' %>">
+          <%= link_to "Join Us", controller: 'join' %>
+        </div>
       </nav>
     </header>
     <section id="main">

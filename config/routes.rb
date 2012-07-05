@@ -1,12 +1,10 @@
 Ckcasting::Application.routes.draw do
 
   root :to => 'home#index'  
-  match 'castbook/random' => 'castbook#random'
-  match 'cast_carousel' => redirect('/flash/cast_carousel.swf')
   match 'castbook/(:id)' => 'castbook#index' 
   match 'castbook/cast/(:id)' => 'castbook#show'
-  match 'home/index' => 'home#index'
-  
+  match 'home' => 'home#index'
+  match 'join' => 'join#index'
 
   #resources :castbook
   #resources :home

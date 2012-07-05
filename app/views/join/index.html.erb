@@ -1,0 +1,25 @@
+<div class="joinDetail">
+<p>If you would like to become a member of CK Casting 
+   you can do so by either of two methods. The first is 
+   to post in a completed registration form using the 
+   link below to print off a form. The second method is to 
+   complete an online form, again use the links below. 
+   Before registering make sure you have read our terms 
+   and conditions first.
+</p>
+  <div>
+    <%= link_to(image_tag('mouse_icon.gif', 
+      alt: 'Join online'), '/home') %>
+    <%= link_to 'Online enrolement', '/home' %>
+  </div>
+  <div>
+    <%= link_to(image_tag('doc_icon.gif', 
+      alt: 'Join online'), '/registration.pdf') %>
+    <%= link_to 'Printable foem', '/registration.pdf' %>
+  </div>
+  <div>
+    <%= link_to(image_tag('doc_icon.gif', 
+       alt: 'Terms and conditions'), '/terms.pdf') %>
+    <%= link_to 'Terms and conditions', '/terms.pdf' %>
+  </div>
+</div>
