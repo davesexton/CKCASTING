@@ -14,11 +14,11 @@ nav {
   top: 15px;
   div {
     float: left;
-    padding: 0px 5px 7px 5px;
+    padding: 0px 5px 6px 5px;
     border: {
       style: solid;
-      width: 0px 0px 6px 0px;
-      color: #FFFFFF;
+      width: 0px 0px 4px 0px;
+      color: #EEEEEE;
     }
     margin-right: 5px;
     font: {
@@ -97,6 +97,7 @@ footer {
   .columnCastDetails {
     @include span(13);
     @include last;
+    padding-top: 9px;
   }
   .columnFilter {
     @include span(5);
