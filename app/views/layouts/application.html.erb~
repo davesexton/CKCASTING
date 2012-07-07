@@ -10,7 +10,7 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
 </head>
-<body class="<%= controller.controller_name + 'Page' %>">
+<body class="<%= controller.controller_name %>">
   <div id="container" class="container">
     <header>
      <hgroup>

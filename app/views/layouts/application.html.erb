@@ -28,6 +28,9 @@
         <div class="<%= 'activeNav' if controller.controller_name == 'join' %>">
           <%= link_to "Join Us", controller: 'join' %>
         </div>
+        <div class="<%= 'activeNav' if controller.controller_name == 'contact' %>">
+          <%= link_to "Contact Us", controller: 'contact' %>
+        </div>
       </nav>
     </header>
     <section id="main">

@@ -4,6 +4,12 @@
 imgs = []
 
 $ ->
+  $('nav > div').click( (e) ->
+    window.location.href =  $(@).children(0).get(0).href
+  ).hover( (e) -> 
+    $(@).css('cursor','pointer')
+  )
+
   if $('.home').length > 0
     $('#carouselImages').ready ->
 
@@ -77,7 +83,7 @@ $ ->
         constructor: (@img, @angle, @id) ->
         pangle: 0
         nangle: 0
-        rawHeight: 156 / 4 * 3
+        rawHeight: 156
         x: ->
           Math.cos(@angle) * radiusX + centerX
         y: ->

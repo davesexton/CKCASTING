@@ -4,6 +4,12 @@
 imgs = []
 
 $ ->
+  $('nav > div').click( (e) ->
+    window.location.href =  $(@).children(0).get(0).href
+  ).hover( (e) -> 
+    $(@).css('cursor','pointer')
+  )
+
   if $('.home').length > 0
     $('#carouselImages').ready ->
 

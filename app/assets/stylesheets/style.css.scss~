@@ -18,7 +18,7 @@ nav {
     border: {
       style: solid;
       width: 0px 0px 4px 0px;
-      color: #DDDDDD;
+      color: #EEEEEE;
     }
     margin-right: 5px;
     font: {
@@ -58,6 +58,7 @@ footer {
   @include prepend(1);
   @include span(22);
   @include append(1);
+  font-size: 11pt;
 }
 /* --- HOME --- */
 .home {
