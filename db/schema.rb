@@ -14,30 +14,30 @@
 ActiveRecord::Schema.define(:version => 20111120195131) do
 
   create_table "castbooks", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "credits", :force => true do |t|
     t.integer  "Person_id"
     t.integer  "display_order"
     t.string   "credit_text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "credits", ["Person_id"], :name => "index_credits_on_Person_id"
 
   create_table "eye_colours", :force => true do |t|
     t.string   "eye_colour"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "hair_colours", :force => true do |t|
     t.string   "hair_colour"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "people", :force => true do |t|
@@ -54,19 +54,19 @@ ActiveRecord::Schema.define(:version => 20111120195131) do
     t.float    "longitude"
     t.string   "telephone_number"
     t.string   "email_address"
-    t.string   "status"
+    t.string   "status",           :default => "Active"
     t.datetime "last_viewed_at"
     t.integer  "view_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "skills", :force => true do |t|
     t.integer  "Person_id"
     t.integer  "display_order"
     t.string   "skill_text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "skills", ["Person_id"], :name => "index_skills_on_Person_id"

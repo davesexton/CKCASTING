@@ -5,7 +5,7 @@ require 'open-uri'
 require "net/http"
 
 # ----- Delete images
-Dir.chdir('/home/dave/websites/ckcasting/app/assets/images/cast')
+Dir.chdir('/home/dave/websites/ckcasting/app/assets/images/cast_images')
 Dir['*.jpg'].each { |f| File.delete f }
 
 # ----- Set variables
@@ -29,15 +29,15 @@ seed = "# encoding: utf-8\n"
 # ----- Get height
   feet = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HEIGHT_FTLabel"]').innerHTML
   inches = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HEIGHT_INLabel"]').innerHTML
-  
-# ----- Get height
+
+# ----- Get colors
   hair = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HAIR_COLOURLabel"]').innerHTML
   eye = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_EYE_COLOURLabel"]').innerHTML
 
 # ----- Get sex
   sex = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_SEXLabel"]').innerHTML
 
-# ----- Get height
+# ----- Get view counts
   last_viewed = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_LAST_VIEWEDLabel"]').innerHTML
   view_count = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_VIEW_COUNTLabel"]').innerHTML
 
@@ -57,9 +57,9 @@ seed = "# encoding: utf-8\n"
 # ----- Get skills
   ord = 1
   txt = ''
-  (doc/'//*[@id="ctl00_MainContentPlaceHolder_InterestsBulletedList"]/li').each do |e| 
+  (doc/'//*[@id="ctl00_MainContentPlaceHolder_InterestsBulletedList"]/li').each do |e|
     txt = e.innerHTML.strip
-  
+
     seed += "Skill.create(:Person_id => #{new_id}" \
      + ", :display_order => #{ord}" \
      + ", :skill_text => '#{txt}')\n"
@@ -69,7 +69,7 @@ seed = "# encoding: utf-8\n"
 # ----- Get credits
   ord = 1
   txt = ''
-  (doc/'//*[@id="ctl00_MainContentPlaceHolder_CreditsBulletedList"]/li').each do |e| 
+  (doc/'//*[@id="ctl00_MainContentPlaceHolder_CreditsBulletedList"]/li').each do |e|
     txt = e.innerHTML.strip
     txt.gsub!('&amp;', 'and')
     txt.gsub!(' The ', ' the ')
@@ -89,20 +89,20 @@ seed = "# encoding: utf-8\n"
     txt.gsub!('CBBC- ', 'CBBC - ')
 
     txt.gsub!(/Paul O.*Grady/, 'Paul O\\\'Grady')
-  
+
     seed += "Credit.create(:Person_id => #{new_id}" \
      + ", :display_order => #{ord}" \
      + ", :credit_text => '#{txt}')\n"
     ord += 1
   end
-  
+
 # ----- Get image file
   Net::HTTP.start("www.ckcasting.co.uk") do |http|
     resp = http.get("/castbook/#{f}.jpg")
     open("#{new_id}.jpg", "wb") { |file| file.write(resp.body) } if resp.code == '200'
-  
-  end  
-  
+
+  end
+
 # ----- Next ID
   new_id += 1
 end
