@@ -148,7 +148,13 @@ footer {
   }
 }
 .applicants {
-  label {
+  .appDetails {
+     @include prepend(2);
+     @include span(14);
+     @include append(4);
+  }
+
+  .appLabel {
     width: 12em;
     float: left;
     text-align: right;
@@ -159,11 +165,14 @@ footer {
       content: ":";
     }
   }
-  input, select {
+  input, select, textarea {
     margin: {
       left: 1.5em;
       top: 0em;
     }
+  }
+  input, textarea {
+    width: 10em;
   }
   .field {
     margin-bottom: 0px;
