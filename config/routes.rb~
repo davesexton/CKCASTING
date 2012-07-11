@@ -1,12 +1,17 @@
 Ckcasting::Application.routes.draw do
 
-  root :to => 'home#index'  
-  match 'castbook/(:id)' => 'castbook#index' 
+  resources :applicants
+
+  root :to => 'home#index'
+  match 'castbook/(:id)' => 'castbook#index'
   match 'castbook/cast/(:id)' => 'castbook#show'
   match 'home' => 'home#index'
   match 'join' => 'join#index'
+  match 'contact' => 'contact#index'
+  match 'applicant' => 'applicant#index'
+  #match 'apply/save' => 'apply#save'
 
-  #resources :castbook
+  resources :applicants
   #resources :home
 
   resources :credits

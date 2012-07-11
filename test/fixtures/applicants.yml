@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  address_line_1: MyString
+  address_line_2: MyString
+  address_line_3: MyString
+  address_line_4: MyString
+  postcode: MyString
+  date_of_birth: 2012-07-10
+  gender: MyString
+  height_inches: 1
+  height_feet: 1
+  hair_colour: MyString
+  eye_colour: MyString
+  skills: MyText
+  gaurdian_name_1: MyString
+  gaurdian_telephone_1: MyString
+  gaurdian_name_2: MyString
+  gaurdian_telephone_2: MyString
+  gaurdian_name_3: MyString
+  gaurdian_telephone_3: MyString
+  email_address: MyString
+  fax: MyString
+  stage_credits: MyText
+  tv_credits: MyText
+  film_credits: MyText
+  other_credits: MyText
+
+two:
+  first_name: MyString
+  last_name: MyString
+  address_line_1: MyString
+  address_line_2: MyString
+  address_line_3: MyString
+  address_line_4: MyString
+  postcode: MyString
+  date_of_birth: 2012-07-10
+  gender: MyString
+  height_inches: 1
+  height_feet: 1
+  hair_colour: MyString
+  eye_colour: MyString
+  skills: MyText
+  gaurdian_name_1: MyString
+  gaurdian_telephone_1: MyString
+  gaurdian_name_2: MyString
+  gaurdian_telephone_2: MyString
+  gaurdian_name_3: MyString
+  gaurdian_telephone_3: MyString
+  email_address: MyString
+  fax: MyString
+  stage_credits: MyText
+  tv_credits: MyText
+  film_credits: MyText
+  other_credits: MyText

@@ -1,7 +1,7 @@
 @import 'blueprint';
 
 *, table {
-  font-size: 12pt; 
+  font-size: 12pt;
   font-family: Verdana;
   color: #444455;
 }
@@ -78,7 +78,7 @@ footer {
       position: absolute;
       left: 27px;
       top: 30px;
-    }         
+    }
   }
   .castThumb {
     float: left;
@@ -105,7 +105,7 @@ footer {
   }
   .columnCastList {
     @include span(17);
-    @include last; 
+    @include last;
   }
   .viewStat {
     font: {
@@ -145,5 +145,27 @@ footer {
       @include append(1);
       vertical-align: top;
     }
+  }
+}
+.applicants {
+  label {
+    width: 12em;
+    float: left;
+    text-align: right;
+    margin-right: 0.5em;
+    display: block;
+    top: 0.0em;
+    &:after {
+      content: ":";
+    }
+  }
+  input, select {
+    margin: {
+      left: 1.5em;
+      top: 0em;
+    }
+  }
+  .field {
+    margin-bottom: 0px;
   }
 }

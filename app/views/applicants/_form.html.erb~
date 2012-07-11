@@ -1,0 +1,125 @@
+<%= form_for(@applicant) do |f| %>
+  <% if @applicant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@applicant.errors.count, "error") %> prohibited this application from being sent:</h2>
+
+      <ul>
+      <% @applicant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Street' %>
+    <%= f.text_field :address_line_1 %>
+  </div>
+  <div class="field">
+    <%= f.label 'Town' %>
+    <%= f.text_field :address_line_2 %>
+  </div>
+  <div class="field">
+    <%= f.label 'Town' %>
+    <%= f.text_field :address_line_3 %>
+  </div>
+  <div class="field">
+    <%= f.label 'City' %>
+    <%= f.text_field :address_line_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :postcode %>
+    <%= f.text_field :postcode %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %>
+    <%= f.date_select :date_of_birth, :order => [:day, :month, :year] %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %>
+    <%= select_tag(:gender, options_for_select([['Male'],['Female']])) %>
+  </div>
+  <div class="field">
+    <%= f.label 'Height' %>
+    <%= select_tag(:height_feet, options_for_select( (0..7).to_a )) %>
+    <%= label_tag 'ft' %>
+    <%= select_tag(:height_inches, options_for_select( (0..11).to_a )) %>
+    <%= f.number_field :height_inches %>
+
+  </div>
+  <div class="field">
+    <%= f.label :height_feet %><br />
+    <%= f.number_field :height_feet %>
+  </div>
+  <div class="field">
+    <%= f.label :hair_colour %><br />
+    <%= f.text_field :hair_colour %>
+  </div>
+  <div class="field">
+    <%= f.label :eye_colour %><br />
+    <%= f.text_field :eye_colour %>
+  </div>
+  <div class="field">
+    <%= f.label :skills %><br />
+    <%= f.text_area :skills %>
+  </div>
+  <div class="field">
+    <%= f.label :gaurdian_name_1 %><br />
+    <%= f.text_field :gaurdian_name_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :gaurdian_telephone_1 %><br />
+    <%= f.text_field :gaurdian_telephone_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :gaurdian_name_2 %><br />
+    <%= f.text_field :gaurdian_name_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :gaurdian_telephone_2 %><br />
+    <%= f.text_field :gaurdian_telephone_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :gaurdian_name_3 %><br />
+    <%= f.text_field :gaurdian_name_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :gaurdian_telephone_3 %><br />
+    <%= f.text_field :gaurdian_telephone_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :email_address %><br />
+    <%= f.text_field :email_address %>
+  </div>
+  <div class="field">
+    <%= f.label :fax %><br />
+    <%= f.text_field :fax %>
+  </div>
+  <div class="field">
+    <%= f.label :stage_credits %><br />
+    <%= f.text_area :stage_credits %>
+  </div>
+  <div class="field">
+    <%= f.label :tv_credits %><br />
+    <%= f.text_area :tv_credits %>
+  </div>
+  <div class="field">
+    <%= f.label :film_credits %><br />
+    <%= f.text_area :film_credits %>
+  </div>
+  <div class="field">
+    <%= f.label :other_credits %><br />
+    <%= f.text_area :other_credits %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Submit Application' %>
+  </div>
+<% end %>

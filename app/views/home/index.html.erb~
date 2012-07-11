@@ -16,6 +16,6 @@ you will find working with our children a successful and pleasureable experience
 </canvas>
 <div id="carouselImages">
     <% @carousel.each do |c| %>
-        <%= image_tag c.thumbnail_url, id: "img#{c.id}" %>
+        <%= image_tag c.carousel_url, id: "img#{c.id}" %>
     <% end %>
 </div>
