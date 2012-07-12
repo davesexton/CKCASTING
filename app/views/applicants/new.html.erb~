@@ -1,5 +1,6 @@
 <div class="appDetails">
 <%= render 'form' %>
-</div>
+
 
 <%= link_to 'Back', applicants_path %>
+</div>

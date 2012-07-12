@@ -1,33 +1,33 @@
 class Person < ActiveRecord::Base
-  validates :gender, inclusion: { 
+  validates :gender, inclusion: {
     in: %w(Male Female),
     message: "%{value} is not a valid gender" }
-  
-  validates :status, inclusion: { 
+
+  validates :status, inclusion: {
     in: %w(Active Inactive),
     message: "%{value} is not a valid status" }
-  
-  validates :height_inches, numericality: { 
-    only_integer: true, 
-    less_than_or_equal_to: 11, 
-    allow_nil: true } 
-  
-  validates :height_feet, numericality: { 
-    only_integer: true, 
+
+  validates :height_inches, numericality: {
+    only_integer: true,
+    less_than_or_equal_to: 11,
+    allow_nil: true }
+
+  validates :height_feet, numericality: {
+    only_integer: true,
     less_than_or_equal_to: 7,
     allow_nil: true }
-  
-  validates :first_name, :last_name, presence: true
-  
+
+  validates :first_name, :last_name, :status presence: true
+
  # validates :email_address, uniqueness: true
-  
+
   has_many :Credits
   has_many :Skills
-  
+
   def full_name
     "#{first_name} #{last_name}"
   end
-  
+
   def full_url
     "www.ckcasting.co.uk/castbook/cast/#{id}"
   end
@@ -47,7 +47,7 @@ class Person < ActiveRecord::Base
     make_cast_carousel "#{id}.jpg" unless FileTest.exist?(path)
     write_attribute(:carousel_url, "/assets/cast_carousel/#{id}.jpg")
   end
-  def skill_list 
+  def skill_list
     Skill.where(person_id: id).order(:skill_text).collect { |s| s.skill_text }.join(', ')
   end
 
@@ -75,7 +75,7 @@ class Person < ActiveRecord::Base
     else 7
     end
   end
-  
+
   def height_group
     height = (height_feet * 12) + height_inches
     if height < 36 then "Under 3 foot"
@@ -94,7 +94,7 @@ class Person < ActiveRecord::Base
     else 5
     end
   end
-  
+
   private
    def make_cast_thumbnail img
     require 'RMagick'
@@ -108,18 +108,17 @@ class Person < ActiveRecord::Base
     require 'RMagick'
     path = "./app/assets/images/cast_images/#{img}"
     thumb = "./app/assets/images/cast_carousel/#{img}"
-    
+
     results = Magick::ImageList.new
-    
+
     img = Magick::Image::read(path).first
-    #img = img.crop_resized!(120, 138, Magick::NorthGravity)
     img = img.crop_resized!(101, 116, Magick::NorthGravity)
-    
+
     results << img << img.wet_floor(0.5, 1)
     result = results.append(true)
     bg = Magick::Image.new(result.columns, result.rows) {self.background_color = "#FFFFFF"}
     final = bg.composite(result, Magick::NorthGravity, Magick::OverCompositeOp)
-    
+
     final.write(thumb)
   end
 end

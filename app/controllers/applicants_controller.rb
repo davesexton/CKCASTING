@@ -26,6 +26,8 @@ class ApplicantsController < ApplicationController
   def new
 
     @hair_colour = HairColour.select(:hair_colour).order(:hair_colour).map(&:hair_colour)
+    @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
+
     @applicant = Applicant.new
 
     respond_to do |format|

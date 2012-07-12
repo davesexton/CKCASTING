@@ -43,6 +43,7 @@ header {
   @include prepend(1);
   @include span(22);
   @include append(1);
+  @include last;
   hgroup {
     height: 80px;
   }
@@ -58,6 +59,7 @@ footer {
   @include prepend(1);
   @include span(22);
   @include append(1);
+  @include last;
   font-size: 11pt;
 }
 /* --- HOME --- */
@@ -147,15 +149,25 @@ footer {
     }
   }
 }
+/* --- APPLICANT FORM --- */
 .applicants {
   .appDetails {
-     @include prepend(2);
-     @include span(14);
-     @include append(4);
+     @include span(22);
+     @include last;
   }
-
+  .candidateDetails {
+    @include span(11);
+  }
+  .gaurdianDetails {
+    @include span(11);
+    @include last;
+  }
+  .candidateSkills {
+    @include span(22);
+    @include last;
+  }
   .appLabel {
-    width: 12em;
+    width: 10em;
     float: left;
     text-align: right;
     margin-right: 0.5em;
@@ -165,16 +177,27 @@ footer {
       content: ":";
     }
   }
+  label {
+    top: 0.0em;
+  }
   input, select, textarea {
     margin: {
-      left: 1.5em;
       top: 0em;
     }
   }
   input, textarea {
-    width: 10em;
+    width: 14em;
+    left: 1.5em;
   }
   .field {
     margin-bottom: 0px;
+  }
+}
+/* --- APPLICANT FORM --- */
+.contact {
+  .contactDetail {
+     @include span(22);
+     @include last;
+     display: hidden;
   }
 }

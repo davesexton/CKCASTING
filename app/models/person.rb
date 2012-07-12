@@ -17,7 +17,7 @@ class Person < ActiveRecord::Base
     less_than_or_equal_to: 7,
     allow_nil: true }
 
-  validates :first_name, :last_name, presence: true
+  validates :first_name, :last_name, :status, presence: true
 
  # validates :email_address, uniqueness: true
 

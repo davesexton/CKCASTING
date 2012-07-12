@@ -1,7 +1,7 @@
 require 'test_helper'
 #TODO Add person unit test
 class PersonTest < ActiveSupport::TestCase
-  
+
   test "person attributes must not be empty" do
     person = Person.new
     assert person.invalid?
@@ -10,7 +10,7 @@ class PersonTest < ActiveSupport::TestCase
     assert person.errors[:gender].any?
     assert person.errors[:status].any?
   end
-  
+
   test "gender must be male or female" do
     person = Person.new(first_name: 'Fred',
                         last_name: 'Bloggs',
@@ -34,6 +34,6 @@ class PersonTest < ActiveSupport::TestCase
     person.status = 'Inactive'
     assert person.valid?
   end
-  
-  
+
+
 end

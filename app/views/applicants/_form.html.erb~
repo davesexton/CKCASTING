@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+<div class="candidateDetails">
 <fieldset>
 <legend>Candidate's Details</legend>
   <div class="field">
@@ -49,25 +50,27 @@
     <%= select_tag(:gender, options_for_select([['Male'],['Female']])) %>
   </div>
   <div class="field">
-    <%= f.label 'Height', class: 'appLabel' %>
+    <%= f.label :height_feet, 'Height', class: 'appLabel' %>
     <%= select_tag(:height_feet, options_for_select( (0..7).to_a )) %>
-    <%= label_tag 'ft' %>
+    <%= label_tag nil, 'feet' %>
     <%= select_tag(:height_inches, options_for_select( (0..11).to_a )) %>
-    <%= label_tag 'in' %>
+    <%= label_tag nil, 'inches' %>
   </div>
   <div class="field">
     <%= f.label :hair_colour, class: 'appLabel' %>
-    <%= f.text_field :hair_colour %>
+    <%= select_tag(:hair_colour, options_for_select(@hair_colour)) %>
   </div>
   <div class="field">
     <%= f.label :eye_colour, class: 'appLabel' %>
-    <%= f.text_field :eye_colour %>
+    <%= select_tag(:eye_colour, options_for_select(@eye_colour)) %>
   </div>
   <div class="field">
     <%= f.label 'Skills, Music / Drama Exams, Hobbies', class: 'appLabel' %>
     <%= f.text_area :skills %>
   </div>
 </fieldset>
+</div>
+<div class="gaurdianDetails">
 <fieldset>
 <legend>Parent or Guardian Contact Details</legend>
   <p>First Parent or Guardian</p>
@@ -96,28 +99,33 @@
     <%= f.label 'Telephone', class: 'appLabel' %>
     <%= f.text_field :gaurdian_telephone_2 %>
   </div>
+  <p>Third Parent or Guardian</p>
   <div class="field">
-    <%= f.label :gaurdian_name_3 %><br />
+    <%= f.label 'Name', class: 'appLabel' %>
     <%= f.text_field :gaurdian_name_3 %>
   </div>
   <div class="field">
-    <%= f.label :gaurdian_telephone_3 %><br />
+    <%= f.label 'Telephone', class: 'appLabel' %>
     <%= f.text_field :gaurdian_telephone_3 %>
   </div>
+</fieldset>
+</div>
+<fieldset>
+<legend>Pro/Amateur Performance Credits</legend>
   <div class="field">
-    <%= f.label :stage_credits %><br />
+    <%= f.label :stage_credits, class: 'appLabel' %>
     <%= f.text_area :stage_credits %>
   </div>
   <div class="field">
-    <%= f.label :tv_credits %><br />
+    <%= f.label :tv_credits, class: 'appLabel' %>
     <%= f.text_area :tv_credits %>
   </div>
   <div class="field">
-    <%= f.label :film_credits %><br />
+    <%= f.label :film_credits, class: 'appLabel' %>
     <%= f.text_area :film_credits %>
   </div>
   <div class="field">
-    <%= f.label :other_credits %><br />
+    <%= f.label :other_credits, class: 'appLabel' %>
     <%= f.text_area :other_credits %>
   </div>
   <div class="actions">
