@@ -47,22 +47,22 @@
   </div>
   <div class="field">
     <%= f.label :gender, class: 'appLabel' %>
-    <%= select_tag(:gender, options_for_select([['Male'],['Female']])) %>
+    <%= f.select(:gender, options_for_select([['Male'],['Female']])) %>
   </div>
   <div class="field">
     <%= f.label :height_feet, 'Height', class: 'appLabel' %>
-    <%= select_tag(:height_feet, options_for_select( (0..7).to_a )) %>
+    <%= f.select(:height_feet, options_for_select( (0..7).to_a )) %>
     <%= label_tag nil, 'feet' %>
-    <%= select_tag(:height_inches, options_for_select( (0..11).to_a )) %>
+    <%= f.select(:height_inches, options_for_select( (0..11).to_a )) %>
     <%= label_tag nil, 'inches' %>
   </div>
   <div class="field">
     <%= f.label :hair_colour, class: 'appLabel' %>
-    <%= select_tag(:hair_colour, options_for_select(@hair_colour)) %>
+    <%= f.select(:hair_colour, options_for_select(@hair_colour)) %>
   </div>
   <div class="field">
     <%= f.label :eye_colour, class: 'appLabel' %>
-    <%= select_tag(:eye_colour, options_for_select(@eye_colour)) %>
+    <%= f.select(:eye_colour, options_for_select(@eye_colour)) %>
   </div>
   <div class="field">
     <%= f.label 'Skills, Music / Drama Exams, Hobbies', class: 'appLabel' %>

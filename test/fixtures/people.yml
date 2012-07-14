@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  first_name: MyString
-  last_name: MyString
+good:
+  first_name: First
+  last_name: Last
   date_of_birth: 2011-11-13
   height_feet: 1
   height_inches: 1
   hair_colour: Brown
   eye_colour: Brown
   gender: Male
-  postcode: MyString
+  postcode: RM16 6ES
   latitude: 1.5
   longitude: 1.5
-  telephone_number: MyString
-  email_address: 1
+  telephone_number: 01375-456362
+  email_address: me@host.com
   status: Active

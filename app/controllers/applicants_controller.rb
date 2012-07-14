@@ -38,12 +38,16 @@ class ApplicantsController < ApplicationController
 
   # GET /applicants/1/edit
   def edit
+    @hair_colour = HairColour.select(:hair_colour).order(:hair_colour).map(&:hair_colour)
+   @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
     @applicant = Applicant.find(params[:id])
   end
 
   # POST /applicants
   # POST /applicants.json
   def create
+    @hair_colour = HairColour.select(:hair_colour).order(:hair_colour).map(&:hair_colour)
+   @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
     @applicant = Applicant.new(params[:applicant])
 
     respond_to do |format|
@@ -60,6 +64,8 @@ class ApplicantsController < ApplicationController
   # PUT /applicants/1
   # PUT /applicants/1.json
   def update
+    @hair_colour = HairColour.select(:hair_colour).order(:hair_colour).map(&:hair_colour)
+    @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
     @applicant = Applicant.find(params[:id])
 
     respond_to do |format|

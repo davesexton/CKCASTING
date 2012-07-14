@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
   validates :gender, inclusion: {
     in: %w(Male Female),
-    message: "%{value} is not a valid gender" }
+    message: "%{value} is not a valid gender" } #, allow_nil: false
 
   validates :status, inclusion: {
     in: %w(Active Inactive),
@@ -17,9 +17,8 @@ class Person < ActiveRecord::Base
     less_than_or_equal_to: 7,
     allow_nil: true }
 
-  validates :first_name, :last_name, :status, presence: true
-
- # validates :email_address, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   has_many :Credits
   has_many :Skills
@@ -96,7 +95,7 @@ class Person < ActiveRecord::Base
   end
 
   private
-   def make_cast_thumbnail img
+  def make_cast_thumbnail img
     require 'RMagick'
     path = "./app/assets/images/cast_images/#{img}"
     thumb = "./app/assets/images/cast_thumbs/#{img}"
