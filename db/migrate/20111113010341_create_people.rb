@@ -4,8 +4,8 @@ class CreatePeople < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.date :date_of_birth
-      t.integer :height_feet
-      t.integer :height_inches
+      t.integer :height_feet, default: 0
+      t.integer :height_inches, default: 0
       t.string :hair_colour
       t.string :eye_colour
       t.string :gender

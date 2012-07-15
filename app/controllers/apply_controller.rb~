@@ -1,5 +1,0 @@
-class ApplyController < ApplicationController
-  def save
-
-  end
-end

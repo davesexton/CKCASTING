@@ -1,7 +1,8 @@
 class Person < ActiveRecord::Base
   validates :gender, inclusion: {
     in: %w(Male Female),
-    message: "%{value} is not a valid gender" } #, allow_nil: false
+    message: "%{value} is not a valid gender",
+    allow_nil: false }
 
   validates :status, inclusion: {
     in: %w(Active Inactive),
@@ -10,12 +11,15 @@ class Person < ActiveRecord::Base
   validates :height_inches, numericality: {
     only_integer: true,
     less_than_or_equal_to: 11,
-    allow_nil: true }
+    greater_than_or_equal_to: 0,
+    message: 'Height in inches must be a whole number between 0 and 11',
+    allow_nil: false }
 
   validates :height_feet, numericality: {
     only_integer: true,
     less_than_or_equal_to: 7,
-    allow_nil: true }
+    greater_than_or_equal_to: 0,
+    allow_nil: false }
 
   validates :first_name, presence: true
   validates :last_name, presence: true

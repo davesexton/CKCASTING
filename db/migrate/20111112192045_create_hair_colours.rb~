@@ -1,9 +1,0 @@
-class CreateHairColours < ActiveRecord::Migration
-  def change
-    create_table :hair_colours do |t|
-      t.string :hair_colour
-
-      t.timestamps
-    end
-  end
-end
