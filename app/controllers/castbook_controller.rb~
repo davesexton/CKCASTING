@@ -15,7 +15,7 @@ class CastbookController < ApplicationController
     #  .limit(page_size)
     #  .offset(offset)
 
-    @castbook = Person.where(status: 'Active').limit(page_size).offset(offset)
+    @castbook = Person.limit(page_size).offset(offset)
 
     @nav = (Person.count.to_f / page_size).ceil
 

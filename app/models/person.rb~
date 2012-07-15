@@ -145,7 +145,7 @@ class Person < ActiveRecord::Base
     end
   end
   def date_of_birth_cannot_give_age_over_100
-    if !date_of_birth.blank? and date_of_birth <= Time.now.utc.to_date - 100.years
+    if !date_of_birth.blank? and date_of_birth >= Time.now.utc.to_date - 100.years
       errors.add(:date_of_birth, "can't be more than 100 years in the past")
     end
   end
