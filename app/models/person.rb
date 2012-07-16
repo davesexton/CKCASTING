@@ -1,5 +1,6 @@
 class Person < ActiveRecord::Base
-#TODO add lat and long lookup
+#TODO check lat and long lookup
+#TODO validate postcode
   validates :gender, inclusion: {
     in: %w(Male Female),
     message: "%{value} is not a valid gender",
@@ -8,9 +9,8 @@ class Person < ActiveRecord::Base
   validates :status, inclusion: {
     in: %w(Active Inactive),
     message: "%{value} is not a valid status" }
-#TODO add age validation
   validate :date_of_birth_cannot_be_in_the_furtue
- # validate :date_of_birth_cannot_give_age_over_100
+  validate :date_of_birth_cannot_give_age_over_100
 
   validates :height_inches, numericality: {
     only_integer: true,
@@ -32,8 +32,18 @@ class Person < ActiveRecord::Base
   has_many :Credits
   has_many :Skills
 
+  before_save :update_location
+
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def update_location
+    if !self.postcode.blank? and (self.latitude.blank? or self.longitude.blank?)
+      loc = get_location
+      self.latitude = loc[0]
+      self.longitude = loc[1]
+    end
   end
 
   def full_url
@@ -141,12 +151,19 @@ class Person < ActiveRecord::Base
   end
   def date_of_birth_cannot_be_in_the_furtue
     if !date_of_birth.blank? and date_of_birth >= Time.now.utc.to_date
-      errors.add(:date_of_birth, "can't be greater than today")
+      errors.add(:date_of_birth, "date of birth can't be greater than today")
     end
   end
   def date_of_birth_cannot_give_age_over_100
     if !date_of_birth.blank? and date_of_birth <= Time.now.utc.to_date - 100.years
-      errors.add(:date_of_birth, "can't be more than 100 years in the past")
+      errors.add(:date_of_birth, "date of birth can't be more than 100 years in the past")
     end
+  end
+  def get_location
+    require 'open-uri'
+    doc = open("http://www.maps.google.com?q=RM16+6ES").read
+    lat = doc.to_s.scan(/var viewport_center_lat=(\d*\.\d*);/)[0][0]
+    lng = doc.to_s.scan(/var viewport_center_lng=(\d*\.\d*);/)[0][0]
+    [lat, lng]
   end
 end

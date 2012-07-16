@@ -1,6 +1,6 @@
 require 'test_helper'
-#TODO add castbook tests
-class CastbookTest < ActiveSupport::TestCase
+#TODO Add user unit test
+class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -10,8 +10,8 @@ good:
   eye_colour: Brown
   gender: Male
   postcode: RM16 6ES
-  latitude: nil
-  longitude: nil
+  latitude:
+  longitude:
   telephone_number: 01375-456362
   email_address: me@host.com
   status: Active

@@ -1,9 +1,13 @@
 require 'test_helper'
-#TODO Add age test
 class PersonTest < ActiveSupport::TestCase
 
+  def setup
+    @good_person = Person.find(people(:good).id)
+    @new_person = Person.new
+  end
+
   test "person attributes must not be empty" do
-    person = Person.new
+    person = @new_person
     assert person.invalid?, 'invalid record is valid'
     assert person.errors[:last_name].any?, 'blank last name alowed'
     assert person.errors[:first_name].any?, 'blank first name allowed'
@@ -14,7 +18,8 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   test "gender must be male or female" do
-    person = Person.find(people(:good).id)
+    #person = Person.find(people(:good).id)
+    person = @good_person
     assert person.valid?
     person.gender = 'xxxx'
     assert person.invalid?, 'invalid gender allowed'
@@ -27,7 +32,7 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   test "status must be active or inactive" do
-    person = Person.find(people(:good).id)
+    person = @good_person
     person.status = 'xxxx'
     assert person.invalid?, 'invalid status allowed'
     person.status = nil
@@ -39,7 +44,7 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   test "height in inches must be between 0 and 11" do
-    person = Person.find(people(:good).id)
+    person = @good_person
     person.height_inches = -1
     assert person.invalid?, 'negative height in inches allowed'
     assert_equal 'Height in inches must be a whole number between 0 and 11',
@@ -57,7 +62,7 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   test "height in feet must be between 0 and 7" do
-    person = Person.find(people(:good).id)
+    person = @good_person
     person.height_feet = -1
     assert person.invalid?, 'negative height in feet allowed'
     assert_equal 'Height in feet must be a whole number between 0 and 7',
@@ -74,7 +79,7 @@ class PersonTest < ActiveSupport::TestCase
     assert person.valid?, 'valid height in feet is invalid'
   end
   test "check urls are correct" do
-    person = Person.find(people(:good).id)
+    person = @good_person
     assert_equal "www.ckcasting.co.uk/castbook/cast/#{person.id}",
                   person.full_url,
                   'invalid full url'
@@ -89,7 +94,7 @@ class PersonTest < ActiveSupport::TestCase
                   'invalid thumbnail url'
   end
   test 'check age groups' do
-    person = Person.find(people(:good).id)
+    person = @good_person
     person.height_feet = 2
     person.height_inches = 11
     assert_equal 'Under 3 foot', person.height_group
@@ -124,10 +129,24 @@ class PersonTest < ActiveSupport::TestCase
     assert_equal 5, person.height_group_id
   end
   test 'test date of birth' do
-    person = Person.find(people(:good).id)
+    person = @good_person
     person.date_of_birth = Time.now.utc.to_date
     assert person.invalid?, 'date of birth can be greater than today'
-#    person.date_of_birth = Time.now.utc.to_date - 100.years
-#    assert person.invalid?, 'date of birth can be more than 100 years in the past'
+    assert_equal "date of birth can't be greater than today",
+                 person.errors[:date_of_birth].join(';')
+    person.date_of_birth = Time.now.utc.to_date - 100.years
+    assert person.invalid?, 'date of birth can be more than 100 years in the past'
+    assert_equal "date of birth can't be more than 100 years in the past",
+                 person.errors[:date_of_birth].join(';')
+  end
+  test 'check location poition' do
+    person = @good_person
+#TODO add check for postcode that can't be found on gmaps'
+    person.latitude = nil
+    person.longitude = nil
+    person.postcode = 'xxxx'
+    person.save
+    assert_equal 51.4901008605957, person.latitude, 'incorrect latitude'
+    assert_equal 0.30873599648475647, person.longitude, 'incorrect longitude'
   end
 end

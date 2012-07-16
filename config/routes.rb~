@@ -17,7 +17,6 @@ Ckcasting::Application.routes.draw do
   #resources :home
 
   resources :credits
-  resources :uesrs
 
   resources :skills
 
