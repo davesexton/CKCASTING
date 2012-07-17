@@ -1,5 +1,4 @@
 class Person < ActiveRecord::Base
-#TODO check lat and long lookup
 #TODO validate postcode
   validates :gender, inclusion: {
     in: %w(Male Female),
@@ -41,17 +40,27 @@ class Person < ActiveRecord::Base
   def update_location
     if !self.postcode.blank? and (self.latitude.blank? or self.longitude.blank?)
       loc = get_location
-      self.latitude = loc[0]
-      self.longitude = loc[1]
+      if loc == [0, 0]
+        self.latitude = nil
+        self.longitude = nil
+      elsif loc == [59.95196533203125, 30.318050384521484]
+        self.latitude = nil
+        self.longitude = nil
+      else
+        self.latitude = loc[0]
+        self.longitude = loc[1]
+      end
     end
   end
 
   def full_url
     "www.ckcasting.co.uk/castbook/cast/#{id}"
   end
+
   def url
     "/castbook/cast/#{id}"
   end
+
   def image_url
     path = "./app/assets/images/cast_images/#{id}.jpg"
     if FileTest.exist?(path)
@@ -60,6 +69,7 @@ class Person < ActiveRecord::Base
       'default_cast_image.jpg'
     end
   end
+
   def thumbnail_url
     if FileTest.exist?("./app/assets/images/cast_images/#{id}.jpg")
       path = "./app/assets/images/cast_thumbs/#{id}.jpg"
@@ -70,11 +80,13 @@ class Person < ActiveRecord::Base
       'default_cast_image_thumb.jpg'
     end
   end
+
   def carousel_url
     path = "./app/assets/images/cast_carousel/#{id}.jpg"
     make_cast_carousel "#{id}.jpg" unless FileTest.exist?(path)
     write_attribute(:carousel_url, "/assets/cast_carousel/#{id}.jpg")
   end
+
   def skill_list
     Skill.where(person_id: id).order(:skill_text).collect { |s| s.skill_text }.join(', ')
   end
@@ -91,6 +103,7 @@ class Person < ActiveRecord::Base
     else "Over 18"
     end
   end
+
   def age_group_id
     age = Date.today.year - date_of_birth.year
     age -= 1 if(Date.today.yday < date_of_birth.yday)
@@ -113,6 +126,7 @@ class Person < ActiveRecord::Base
     else "Over 6 foot"
     end
   end
+
   def height_group_id
     height = (height_feet * 12) + height_inches
     if height < 36 then 1
@@ -124,6 +138,7 @@ class Person < ActiveRecord::Base
   end
 
   private
+
   def make_cast_thumbnail img
     require 'RMagick'
     path = "./app/assets/images/cast_images/#{img}"
@@ -132,6 +147,7 @@ class Person < ActiveRecord::Base
     img = img.crop_resized!(137, 158, Magick::NorthGravity)
     img.write(thumb)
   end
+
   def make_cast_carousel img
     require 'RMagick'
     path = "./app/assets/images/cast_images/#{img}"
@@ -149,21 +165,32 @@ class Person < ActiveRecord::Base
 
     final.write(thumb)
   end
+
   def date_of_birth_cannot_be_in_the_furtue
     if !date_of_birth.blank? and date_of_birth >= Time.now.utc.to_date
       errors.add(:date_of_birth, "date of birth can't be greater than today")
     end
   end
+
   def date_of_birth_cannot_give_age_over_100
     if !date_of_birth.blank? and date_of_birth <= Time.now.utc.to_date - 100.years
       errors.add(:date_of_birth, "date of birth can't be more than 100 years in the past")
     end
   end
+
   def get_location
-    require 'open-uri'
-    doc = open("http://www.maps.google.com?q=RM16+6ES").read
-    lat = doc.to_s.scan(/var viewport_center_lat=(\d*\.\d*);/)[0][0]
-    lng = doc.to_s.scan(/var viewport_center_lng=(\d*\.\d*);/)[0][0]
-    [lat, lng]
+    begin
+      require 'open-uri'
+      pc = self.postcode.gsub(' ','+')
+      doc = open("http://www.maps.google.com?q=#{pc}").read
+
+      lat = doc.to_s.scan(/var viewport_center_lat=(\d*\.\d*);/)[0][0]
+      lng = doc.to_s.scan(/var viewport_center_lng=(\d*\.\d*);/)[0][0]
+      [lat.to_f, lng.to_f]
+    rescue
+      [0, 0]
+
+    end
   end
+
 end

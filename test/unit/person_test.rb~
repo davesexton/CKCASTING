@@ -78,6 +78,7 @@ class PersonTest < ActiveSupport::TestCase
     person.height_feet = 1
     assert person.valid?, 'valid height in feet is invalid'
   end
+
   test "check urls are correct" do
     person = @good_person
     assert_equal "www.ckcasting.co.uk/castbook/cast/#{person.id}",
@@ -93,6 +94,7 @@ class PersonTest < ActiveSupport::TestCase
                   person.thumbnail_url,
                   'invalid thumbnail url'
   end
+
   test 'check age groups' do
     person = @good_person
     person.height_feet = 2
@@ -128,6 +130,7 @@ class PersonTest < ActiveSupport::TestCase
     assert_equal 'Over 6 foot', person.height_group
     assert_equal 5, person.height_group_id
   end
+
   test 'test date of birth' do
     person = @good_person
     person.date_of_birth = Time.now.utc.to_date
@@ -139,13 +142,23 @@ class PersonTest < ActiveSupport::TestCase
     assert_equal "date of birth can't be more than 100 years in the past",
                  person.errors[:date_of_birth].join(';')
   end
+
   test 'check location poition' do
     person = @good_person
     person.latitude = nil
     person.longitude = nil
-    person.postcode = 'xxxx'
+    person.postcode = 'RM16 6ES'
     person.save
     assert_equal 51.4901008605957, person.latitude, 'incorrect latitude'
     assert_equal 0.30873599648475647, person.longitude, 'incorrect longitude'
+
+    person.latitude = nil
+    person.longitude = nil
+    person.postcode = 'xxxx'
+    person.save
+    assert_equal nil, person.latitude, 'incorrect latitude'
+    assert_equal nil, person.longitude, 'incorrect longitude'
+
   end
+
 end
