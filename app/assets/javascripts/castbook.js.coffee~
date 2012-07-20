@@ -18,3 +18,11 @@ $ ->
     castUpdate()
     $('#castFilters > input').change () ->
       castUpdate()
+#    $(".castThumb").hide()
+#    ct = $(".castThumb")
+#    ctIn = () ->
+#      ct.stop().not(@).fadeTo('slow', 0.50)
+#      $(@).fadeTo('fast', 1)
+#    ctOut = () ->
+#      ct.stop().fadeTo('fast', 1)
+#    ct.hover(ctIn, ctOut)

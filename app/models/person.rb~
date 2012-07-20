@@ -1,5 +1,7 @@
 class Person < ActiveRecord::Base
-#TODO check lat and long lookup
+  scope :active, conditions: {status: 'Active'}
+  #scope :get_age_group, lambda { |a| each(age_group_id: a) }
+
 #TODO validate postcode
   validates :gender, inclusion: {
     in: %w(Male Female),
@@ -139,6 +141,19 @@ class Person < ActiveRecord::Base
   end
 
   private
+
+  def get_age_group dob
+    age = Date.today.year - dob.year
+    age -= 1 if(Date.today.yday < dob.yday)
+    if age < 3 then "Under 3 years"
+    elsif age < 6 then "3 - 6 years"
+    elsif age < 9 then "6 - 9 years"
+    elsif age < 12 then "9 - 12 years"
+    elsif age < 15 then "12 - 15 years"
+    elsif age < 18 then "15 - 18 years"
+    else "Over 18"
+    end
+  end
 
   def make_cast_thumbnail img
     require 'RMagick'

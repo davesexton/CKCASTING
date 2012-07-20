@@ -5,6 +5,7 @@ Ckcasting::Application.routes.draw do
   resources :applicants
 
   root :to => 'home#index'
+  match 'castbook/castlist' => 'castbook#castlist'
   match 'castbook/(:id)' => 'castbook#index'
   match 'castbook/cast/(:id)' => 'castbook#show'
   match 'home' => 'home#index'

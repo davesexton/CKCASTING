@@ -23,7 +23,7 @@
   <%= link_to n, {controller: "castbook", action: "index", id: n} %>
 <% end %><br />
 </div>
-<div id="castThumbs" />
+
 
 
 </div>
