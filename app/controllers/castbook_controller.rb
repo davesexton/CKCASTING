@@ -21,18 +21,27 @@ class CastbookController < ApplicationController
 
     @nav = (Person.count.to_f / page_size).ceil
 
+# data for gender checkboxes
     f = Hash.new(0)
     Person.active.count(group: :gender).each{|k, v| f.store(k,"#{k} (#{v})")}
     @gender_group = f.sort.reverse
 
+# data for age checkboxes
     h = Hash.new(0)
     f = Hash.new(0)
-    m = (Person.all.map {|p| [p.age_group_id, p.age_group] }).uniq.sort
     Person.active.each {|v| h.store(v.age_group_id, h[v.age_group_id]+1) }
-    m.each{|k, v| f.store(k, "#{v} (#{h[k]})") }
+    (Person.age_groups.map {|p| [p[:id], p[:text]] }).each{|k, v| f.store(k, "#{v} (#{h[k]})") }
     @age_group = f
 
-    #@age_group = Person.count(group: :age_group)
+# data for height checkboxes
+    h = Hash.new(0)
+    f = Hash.new(0)
+    Person.active.each {|v| h.store(v.height_group_id, h[v.height_group_id]+1) }
+    (Person.height_groups.map {|p| [p[:id], p[:text]] }).each{|k, v| f.store(k, "#{v} (#{h[k]})") }
+    @height_group = f
+
+# data for hair colour checkboxes
+   @hair_group = Person.count(group: :hair_colour).map{|k, v| [k, "#{k} (#{v})"] }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -52,18 +61,38 @@ class CastbookController < ApplicationController
 
   def castlist
     cons = ['status = ?', 'Active']
+
+# Add gender parameters
     if(params[:gender])
       cons[0] += ' AND gender IN(?)'
-      cons[cons.length] = params[:gender]
-      #Person.find(:all, conditions: ['(last_name in (?)) AND status = ?', ['Fred','Thomas'], 'Active'])
+      cons << params[:gender]
     end
-    if(params[:age])
-      if params[:age].include?(1)
 
+# Add age parameters
+    if(params[:age])
+      s = []
+      ag = Person.age_groups
+      params[:age].each do |i|
+        s << '( date_of_birth BETWEEN ? AND ? )'
+        cons << ag[i.to_i][:from]
+        cons << ag[i.to_i][:to]
       end
-      #cons[0] += ' AND ()'
+      cons[0] += " AND (#{s.join(' OR ')})"
     end
-    puts cons[0]
+
+# Add height parameters
+    if(params[:height])
+      s = []
+      ag = Person.height_groups
+      params[:height].each do |i|
+        s << '( (height_feet * 12) + height_inches BETWEEN ? AND ? )'
+        cons << ag[i.to_i][:from]
+        cons << ag[i.to_i][:to]
+      end
+      cons[0] += " AND (#{s.join(' OR ')})"
+    end
+
+    #cons.each {|e| puts "--> #{e}"}
     @castbook = Person.where(cons).limit(16).active
     render partial: 'castlist'
   end

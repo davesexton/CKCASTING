@@ -95,49 +95,42 @@ class Person < ActiveRecord::Base
   end
 
   def age_group
-    age = Date.today.year - date_of_birth.year
-    age -= 1 if(Date.today.yday < date_of_birth.yday)
-    if age < 3 then "Under 3 years"
-    elsif age < 6 then "3 - 6 years"
-    elsif age < 9 then "6 - 9 years"
-    elsif age < 12 then "9 - 12 years"
-    elsif age < 15 then "12 - 15 years"
-    elsif age < 18 then "15 - 18 years"
-    else "Over 18"
-    end
+    Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:text]
   end
 
   def age_group_id
-    age = Date.today.year - date_of_birth.year
-    age -= 1 if(Date.today.yday < date_of_birth.yday)
-    if age < 3 then 1
-    elsif age < 6 then 2
-    elsif age < 9 then 3
-    elsif age < 12 then 4
-    elsif age < 15 then 5
-    elsif age < 18 then 6
-    else 7
-    end
+    Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:id]
+  end
+
+  def self.age_groups
+    now = Time.now.utc
+    [{id: 0, text: 'Under 3 years', from: now - 3.years, to: now},
+     {id: 1, text: '3 - 6 years', from: now - 6.years, to: now - 3.years},
+     {id: 2, text: '6 - 9 years', from: now - 9.years, to: now - 6.years},
+     {id: 3, text: '9 - 12 years', from: now - 12.years, to: now - 9.years},
+     {id: 4, text: '12 - 15 years', from: now - 15.years, to: now - 12.years},
+     {id: 5, text: '15 - 18 years', from: now - 18.years, to: now - 15.years},
+     {id: 6, text: 'Over 18', from: now - 200.years, to: now - 18.years}
+    ]
   end
 
   def height_group
     height = (height_feet * 12) + height_inches
-    if height < 36 then "Under 3 foot"
-    elsif height < 48 then "3 - 4 foot"
-    elsif height < 60 then "4 - 5 foot"
-    elsif height < 72 then "5 - 6 foot"
-    else "Over 6 foot"
-    end
+    Person.height_groups.select{|e| height >= e[:from] and height <= e[:to] }[0][:text]
   end
 
   def height_group_id
     height = (height_feet * 12) + height_inches
-    if height < 36 then 1
-    elsif height < 48 then 2
-    elsif height < 60 then 3
-    elsif height < 72 then 4
-    else 5
-    end
+    Person.height_groups.select{|e| height >= e[:from] and height <= e[:to] }[0][:id]
+  end
+
+  def self.height_groups
+    [{id: 0, text: 'Under 3 foot', from: 0, to: 36},
+     {id: 1, text: '3 - 4 foot', from: 37, to: 48},
+     {id: 2, text: '4 - 5 foot', from: 49, to: 60},
+     {id: 3, text: '5 - 6 foot', from: 61, to: 72},
+     {id: 4, text: 'Over 6 foot', from: 73, to: 200}
+    ]
   end
 
   private

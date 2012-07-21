@@ -12,6 +12,11 @@
         <input type="checkbox" name="age[]" value="<%= k %>" id="age_<%= k %>" />
         <label for="age_<%= k %>"><%= v %></label><br />
       <% end %>
+      Height Group:<br />
+      <% @height_group.each do |k, v|  %>
+        <input type="checkbox" name="height[]" value="<%= k %>" id="height_<%= k %>" />
+        <label for="height_<%= k %>"><%= v %></label><br />
+      <% end %>
     </form>
   </fieldset>
 </div>
@@ -23,7 +28,7 @@
   <%= link_to n, {controller: "castbook", action: "index", id: n} %>
 <% end %><br />
 </div>
-
+<div id="castThumbs" />
 
 
 </div>
