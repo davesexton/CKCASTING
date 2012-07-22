@@ -17,6 +17,11 @@
         <input type="checkbox" name="height[]" value="<%= k %>" id="height_<%= k %>" />
         <label for="height_<%= k %>"><%= v %></label><br />
       <% end %>
+      Hair Colour:<br />
+      <% @hair_group.each do |k, v|  %>
+        <input type="checkbox" name="hair[]" value="<%= k %>" id="hair_<%= k %>" />
+        <label for="hair_<%= k %>"><%= v %></label><br />
+      <% end %>
     </form>
   </fieldset>
 </div>

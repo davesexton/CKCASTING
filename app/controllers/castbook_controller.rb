@@ -41,7 +41,16 @@ class CastbookController < ApplicationController
     @height_group = f
 
 # data for hair colour checkboxes
-   @hair_group = Person.count(group: :hair_colour).map{|k, v| [k, "#{k} (#{v})"] }
+    h = Hash.new(0)
+    f = Hash.new(0)
+    Person.active.where('hair_colour IS NOT NULL').each {|v| h.store(v.hair_colour_group, h[v.hair_colour_group]+1) }
+    h.each{|k, v| f.store(k, "#{k} (#{v})") }
+    @hair_group = f.sort
+
+# data for eye colour checkboxes
+    f = Hash.new(0)
+    Person.active.where('eye_colour IS NOT NULL').count(group: :eye_colour).each{|k, v| f.store(k,"#{k} (#{v})")}
+    @eye_group = f.sort
 
     respond_to do |format|
       format.html # index.html.erb
@@ -71,11 +80,11 @@ class CastbookController < ApplicationController
 # Add age parameters
     if(params[:age])
       s = []
-      ag = Person.age_groups
+      g = Person.age_groups
       params[:age].each do |i|
         s << '( date_of_birth BETWEEN ? AND ? )'
-        cons << ag[i.to_i][:from]
-        cons << ag[i.to_i][:to]
+        cons << g[i.to_i][:from]
+        cons << g[i.to_i][:to]
       end
       cons[0] += " AND (#{s.join(' OR ')})"
     end
@@ -83,13 +92,29 @@ class CastbookController < ApplicationController
 # Add height parameters
     if(params[:height])
       s = []
-      ag = Person.height_groups
+      g = Person.height_groups
       params[:height].each do |i|
         s << '( (height_feet * 12) + height_inches BETWEEN ? AND ? )'
-        cons << ag[i.to_i][:from]
-        cons << ag[i.to_i][:to]
+        cons << g[i.to_i][:from]
+        cons << g[i.to_i][:to]
       end
       cons[0] += " AND (#{s.join(' OR ')})"
+    end
+
+# Add hair parameters
+    if(params[:hair])
+      s = []
+      params[:hair].each do |i|
+        s << '(hair_colour LIKE ? )'
+        cons << "%#{i}"
+      end
+      cons[0] += " AND (#{s.join(' OR ')})"
+    end
+
+# Add eye parameters
+    if(params[:eye])
+      cons[0] += ' AND eye_colour IN(?)'
+      cons << params[:eye]
     end
 
     #cons.each {|e| puts "--> #{e}"}

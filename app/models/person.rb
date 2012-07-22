@@ -133,6 +133,10 @@ class Person < ActiveRecord::Base
     ]
   end
 
+  def hair_colour_group
+    hair_colour.gsub('Light ', '').gsub('Dark ', '')
+  end
+
   private
 
   def make_cast_thumbnail img
