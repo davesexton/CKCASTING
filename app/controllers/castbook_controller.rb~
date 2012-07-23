@@ -1,25 +1,22 @@
 class CastbookController < ApplicationController
+
   def index
-    #if params[:id]
-    #  page = params[:id]
-    #else
-    #  page = 1
-    #end
-    #gender = params[:gender]
+    session[:page] = 1 unless session[:page]
+    if params[:id]
+      page = params[:id]
+    else
+      page = session[:page]
+    end
 
-    page = page.to_i - 1
+    #page = page.to_i - 1
     page_size = 16
-    offset = (page * page_size)
-#TODO Add filtering system to castbook
+    offset = page * page_size
 
-    #@castbook = Person #.where('gender LIKE ?', params[:gender])
-    #  .order(:date_of_birth)
-    #  .limit(page_size)
-    #  .offset(offset)
+    @castbook = Person.active.limit(page_size).offset(offset)
 
-    #@castbook = Person.active.limit(page_size).offset(offset)
+    @nav = (Person.count / page_size.to_f).ceil
 
-    @nav = (Person.count.to_f / page_size).ceil
+    @page = page
 
 # data for gender checkboxes
     f = Hash.new(0)
@@ -70,15 +67,15 @@ class CastbookController < ApplicationController
 
   def castlist
     cons = ['status = ?', 'Active']
-
+    page_size = 16
 # Add gender parameters
-    if(params[:gender])
+    if params[:gender]
       cons[0] += ' AND gender IN(?)'
       cons << params[:gender]
     end
 
 # Add age parameters
-    if(params[:age])
+    if params[:age]
       s = []
       g = Person.age_groups
       params[:age].each do |i|
@@ -90,7 +87,7 @@ class CastbookController < ApplicationController
     end
 
 # Add height parameters
-    if(params[:height])
+    if params[:height]
       s = []
       g = Person.height_groups
       params[:height].each do |i|
@@ -102,7 +99,7 @@ class CastbookController < ApplicationController
     end
 
 # Add hair parameters
-    if(params[:hair])
+    if params[:hair]
       s = []
       params[:hair].each do |i|
         s << '(hair_colour LIKE ? )'
@@ -111,8 +108,20 @@ class CastbookController < ApplicationController
       cons[0] += " AND (#{s.join(' OR ')})"
     end
 
-    #cons.each {|e| puts "--> #{e}"}
-    @castbook = Person.where(cons).limit(16).active
+# Add eye parameters
+    if params[:eye]
+      cons[0] += ' AND eye_colour IN(?)'
+      cons << params[:eye]
+    end
+
+# Paging
+    session[:page] = params[:page] if params[:page]
+
+    @pages = (Person.where(cons).active.count / page_size) + 1
+    session[:page] = '1' if session[:page].to_i > @pages
+
+    @castbook = Person.where(cons).limit(page_size).offset((session[:page].to_i - 1) * page_size).active
+
     render partial: 'castlist'
   end
 

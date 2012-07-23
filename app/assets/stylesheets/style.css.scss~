@@ -78,7 +78,7 @@ footer {
     .reset {
       margin-left:20px;
       &:hover {
-        cursor: pointer;
+
       }
     }
   }
