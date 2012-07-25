@@ -109,6 +109,8 @@ seed = "# encoding: utf-8\n"
 end
 
 # ----- Finished
+seed.gsub!(':height_feet => ,', ':height_feet => 0,')
+seed.gsub!(':height_inches => ,', ':height_inches => 0,')
 seed.gsub!('=> ,', '=> nil,')
 seed.gsub!("=> '',", '=> nil,')
 Dir.chdir('/home/dave/websites/ckcasting/db')

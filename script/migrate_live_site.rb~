@@ -27,7 +27,6 @@ seed = "# encoding: utf-8\n"
 # ----- Get date of birth
   date_of_birth = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HiddenFieldDOB"]').attr(:value)
 
-
 # ----- Get height
   feet = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HEIGHT_FTLabel"]').innerHTML
   inches = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HEIGHT_INLabel"]').innerHTML
@@ -110,6 +109,9 @@ seed = "# encoding: utf-8\n"
 end
 
 # ----- Finished
+:height_feet => ,
+seed.gsub!(':height_feet => ,', ':height_feet => 0,')
+seed.gsub!(':height_inches => ,', ':height_inches => 0,')
 seed.gsub!('=> ,', '=> nil,')
 seed.gsub!("=> '',", '=> nil,')
 Dir.chdir('/home/dave/websites/ckcasting/db')

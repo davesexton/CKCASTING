@@ -61,6 +61,7 @@ footer {
   @include append(1);
   @include last;
   font-size: 11pt;
+  min-height: 500px;
 }
 /* --- HOME --- */
 .home {

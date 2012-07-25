@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   #scope :get_age_group, lambda { |a| each(age_group_id: a) }
 
 #TODO validate postcode
+#TODO capture user name for edits
   validates :gender, inclusion: {
     in: %w(Male Female),
     message: "%{value} is not a valid gender",
@@ -95,11 +96,19 @@ class Person < ActiveRecord::Base
   end
 
   def age_group
-    Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:text]
+    if date_of_birth
+      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:text]
+    else
+      Person.age_groups.last[:text]
+    end
   end
 
   def age_group_id
-    Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:id]
+    if date_of_birth
+      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:id]
+    else
+      Person.age_groups.last[:id]
+    end
   end
 
   def self.age_groups

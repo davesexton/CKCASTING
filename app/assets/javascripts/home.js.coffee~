@@ -42,8 +42,8 @@ $ ->
 #Hover handler
 #----------------------------------------
       $(canvas).mousemove (e)->
-        mouseX = e.pageX - @offsetLeft
-        mouseY = e.pageY - @offsetTop
+        mouseX = e.pageX - @.offsetLeft
+        mouseY = e.pageY - @.offsetTop
         speed = ((canvasWidth / 2) - mouseX) / 10000
         currentId = null
         for img in imgs
@@ -140,7 +140,7 @@ $ ->
             #context.fillStyle = "rgba(0, 0, 0, 1)"
             context.globalCompositeOperation = 'destination-over'
             #context.fillText 'click here', mouseX, moseY
-            drawEllipse context, centerX, centerY + 112, radiusX, radiusY + 10
+            drawEllipse context, centerX, centerY + 120, radiusX, radiusY + 10
             #context.globalCompositeOperation = 'source-over'
             #context.fillStyle = "rgba(0, 0, 0, 0.2)"
         if showClick

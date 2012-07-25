@@ -10,6 +10,8 @@ ctOut = () ->
   $(".castThumb").stop().fadeTo('fast', 1)
 
 #TODO add highlight for current page
+#TODO add progress indicator for image load
+#TODO add code for zero cast
 castUpdate = () ->
   #$('.castThumb img').attr('src', '/assets/progress.gif').parent().fadeTo(0.5)
   data = $('#castFilters').serialize()

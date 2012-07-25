@@ -16,12 +16,8 @@
     <%= f.text_field :name, size: 40 %>
   </div>
   <div class="field">
-    <%= f.label :password, 'Password' %><br />
+    <%= f.label :password, 'password' %><br />
     <%= f.text_field :password, size: 40 %>
-  </div>
-  <div class="field">
-    <%= f.label :password, 'Password confirmation' %><br />
-    <%= f.text_field :password_confirmation, size: 40 %>
   </div>
   <div class="actions">
     <%= f.submit %>
