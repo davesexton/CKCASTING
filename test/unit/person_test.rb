@@ -97,38 +97,140 @@ class PersonTest < ActiveSupport::TestCase
 
   test 'check age groups' do
     person = @good_person
+
+    person.date_of_birth = Time.now.utc - 3.years + 1.day
+    assert_equal 'Under 3 years', person.age_group
+    assert_equal 0, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 3.years
+    assert_equal 'Under 3 years', person.age_group
+    assert_equal 0, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 3.years - 1.day
+    assert_equal '3 - 6 years', person.age_group
+    assert_equal 1, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 6.years + 1.day
+    assert_equal '3 - 6 years', person.age_group
+    assert_equal 1, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 6.years
+    assert_equal '3 - 6 years', person.age_group
+    assert_equal 1, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 6.years - 1.day
+    assert_equal '6 - 9 years', person.age_group
+    assert_equal 2, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 9.years + 1.day
+    assert_equal '6 - 9 years', person.age_group
+    assert_equal 2, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 9.years
+    assert_equal '6 - 9 years', person.age_group
+    assert_equal 2, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 9.years - 1.day
+    assert_equal '9 - 12 years', person.age_group
+    assert_equal 3, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 12.years + 1.day
+    assert_equal '9 - 12 years', person.age_group
+    assert_equal 3, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 12.years
+    assert_equal '9 - 12 years', person.age_group
+    assert_equal 3, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 12.years - 1.day
+    assert_equal '12 - 15 years', person.age_group
+    assert_equal 4, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 15.years + 1.day
+    assert_equal '12 - 15 years', person.age_group
+    assert_equal 4, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 15.years
+    assert_equal '12 - 15 years', person.age_group
+    assert_equal 4, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 15.years - 1.day
+    assert_equal '15 - 18 years', person.age_group
+    assert_equal 5, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 18.years + 1.day
+    assert_equal '15 - 18 years', person.age_group
+    assert_equal 5, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 18.years
+    assert_equal '15 - 18 years', person.age_group
+    assert_equal 5, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 18.years - 1.day
+    assert_equal 'Over 18 years', person.age_group
+    assert_equal 6, person.age_group_id
+
+    person.date_of_birth = Time.now.utc - 100.years
+    assert_equal 'Over 18 years', person.age_group
+    assert_equal 6, person.age_group_id
+
+  end
+
+  test 'check hair colour groups' do
+    person = @good_person
+
+    person.hair_colour = 'Brown'
+    assert_equal person.hair_colour_group, 'Brown'
+
+    person.hair_colour = 'Light Brown'
+    assert_equal person.hair_colour_group, 'Brown'
+
+    person.hair_colour = 'Dark Brown'
+    assert_equal person.hair_colour_group, 'Brown'
+  end
+
+  test 'check height groups' do
+    person = @good_person
+
     person.height_feet = 2
     person.height_inches = 11
     assert_equal 'Under 3 foot', person.height_group
+    assert_equal 0, person.height_group_id
+
+    person.height_feet = 3
+    person.height_inches = 0
+    assert_equal '3 - 4 foot', person.height_group
     assert_equal 1, person.height_group_id
-    person.height_feet = 3
-    person.height_inches = 0
-    assert_equal '3 - 4 foot', person.height_group
-    assert_equal 2, person.height_group_id
+
     person.height_feet = 3
     person.height_inches = 11
     assert_equal '3 - 4 foot', person.height_group
+    assert_equal 1, person.height_group_id
+
+    person.height_feet = 4
+    person.height_inches = 0
+    assert_equal '4 - 5 foot', person.height_group
     assert_equal 2, person.height_group_id
-    person.height_feet = 4
-    person.height_inches = 0
-    assert_equal '4 - 5 foot', person.height_group
-    assert_equal 3, person.height_group_id
+
     person.height_feet = 4
     person.height_inches = 11
     assert_equal '4 - 5 foot', person.height_group
-    assert_equal 3, person.height_group_id
+    assert_equal 2, person.height_group_id
+
     person.height_feet = 5
     person.height_inches = 0
     assert_equal '5 - 6 foot', person.height_group
-    assert_equal 4, person.height_group_id
+    assert_equal 3, person.height_group_id
+
     person.height_feet = 5
     person.height_inches = 11
     assert_equal '5 - 6 foot', person.height_group
-    assert_equal 4, person.height_group_id
+    assert_equal 3, person.height_group_id
+
     person.height_feet = 6
     person.height_inches = 0
     assert_equal 'Over 6 foot', person.height_group
-    assert_equal 5, person.height_group_id
+    assert_equal 4, person.height_group_id
   end
 
   test 'test date of birth' do
@@ -160,5 +262,14 @@ class PersonTest < ActiveSupport::TestCase
     assert_equal nil, person.longitude, 'incorrect longitude'
 
   end
+
+  test 'check skill list' do
+    person = @good_person
+    person.Skills.create(display_order: 1, skill_text: 'Pole dancing')
+    person.Skills.create(display_order: 2, skill_text: 'Salsa')
+    person.Skills.create(display_order: 3, skill_text: 'Cake making')
+    assert_equal 'Pole dancing, Salsa, Cake making', person.skill_list
+  end
+
 
 end

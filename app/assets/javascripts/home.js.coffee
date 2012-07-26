@@ -31,7 +31,7 @@ $ ->
 
 #Elipse function
 #----------------------------------------
-      drawEllipse = (c, x, y, w, h) ->
+      drawEllipse = (c, x, y, w, h)->
         c.beginPath()
         c.moveTo x + w, y
         c.bezierCurveTo x + w, y + h, x - w, y + h, x - w, y
@@ -42,8 +42,10 @@ $ ->
 #Hover handler
 #----------------------------------------
       $(canvas).mousemove (e)->
-        mouseX = e.pageX - @.offsetLeft
-        mouseY = e.pageY - @.offsetTop
+        mouseX = e.pageX - $(@).offset().left
+        mouseY = e.pageY - $(@).offset().top
+        #mouseX = e.pageX - @.offsetLeft
+        #mouseY = e.pageY - @.offsetTop
         speed = ((canvasWidth / 2) - mouseX) / 10000
         currentId = null
         for img in imgs

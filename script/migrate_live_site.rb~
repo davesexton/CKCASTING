@@ -109,7 +109,6 @@ seed = "# encoding: utf-8\n"
 end
 
 # ----- Finished
-:height_feet => ,
 seed.gsub!(':height_feet => ,', ':height_feet => 0,')
 seed.gsub!(':height_inches => ,', ':height_inches => 0,')
 seed.gsub!('=> ,', '=> nil,')

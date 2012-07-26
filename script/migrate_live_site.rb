@@ -61,7 +61,7 @@ seed = "# encoding: utf-8\n"
   (doc/'//*[@id="ctl00_MainContentPlaceHolder_InterestsBulletedList"]/li').each do |e|
     txt = e.innerHTML.strip
 
-    seed += "Skill.create(:Person_id => #{new_id}" \
+    seed += "Skill.create(:person_id => #{new_id}" \
      + ", :display_order => #{ord}" \
      + ", :skill_text => '#{txt}')\n"
     ord += 1
@@ -91,7 +91,7 @@ seed = "# encoding: utf-8\n"
 
     txt.gsub!(/Paul O.*Grady/, 'Paul O\\\'Grady')
 
-    seed += "Credit.create(:Person_id => #{new_id}" \
+    seed += "Credit.create(:person_id => #{new_id}" \
      + ", :display_order => #{ord}" \
      + ", :credit_text => '#{txt}')\n"
     ord += 1

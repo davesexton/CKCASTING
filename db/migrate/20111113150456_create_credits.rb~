@@ -1,7 +1,7 @@
 class CreateCredits < ActiveRecord::Migration
   def change
     create_table :credits do |t|
-      t.integer :person_id
+      t.integer :Person_id
       t.integer :display_order
       t.string :credit_text
 

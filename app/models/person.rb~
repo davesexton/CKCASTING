@@ -1,8 +1,8 @@
 class Person < ActiveRecord::Base
   scope :active, conditions: {status: 'Active'}
-  #scope :get_age_group, lambda { |a| each(age_group_id: a) }
 
 #TODO validate postcode
+#TODO capture user name for edits
   validates :gender, inclusion: {
     in: %w(Male Female),
     message: "%{value} is not a valid gender",
@@ -91,12 +91,12 @@ class Person < ActiveRecord::Base
   end
 
   def skill_list
-    Skill.where(person_id: id).order(:skill_text).collect { |s| s.skill_text }.join(', ')
+    Skill.where(person_id: id).order(:display_order).collect { |s| s.skill_text }.join(', ')
   end
 
   def age_group
     if date_of_birth
-      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:text]
+      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth < e[:to].to_date}[0][:text]
     else
       Person.age_groups.last[:text]
     end
@@ -104,7 +104,7 @@ class Person < ActiveRecord::Base
 
   def age_group_id
     if date_of_birth
-      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth <= e[:to].to_date}[0][:id]
+      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth < e[:to].to_date}[0][:id]
     else
       Person.age_groups.last[:id]
     end
@@ -118,7 +118,7 @@ class Person < ActiveRecord::Base
      {id: 3, text: '9 - 12 years', from: now - 12.years, to: now - 9.years},
      {id: 4, text: '12 - 15 years', from: now - 15.years, to: now - 12.years},
      {id: 5, text: '15 - 18 years', from: now - 18.years, to: now - 15.years},
-     {id: 6, text: 'Over 18', from: now - 200.years, to: now - 18.years}
+     {id: 6, text: 'Over 18 years', from: now - 200.years, to: now - 18.years}
     ]
   end
 
@@ -133,11 +133,11 @@ class Person < ActiveRecord::Base
   end
 
   def self.height_groups
-    [{id: 0, text: 'Under 3 foot', from: 0, to: 36},
-     {id: 1, text: '3 - 4 foot', from: 37, to: 48},
-     {id: 2, text: '4 - 5 foot', from: 49, to: 60},
-     {id: 3, text: '5 - 6 foot', from: 61, to: 72},
-     {id: 4, text: 'Over 6 foot', from: 73, to: 200}
+    [{id: 0, text: 'Under 3 foot', from: 0, to: 35},
+     {id: 1, text: '3 - 4 foot', from: 36, to: 47},
+     {id: 2, text: '4 - 5 foot', from: 48, to: 59},
+     {id: 3, text: '5 - 6 foot', from: 60, to: 71},
+     {id: 4, text: 'Over 6 foot', from: 72, to: 200}
     ]
   end
 
