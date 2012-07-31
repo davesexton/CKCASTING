@@ -3,9 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 
-ctIn = () ->
-  $(".castThumb").stop().not(@).fadeIn('slow')
+ctIn = ()->
+  $(".castThumb").stop().not(@).fadeTo('slow', 0.2)
   $(@).fadeTo('fast', 1)
+
 ctOut = () ->
   $(".castThumb").stop().fadeTo('fast', 1)
 
@@ -13,7 +14,7 @@ ctOut = () ->
 #TODO add progress indicator for image load
 #TODO add code for zero cast
 castUpdate = () ->
-  #$('.castThumb img').attr('src', '/assets/progress.gif').parent().fadeTo(0.5)
+  #$('.castThumb img').attr('src', '/assets/progress.gif')
   data = $('#castFilters').serialize()
   $('#castThumbs').load 'castbook/castlist', data, (e) ->
     $(".castThumb").hover(ctIn, ctOut)

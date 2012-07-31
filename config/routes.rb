@@ -1,10 +1,19 @@
 Ckcasting::Application.routes.draw do
 
+  get "admin/index"
+
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/destroy"
+
   resources :users
 
   resources :applicants
 
   root :to => 'home#index'
+
   match 'castbook/castlist' => 'castbook#castlist'
   match 'castbook/(:id)' => 'castbook#index'
   match 'castbook/cast/(:id)' => 'castbook#show'
@@ -12,6 +21,7 @@ Ckcasting::Application.routes.draw do
   match 'join' => 'join#index'
   match 'contact' => 'contact#index'
   match 'applicant' => 'applicant#index'
+  match 'admin' => 'admin#index'
   #match 'apply/save' => 'apply#save'
 
   resources :applicants
