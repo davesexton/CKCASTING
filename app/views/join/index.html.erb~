@@ -15,14 +15,12 @@
   </div>
   <div>
     <%= link_to(image_tag('doc_icon.gif',
-                           alt: 'Join online',
-                           size: '59x60'), '/registration.pdf') %>
+      alt: 'Join online', size: '59x60'), '/registration.pdf') %>
     <%= link_to 'Printable form', '/registration.pdf' %>
   </div>
   <div>
     <%= link_to(image_tag('doc_icon.gif',
-                           alt: 'Terms and conditions',
-                           size: '59x60'), '/terms.pdf') %>
+       alt: 'Terms and conditions', size: '59x60'), '/terms.pdf') %>
     <%= link_to 'Terms and conditions', '/terms.pdf' %>
   </div>
 </div>

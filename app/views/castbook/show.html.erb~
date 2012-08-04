@@ -2,7 +2,7 @@
   <div class="castImage">
   <%= image_tag @castbook.image_url,
                 alt: @castbook.full_name,
-                size: '261x300' %>
+                size: '261x300') %>
   </div>
 </div>
 <div class="columnCastDetails">
