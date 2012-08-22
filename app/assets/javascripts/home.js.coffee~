@@ -31,7 +31,7 @@ $ ->
 
 #Elipse function
 #----------------------------------------
-      drawEllipse = (c, x, y, w, h) ->
+      drawEllipse = (c, x, y, w, h)->
         c.beginPath()
         c.moveTo x + w, y
         c.bezierCurveTo x + w, y + h, x - w, y + h, x - w, y
@@ -77,7 +77,8 @@ $ ->
         x: ->
           Math.cos(@angle) * radiusX + centerX
         y: ->
-          Math.sin(@angle) * radiusY + centerY
+          temp = Math.sin(@angle) * radiusY + centerY
+          temp # - 10 + (10 * @scale())
         ny: ->
           Math.sin(@nangle) * radiusY + centerY
         py: ->
@@ -119,8 +120,8 @@ $ ->
       imgSet = $('#carouselImages img')
       totImgs = imgSet.length
       imgSet.each((i, e) ->
-        regex = new RegExp(/(\d+)\./)
-        id = '/castbook/cast/' + regex.exec(e.src)[1]
+        regex = new RegExp(/\d+(?=\.jpg)/)
+        id = '/castbook/cast/' + regex.exec(e.src)[0]
         angle = i * ((Math.PI * 2) / totImgs)
         img = new imgObj(e, angle, id)
 

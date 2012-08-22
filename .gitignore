@@ -4,3 +4,5 @@ log/*.log
 tmp/
 .sass-cache/
 app/assets/images/cast_thumbs/*.jpg
+config.config.yml
+*~

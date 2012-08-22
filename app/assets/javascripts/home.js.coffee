@@ -119,8 +119,8 @@ $ ->
       imgSet = $('#carouselImages img')
       totImgs = imgSet.length
       imgSet.each((i, e) ->
-        regex = new RegExp(/(\d+)\./)
-        id = '/castbook/cast/' + regex.exec(e.src)[1]
+        regex = new RegExp(/\d+(?=\.jpg)/)
+        id = '/castbook/cast/' + regex.exec(e.src)[0]
         angle = i * ((Math.PI * 2) / totImgs)
         img = new imgObj(e, angle, id)
 
