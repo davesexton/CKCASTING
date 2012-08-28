@@ -1,6 +1,0 @@
-<% cast.each do |castbook| %>
-  <div class="castThumb">
-  <%= link_to(image_tag(cast.thumbnail_url,
-     alt: cast.full_name), cast.url) %>
-  </div>
-<% end %>

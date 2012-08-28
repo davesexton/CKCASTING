@@ -6,3 +6,4 @@ tmp/
 app/assets/images/cast_thumbs/*.jpg
 config.config.yml
 *~
+*.*~
