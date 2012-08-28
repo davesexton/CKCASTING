@@ -327,47 +327,7 @@ form.inline {
     margin-bottom: 0;
   }
 }
-.a {
-  padding: 0.8em;
-  margin-bottom: 1em;
-  border: 2px solid #ddd;
-}
-.error, .alert {
-  @extend .a;
-  background: #fbe3e4;
-  color: #8a1f11;
-  border-color: #fbc2c4;
-  & a {
-    color: #8a1f11;
-  }
-}
-.notice {
-  @extend .a;
-  background: #fff6bf;
-  color: #514721;
-  border-color: #ffd324;
-  & a {
-    color: #514721;
-  }
-}
-.success {
-  @extend .a;
-  background: #e6efc2;
-  color: #264409;
-  border-color: #c6d880;
-  & a {
-    color: #264409;
-  }
-}
-.info {
-  @extend .a;
-  background: #d5edf8;
-  color: #205791;
-  border-color: #92cae4;
-  & a {
-    color: #205791;
-  }
-}
+
 
 /* grid.css */
 @mixin container {
@@ -386,6 +346,7 @@ form.inline {
 .container {
   @include container;
 }
+
 @mixin showgrid {
   background-image: url(grid.png);
 }
@@ -446,7 +407,21 @@ $marginwidth: 10px;
 .column {
   @include column;
 }
-
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow: $top $left $blur $color #{$inset};
+  -moz-box-shadow: $top $left $blur $color #{$inset};
+  box-shadow: $top $left $blur $color #{$inset};
+}
+@mixin linear-gradient($angle, $colorstop1, $colorstop2) {
+  -webkit-linear-gradient: $angle $colorstop1 $colorstop2;
+  -moz-linear-gradient: $angle $colorstop1 $colorstop2;
+  linear-gradient: $angle $colorstop1 $colorstop2;
+}
 @mixin span($size) {
   @if $size < 1 {$size: 1}
   @if $size > 24 {$size: 24}
@@ -488,7 +463,7 @@ $marginwidth: 10px;
   }
 }
 @mixin textarea-span($size) {
- @include input-span($size);
+  @include input-span($size);
 }
 
 @for $i from 1 through 24 {
@@ -543,5 +518,64 @@ hr {
     background: #fff;
     color: #fff;
     visibility: hidden;
+  }
+}
+
+#flashMessage {
+  position: absolute;
+  display: none;
+  width: 770px;
+  top: 5px;
+  left: 5px;
+  -moz-box-shadow: 5px 5px 5px #888;
+  -webkit-box-shadow: 5px 5px 5px #888;
+  box-shadow: 5px 5px 5px #888;
+  @include border-radius(4px);
+}
+
+#flashHolder {
+  position: relative;
+}
+
+.a {
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border: 2px solid #ddd;
+}
+
+.error, .alert {
+  @extend .a;
+  background: #fbe3e4;
+  color: #8a1f11;
+  border-color: #fbc2c4;
+  & a {
+    color: #8a1f11;
+  }
+}
+.notice {
+  @extend .a;
+  background: #fff6bf;
+  color: #514721;
+  border-color: #ffd324;
+  & a {
+    color: #514721;
+  }
+}
+.success {
+  @extend .a;
+  background: #e6efc2;
+  color: #264409;
+  border-color: #c6d880;
+  & a {
+    color: #264409;
+  }
+}
+.info {
+  @extend .a;
+  background: #d5edf8;
+  color: #205791;
+  border-color: #92cae4;
+  & a {
+    color: #205791;
   }
 }

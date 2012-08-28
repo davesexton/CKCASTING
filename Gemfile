@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 gem 'rmagick', '>= 2.13.1'
+gem 'debugger', group: [:development, :test]
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -35,5 +36,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
+group :development do
+  gem 'wirble'
+  gem 'hirb'
+end

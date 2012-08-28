@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ck Casting - <%= controller.controller_name.capitalize %></title>
+  <title>CK Casting<%= ' - ' + @title unless @title == nil %></title>
   <%= stylesheet_link_tag "application" %>
   <!--[if lte IE 8]>
 			<%= stylesheet_link_tag "ie" %>
@@ -34,6 +34,11 @@
       </nav>
     </header>
     <section id="main">
+      <% flash.each do |key, value| %>
+        <div id="flashHolder">
+          <%= content_tag(:div, sanitize(value), class: "flash #{key}", id: 'flashMessage') %>
+        </div>
+      <% end %>
       <%= yield %>
     </section>
     <footer>
