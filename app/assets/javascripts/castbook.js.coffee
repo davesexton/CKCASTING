@@ -29,7 +29,7 @@ $ ->
       castUpdate()
 
     $('.reset').click (e) ->
-      e.preventDeault
+      e.preventDefault
       $('#castFilters input[type=checkbox]').attr('checked', false)
       castUpdate()
     $('#pageLinks a').each () ->

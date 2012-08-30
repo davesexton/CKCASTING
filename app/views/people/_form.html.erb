@@ -10,70 +10,59 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :first_name %><br />
+    <%= image_tag f.object.thumbnail_url %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br />
+    <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :date_of_birth %><br />
+    <%= f.label :date_of_birth %>
     <%= f.date_select :date_of_birth %>
   </div>
   <div class="field">
-    <%= f.label :height_feet %><br />
-    <%= f.number_field :height_feet %>
+    <%= f.label 'Height' %>
+    <%= f.select :height_feet, @heights_feet, selected: f.object.height_feet %>
+    &nbsp;ft&nbsp;
+    <%= f.select :height_inches, @heights_inches, selected: f.object.height_inches %>
+    &nbsp;in
   </div>
   <div class="field">
-    <%= f.label :height_inches %><br />
-    <%= f.number_field :height_inches %>
+    <%= f.label :hair_colour %>
+    <%= f.select :hair_colour, @hair_colours, selected: f.object.hair_colour %>
   </div>
   <div class="field">
-    <%= f.label :hair_colour %><br />
-    <%= f.text_field :hair_colour %>
+    <%= f.label :eye_colour %>
+    <%= f.select :eye_colour, @eye_colours, selected: f.object.eye_colour %>
   </div>
   <div class="field">
-    <%= f.label :eye_colour %><br />
-    <%= f.text_field :eye_colour %>
+    <%= f.label :gender %>
+    <%= f.select :gender, ['Male', 'Female'], selected: f.object.gender %>
   </div>
   <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
-  </div>
-  <div class="field">
-    <%= f.label :postcode %><br />
+    <%= f.label :postcode %>
     <%= f.text_field :postcode %>
   </div>
   <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :telephone_number %><br />
+    <%= f.label :telephone_number %>
     <%= f.text_field :telephone_number %>
   </div>
   <div class="field">
-    <%= f.label :email_address %><br />
+    <%= f.label :email_address %>
     <%= f.text_field :email_address %>
   </div>
   <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.label 'Skills' %>
+    <%= f.text_field :skill_list %>
   </div>
   <div class="field">
-    <%= f.label :last_viewed_at %><br />
-    <%= f.datetime_select :last_viewed_at %>
-  </div>
-  <div class="field">
-    <%= f.label :view_count %><br />
-    <%= f.number_field :view_count %>
+    <%= f.label :status %>
+    <%= f.select :status, ['Active', 'Inactive'], selected: f.object.status %>
   </div>
   <div class="actions">
     <%= f.submit %>

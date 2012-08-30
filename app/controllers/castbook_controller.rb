@@ -1,5 +1,5 @@
 class CastbookController < ApplicationController
-
+  skip_before_filter :authorize
   def index
     session[:page] = 1 unless session[:page]
     if params[:id]

@@ -1,4 +1,8 @@
 class Person < ActiveRecord::Base
+  attr_reader :full_name, :full_url, :url, :iamge_url,
+              :thumnail_url, :carousel_url, :skill_list,
+              :age_group, :age_group_id, :height_group,
+              :height_group_id, :hair_colour_group
   scope :active, conditions: {status: 'Active'}
 
 #TODO validate postcode
@@ -87,7 +91,7 @@ class Person < ActiveRecord::Base
   def carousel_url
     path = "./app/assets/images/cast_carousel/#{id}.jpg"
     make_cast_carousel "#{id}.jpg" unless FileTest.exist?(path)
-    write_attribute(:carousel_url, "/assets/cast_carousel/#{id}.jpg")
+    "/assets/cast_carousel/#{id}.jpg"
   end
 
   def skill_list

@@ -1,12 +1,10 @@
 Ckcasting::Application.routes.draw do
 
-  get "admin/index"
-
-  get "sessions/new"
-
-  get "sessions/create"
-
-  get "sessions/destroy"
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
 
   resources :users
 
@@ -22,7 +20,6 @@ Ckcasting::Application.routes.draw do
   match 'contact' => 'contact#index'
   match 'applicant' => 'applicant#index'
   match 'admin' => 'admin#index'
-  #match 'apply/save' => 'apply#save'
 
   resources :applicants
   #resources :home
@@ -32,7 +29,12 @@ Ckcasting::Application.routes.draw do
 
   resources :skills
 
-  resources :people
+  resources :people do
+    member do
+      post 'deactivate'
+      post 'activate'
+    end
+  end
 
   resources :eye_colours
 

@@ -1,42 +1,43 @@
-<% @title = 'Castbook Edit' %>
-<h1>Listing people</h1>
+<% @title = 'Cast Manager' %>
+<h2>Cast Manager</h2>
+<p>Summary: <%= @summary %> cast members.</p>
+<p><a id="ShowHide">Show Inactive</a></p>
 
-<table>
+<table class="castTable">
   <tr>
-    <th>ID</th>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Date of birth</th>
-    <th>Height</th>
-    <th>Hair colour</th>
-    <th>Eye colour</th>
-    <th>Gender</th>
-    <th>Status</th>
-    <th>Last viewed at</th>
-    <th>View count</th>
-    <th>Credits</th>
     <th></th>
+    <th>Name</th>
+    <th>Date of Birth</th>
+    <th>Height</th>
+    <th>Hair Colour</th>
+    <th>Eye Colour</th>
+    <th>Gender</th>
+    <th>Last Viewed</th>
+    <th>View Count</th>
     <th></th>
     <th></th>
   </tr>
 
-<% @people.each do |person| %>
-  <tr>
-    <td><%= person.id %></td>
-    <td><%= person.first_name %></td>
-    <td><%= person.last_name %></td>
-    <td><%= person.date_of_birth %></td>
-    <td><%= person.height_feet %>'&nbsp;<%= person.height_inches %>"</td>
-    <td><%= person.hair_colour %></td>
-    <td><%= person.eye_colour %></td>
-    <td><%= person.gender %></td>
-    <td><%= person.status %></td>
-    <td><%= person.last_viewed_at %></td>
-    <td><%= person.view_count %></td>
-    <td><%= person.Credits %></td>
-    <td><%= link_to 'Show', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>
+<% @people.each do |p| %>
+  <tr class="<%= if p.status == 'Active' then 'castShow' else 'castHide' end %>">
+    <td><%= image_tag p.thumbnail_url, size: '52x60' %></td>
+    <td><%= p.full_name %></td>
+    <td><%= p.date_of_birth.strftime("%d-%b-%Y") if p.date_of_birth %></td>
+    <td><%= p.height_feet %>'&nbsp;<%= p.height_inches %>"</td>
+    <td><%= p.hair_colour %></td>
+    <td><%= p.eye_colour %></td>
+    <td><%= p.gender %></td>
+    <td><%= p.last_viewed_at.strftime("%d-%b-%Y") %></td>
+    <td><%= p.view_count %></td>
+    <% if p.status == 'Active' %>
+      <td><%= link_to 'Edit', edit_person_path(p) %></td>
+      <td><%= link_to 'Deactivate', deactivate_person_path(p), data: {confirm: 'Are you sure?'},
+                       method: :post %></td>
+    <% else %>
+      <td></td>
+      <td><%= link_to 'Activate', activate_person_path(p), data: {confirm: 'Are you sure?'},
+                       method: :post %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

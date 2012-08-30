@@ -1,3 +1,31 @@
 // Place all the styles related to the People controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'blueprint';
+
+.people {
+  .field {
+    label {
+      display: block;
+      float: left;
+      top: 0px;
+
+      width: 150px;
+      &:after {
+        content: ': ';
+      }
+    }
+    margin-bottom: 2px;
+    * {
+      margin-top: 0px;
+    }
+  }
+  .castTable {
+    .castHide {
+      display: none;
+    }
+  }
+  #ShowHide {
+    cursor: pointer;
+  }
+}

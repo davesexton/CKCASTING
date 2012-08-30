@@ -13,7 +13,8 @@
     <td><%= eye_colour.eye_colour %></td>
     <td><%= link_to 'Show', eye_colour %></td>
     <td><%= link_to 'Edit', edit_eye_colour_path(eye_colour) %></td>
-    <td><%= link_to 'Destroy', eye_colour, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', eye_colour,
+            data: { confirm: 'Are you sure?' }, method: :delete %></td>
   </tr>
 <% end %>
 </table>

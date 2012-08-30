@@ -4,6 +4,11 @@
 imgs = []
 
 $ ->
+  $('#flashMessage').delay(500).fadeIn('normal', ->
+    $(@).delay(4000).fadeOut()
+  )
+
+$ ->
   $('nav > div').click( (e) ->
     window.location.href =  $(@).children(0).get(0).href
   ).hover( (e) ->

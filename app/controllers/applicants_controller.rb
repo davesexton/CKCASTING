@@ -1,4 +1,5 @@
 class ApplicantsController < ApplicationController
+  skip_before_filter :authorize
   # GET /applicants
   # GET /applicants.json
   def index
