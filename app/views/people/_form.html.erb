@@ -38,15 +38,18 @@
   </div>
   <div class="field">
     <%= f.label :eye_colour %>
-    <%= f.select :eye_colour, @eye_colours, selected: f.object.eye_colour %>
+    <%= f.select :eye_colour, @eye_colours, selected: f.object.eye_colour, size: 10 %>
   </div>
   <div class="field">
     <%= f.label :gender %>
-    <%= f.select :gender, ['Male', 'Female'], selected: f.object.gender %>
+    <%= f.select :gender,
+                 ['Male', 'Female'],
+                 {selected: f.object.gender},
+                 {width: '20px'} %>
   </div>
   <div class="field">
     <%= f.label :postcode %>
-    <%= f.text_field :postcode %>
+    <%= f.text_field :postcode, size: 10 %>
   </div>
   <div class="field">
     <%= f.label :telephone_number %>

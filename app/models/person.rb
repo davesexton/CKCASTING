@@ -98,6 +98,13 @@ class Person < ActiveRecord::Base
     Skill.where(person_id: id).order(:display_order).collect { |s| s.skill_text }.join(', ')
   end
 
+  def skill_list=(text)
+    self.Skills.where(person_id: id).destroy_all
+    text.split(',').each_with_index do |s, i|
+      self.Skills.create(display_order: i, skill_text: s.strip.capitalize)
+    end
+  end
+
   def age_group
     if date_of_birth
       Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth < e[:to].to_date}[0][:text]

@@ -69,9 +69,7 @@ class PeopleController < ApplicationController
     @eye_colours = get_eye_colours
     @heights_feet = get_heights_feet
     @heights_inches = get_heights_inches
-    if params[:person].has_key?(:skill_list)
-      params[:person].delete :skill_list
-    end
+
     respond_to do |format|
       if @person.update_attributes(params[:person])
         format.html { redirect_to people_url,
