@@ -5,12 +5,12 @@
 
 .people {
   .field {
-    label {
+    .label {
       display: block;
       float: left;
       top: 0px;
 
-      width: 150px;
+      width: 170px;
       &:after {
         content: ': ';
       }
@@ -20,10 +20,27 @@
       margin-top: 0px;
     }
   }
+  .longSelect {
+    width: 140px;
+  }
+  .longLabel {
+    display: inline;
+    clear: left;
+    width: 600px;
+    &:after {
+      content: ': ';
+    }
+  }
+  #person_skill_list {
+    width: 470px;
+  }
   .castTable {
     .castHide {
       display: none;
     }
+  }
+  input[type=text] {
+    width: 300px;
   }
   #ShowHide {
     cursor: pointer;

@@ -1,6 +1,6 @@
 @import 'blueprint';
 
-*, table {
+*, table, label, select, input {
   font-size: 12pt;
   font-family: Verdana;
   color: #444455;
@@ -216,5 +216,48 @@ footer {
      @include span(22);
      @include last;
      display: none;
+  }
+}
+.people {
+  .field {
+    .label {
+      display: block;
+      float: left;
+      top: 0px;
+
+      width: 170px;
+      &:after {
+        content: ': ';
+      }
+    }
+    margin-bottom: 2px;
+    * {
+      margin-top: 0px;
+    }
+  }
+  .longSelect {
+    width: 140px;
+  }
+  .longLabel {
+    display: inline;
+    clear: left;
+    width: 600px;
+    &:after {
+      content: ': ';
+    }
+  }
+  #person_skill_list {
+    width: 470px;
+  }
+  .castTable {
+    .castHide {
+      display: none;
+    }
+  }
+  input[type=text] {
+    width: 300px;
+  }
+  #ShowHide {
+    cursor: pointer;
   }
 }

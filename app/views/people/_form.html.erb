@@ -14,58 +14,82 @@
     <%= image_tag f.object.thumbnail_url %>
   </div>
   <div class="field">
-    <%= f.label :first_name %>
+    <%= f.label :first_name,
+                class: 'label' %>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %>
+    <%= f.label :last_name,
+                class: 'label' %>
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :date_of_birth %>
+    <%= f.label :date_of_birth,
+                class: 'label' %>
     <%= f.date_select :date_of_birth %>
   </div>
   <div class="field">
-    <%= f.label 'Height' %>
+    <%= f.label :height_feet,
+                'Height',
+                class: 'label' %>
     <%= f.select :height_feet, @heights_feet, selected: f.object.height_feet %>
     &nbsp;ft&nbsp;
     <%= f.select :height_inches, @heights_inches, selected: f.object.height_inches %>
     &nbsp;in
   </div>
   <div class="field">
-    <%= f.label :hair_colour %>
-    <%= f.select :hair_colour, @hair_colours, selected: f.object.hair_colour %>
+    <%= f.label :hair_colour,
+                class: 'label' %>
+    <%= f.select :hair_colour,
+                 @hair_colours,
+                 {selected: f.object.hair_colour},
+                 {class: 'longSelect'} %>
   </div>
   <div class="field">
-    <%= f.label :eye_colour %>
-    <%= f.select :eye_colour, @eye_colours, selected: f.object.eye_colour, size: 10 %>
+    <%= f.label :eye_colour,
+                class: 'label' %>
+    <%= f.select :eye_colour,
+                 @eye_colours,
+                 {selected: f.object.eye_colour},
+                 {class: 'longSelect'} %>
   </div>
   <div class="field">
-    <%= f.label :gender %>
+    <%= f.label :gender,
+                class: 'label' %>
     <%= f.select :gender,
                  ['Male', 'Female'],
                  {selected: f.object.gender},
-                 {width: '20px'} %>
+                 {class: 'longSelect'} %>
   </div>
   <div class="field">
-    <%= f.label :postcode %>
+    <%= f.label :postcode,
+                class: 'label' %>
     <%= f.text_field :postcode, size: 10 %>
   </div>
   <div class="field">
-    <%= f.label :telephone_number %>
+    <%= f.label :telephone_number,
+                class: 'label' %>
     <%= f.text_field :telephone_number %>
   </div>
   <div class="field">
-    <%= f.label :email_address %>
+    <%= f.label :email_address,
+                class: 'label' %>
     <%= f.text_field :email_address %>
   </div>
   <div class="field">
-    <%= f.label 'Skills' %>
+    <%= f.label :skill_list,
+                'Skills (comma seperated list)',
+                class: 'longLabel' %><br />
     <%= f.text_field :skill_list %>
   </div>
   <div class="field">
-    <%= f.label :status %>
-    <%= f.select :status, ['Active', 'Inactive'], selected: f.object.status %>
+    <%= f.label :status,
+                class: 'label' %>
+    <%= f.select :status, ['Active',
+                 'Inactive'],
+                 {selected: f.object.status},
+                 {class: 'longSelect'}
+                  %>
   </div>
   <div class="actions">
     <%= f.submit %>

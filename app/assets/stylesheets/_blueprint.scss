@@ -298,6 +298,7 @@ input[type=text], input[type=password], input[type=url], input[type=email], inpu
   &:focus {
     border-color: #666;
   }
+  /*font-family: inherit;*/
 }
 select {
   background-color: #fff;
@@ -305,7 +306,9 @@ select {
   border: {
     width: 1px;
     style: solid;
+    color: #BBB;
   }
+  font-family: inherit;
 }
 input.text {
   width: 300px;
