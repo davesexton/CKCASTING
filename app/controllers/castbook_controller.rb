@@ -8,7 +8,6 @@ class CastbookController < ApplicationController
       page = session[:page]
     end
 
-    #page = page.to_i - 1
     page_size = 16
     offset = page * page_size
 
@@ -128,15 +127,10 @@ class CastbookController < ApplicationController
   def show
     if Person.exists?(params[:id])
       cast = Person.find(params[:id])
-
       @castbook = cast
-      @skill = (Skill.where(person_id: @castbook.id)).collect {|s| s.skill_text}.join(', ')
-      @credit = Credit.where(person_id: @castbook.id).order(:display_order)
 
-      cast = Person.find(params[:id])
-      cast.view_count += 1 if (Time.now.utc.to_date - cast.last_viewed_at.to_date).to_i > 1
-      cast.last_viewed_at = Time.now.utc
-      cast.save
+      cast.update_last_viewed_at
+
     else
       redirect_to controller: 'castbook'
     end

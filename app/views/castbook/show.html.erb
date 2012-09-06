@@ -68,14 +68,14 @@
     </td>
   </tr>
   <% end %>
-  <% if @credit.size != 0 %>
+  <% if @castbook.credit_list_array.size != 0 %>
   <tr>
     <td colspan="2">
-      Credits(<%= @credit.size %>):
+      Credits(<%= @castbook.credit_list_array.size %>):
       <ul>
-      <% @credit.each do |c| %>
+      <% @castbook.credit_list_array.each do |c| %>
       <li>
-      <%= c.credit_text %>
+      <%= c %>
       </li>
       <% end %>
       </ul>

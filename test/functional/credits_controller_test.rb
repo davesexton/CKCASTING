@@ -1,13 +1,13 @@
 require 'test_helper'
 
 class CreditsControllerTest < ActionController::TestCase
-  setup do
-    @credit = credits(:one)
-  end
+#  setup do
+#    @credit = credits(:one)
+#  end
 
-  test "should get index" do
-    get :index
-    assert_response :success
+#  test "should get index" do
+#    get :index
+#    assert_response :success
     assert_not_nil assigns(:credits)
   end
 

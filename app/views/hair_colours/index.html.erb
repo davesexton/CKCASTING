@@ -13,7 +13,9 @@
     <td><%= hair_colour.hair_colour %></td>
     <td><%= link_to 'Show', hair_colour %></td>
     <td><%= link_to 'Edit', edit_hair_colour_path(hair_colour) %></td>
-    <td><%= link_to 'Destroy', hair_colour, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy',
+                    hair_colour, data: {confirm: 'Are you sure?'},
+                    method: :delete %></td>
   </tr>
 <% end %>
 </table>

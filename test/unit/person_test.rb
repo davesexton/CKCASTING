@@ -265,6 +265,7 @@ class PersonTest < ActiveSupport::TestCase
 
   test 'check skill list' do
     person = @good_person
+    person.Skills.destroy_all
     person.Skills.create(display_order: 1, skill_text: 'Pole dancing')
     person.Skills.create(display_order: 2, skill_text: 'Salsa')
     person.Skills.create(display_order: 3, skill_text: 'Cake making')

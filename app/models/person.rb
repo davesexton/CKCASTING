@@ -2,11 +2,14 @@ class Person < ActiveRecord::Base
   attr_reader :full_name, :full_url, :url, :iamge_url,
               :thumnail_url, :carousel_url, :skill_list,
               :age_group, :age_group_id, :height_group,
-              :height_group_id, :hair_colour_group
+              :height_group_id, :hair_colour_group, :has_image
+  attr_writer :image_upload
+  attr_accessor :file_type
   scope :active, conditions: {status: 'Active'}
 
 #TODO validate postcode
 #TODO capture user name for edits
+#TODO add validations to prevent HTML injection
   validates :gender, inclusion: {
     in: %w(Male Female),
     message: "%{value} is not a valid gender",
@@ -15,6 +18,7 @@ class Person < ActiveRecord::Base
   validates :status, inclusion: {
     in: %w(Active Inactive),
     message: "%{value} is not a valid status" }
+
   validate :date_of_birth_cannot_be_in_the_furtue
   validate :date_of_birth_cannot_give_age_over_100
 
@@ -34,6 +38,11 @@ class Person < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  validates_format_of :file_type,
+    with: /^image/,
+    allow_nil: true,
+    message: "--- you can only upload image files"
 
   has_many :Credits
   has_many :Skills
@@ -80,8 +89,7 @@ class Person < ActiveRecord::Base
   def thumbnail_url
     if FileTest.exist?("./app/assets/images/cast_images/#{id}.jpg")
       path = "./app/assets/images/cast_thumbs/#{id}.jpg"
-      make_cast_thumbnail "#{id}.jpg" unless FileTest.exist?(path)
-      #write_attribute(:thumbnail_url, "cast_thumbs/#{id}.jpg")
+      make_cast_thumbnail unless FileTest.exist?(path)
       "cast_thumbs/#{id}.jpg"
     else
       'default_cast_image_thumb.jpg'
@@ -90,8 +98,30 @@ class Person < ActiveRecord::Base
 
   def carousel_url
     path = "./app/assets/images/cast_carousel/#{id}.jpg"
-    make_cast_carousel "#{id}.jpg" unless FileTest.exist?(path)
+    make_cast_carousel unless FileTest.exist?(path)
     "/assets/cast_carousel/#{id}.jpg"
+  end
+
+  def self.has_image
+    path = './app/assets/images/cast_images/*.jpg'
+    ids = Dir[path].map {|f| f.match('\d+')[0]}
+    where(id: ids)
+  end
+
+  def image_upload=(img)
+    self.file_type = img.content_type.chomp
+
+    require 'RMagick'
+    img.rewind
+    img = Magick::Image::from_blob(img.read).first
+    img.resize_to_fill!(261, 300)
+    img = img.quantize(256, Magick::GRAYColorspace)
+
+    folder = Rails.root.join('app').join('assets').join('images').join('cast_images')
+    file_name = folder.join("#{self.id}.jpg")
+    img.write(file_name)
+    make_cast_carousel
+    make_cast_thumbnail
   end
 
   def skill_list
@@ -102,6 +132,23 @@ class Person < ActiveRecord::Base
     self.Skills.where(person_id: id).destroy_all
     text.split(',').each_with_index do |s, i|
       self.Skills.create(display_order: i, skill_text: s.strip.capitalize)
+    end
+  end
+
+  def credit_list
+    Credit.where(person_id: id).order(:display_order).collect { |s| s.credit_text }.join("\n")
+  end
+
+  def credit_list_array
+    Credit.where(person_id: id).order(:display_order).collect { |s| s.credit_text }
+  end
+
+  def credit_list=(text)
+    self.Credits.where(person_id: id).destroy_all
+    text.split("\n").each_with_index do |s, i|
+      s.strip!
+      s.gsub!(/\b(Uk|uk)\b/, 'UK')
+      self.Credits.create(display_order: i, credit_text: s)
     end
   end
 
@@ -156,33 +203,42 @@ class Person < ActiveRecord::Base
     hair_colour.gsub('Light ', '').gsub('Dark ', '')
   end
 
+  def update_last_viewed_at
+    self.view_count += 1 if (Time.now.utc.to_date - last_viewed_at.to_date).to_i > 1
+    self.last_viewed_at = Time.now.utc
+    self.save
+  end
+
   private
 
-  def make_cast_thumbnail img
+  def make_cast_thumbnail
     require 'RMagick'
-    path = "./app/assets/images/cast_images/#{img}"
-    thumb = "./app/assets/images/cast_thumbs/#{img}"
+
+    path = "./app/assets/images/cast_images/#{id}.jpg"
+    thumb = "./app/assets/images/cast_thumbs/#{id}.jpg"
     img = Magick::Image::read(path).first
-    img = img.crop_resized!(137, 158, Magick::NorthGravity)
+    img.crop_resized!(137, 158, Magick::NorthGravity)
     img.write(thumb)
   end
 
-  def make_cast_carousel img
+  def make_cast_carousel
     require 'RMagick'
-    path = "./app/assets/images/cast_images/#{img}"
-    thumb = "./app/assets/images/cast_carousel/#{img}"
+    path = "./app/assets/images/cast_images/#{id}.jpg"
+    thumb = "./app/assets/images/cast_carousel/#{id}.jpg"
 
-    results = Magick::ImageList.new
+    if File.exist?(path)
+      results = Magick::ImageList.new
 
-    img = Magick::Image::read(path).first
-    img = img.crop_resized!(101, 116, Magick::NorthGravity)
+      img = Magick::Image::read(path).first
+      img.crop_resized!(101, 116, Magick::NorthGravity)
 
-    results << img << img.wet_floor(0.5, 1)
-    result = results.append(true)
-    bg = Magick::Image.new(result.columns, result.rows) {self.background_color = "#FFFFFF"}
-    final = bg.composite(result, Magick::NorthGravity, Magick::OverCompositeOp)
+      results << img << img.wet_floor(0.5, 1)
+      result = results.append(true)
+      bg = Magick::Image.new(result.columns, result.rows) {self.background_color = "#FFFFFF"}
+      final = bg.composite(result, Magick::NorthGravity, Magick::OverCompositeOp)
 
-    final.write(thumb)
+      final.write(thumb)
+    end
   end
 
   def date_of_birth_cannot_be_in_the_furtue

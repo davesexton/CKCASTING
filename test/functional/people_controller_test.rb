@@ -36,7 +36,8 @@ class PeopleControllerTest < ActionController::TestCase
 
   test "should update person" do
     put :update, id: @person.to_param, person: @person.attributes
-    assert_redirected_to person_path(assigns(:person))
+    #assert_redirected_to person_path(assigns(:person))
+    assert_redirected_to people_path
   end
 
   test "should destroy person" do

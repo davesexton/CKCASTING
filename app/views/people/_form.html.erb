@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="castThumb">
     <%= image_tag f.object.thumbnail_url %>
   </div>
   <div class="field">
@@ -22,6 +22,21 @@
     <%= f.label :last_name,
                 class: 'label' %>
     <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :status,
+                class: 'label' %>
+    <%= f.select :status, ['Active',
+                 'Inactive'],
+                 {selected: f.object.status},
+                 {class: 'longSelect'}
+                  %>
+  </div>
+  <div class="field">
+    <%= f.label :image_upload,
+                'New image',
+                class: 'label' %>
+    <%= f.file_field 'image_upload' %>
   </div>
   <div class="field">
     <%= f.label :date_of_birth,
@@ -83,15 +98,12 @@
     <%= f.text_field :skill_list %>
   </div>
   <div class="field">
-    <%= f.label :status,
-                class: 'label' %>
-    <%= f.select :status, ['Active',
-                 'Inactive'],
-                 {selected: f.object.status},
-                 {class: 'longSelect'}
-                  %>
+    <%= f.label :credit_list,
+                'Credits (one per line)',
+                class: 'longLabel' %><br />
+    <%= f.text_area :credit_list, wrap: 'off', cols: 120 %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Update Changes' %>
   </div>
 <% end %>

@@ -219,6 +219,23 @@ footer {
   }
 }
 .people {
+  .castThumb {
+    /*float: left;*/
+    background-image: url('cast_thumb_frame.gif');
+    width: 166px;
+    height: 191px;
+    position: relative;
+    img {
+      left: 15px;
+      top: 17px;
+      position: absolute;
+    }
+  }
+  #person_credit_list {
+    white-space: nowrap;
+    overflow: auto;
+    width: 800px;
+  }
   .field {
     .label {
       display: block;
