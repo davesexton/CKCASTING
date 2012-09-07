@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-#TODO fix load issue
 #TODO add output log file
 require 'hpricot'
 require 'open-uri'
@@ -12,6 +11,7 @@ Dir['*.jpg'].each { |f| File.delete f }
 
 # ----- Set variables
 new_id = 1
+
 seed = "# encoding: utf-8\n"
 
 ('46'..'600').each do |f|
@@ -20,9 +20,11 @@ seed = "# encoding: utf-8\n"
 # ----- Get name
   name = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_NAMELabel"]').innerHTML
   next if name == ''
-  puts "Found '#{name}' - remapping CAST ID #{f} => #{new_id}"
-  last_name = name.match(/\w*$/)[0]
+
+  last_name = name.match(/(\w|\/)*$/)[0]
   first_name = name.chomp(last_name).strip
+
+  puts "Found '#{name}' - remapping CAST ID #{f} => #{new_id}"
 
 # ----- Get date of birth
   date_of_birth = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HiddenFieldDOB"]').attr(:value)
@@ -43,17 +45,20 @@ seed = "# encoding: utf-8\n"
   view_count = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_VIEW_COUNTLabel"]').innerHTML
 
 # ----- Add to seed file
-  seed += "Person.create(:first_name => '#{first_name}'" \
-   + ", :last_name => '#{last_name}'" \
-   + ", :date_of_birth => '#{date_of_birth}'" \
-   + ", :height_feet => #{feet}" \
-   + ", :height_inches => #{inches}" \
-   + ", :hair_colour => '#{hair}'" \
-   + ", :eye_colour => '#{eye}'" \
-   + ", :gender => '#{sex}'" \
-   + ", :last_viewed_at => '#{last_viewed}'" \
-   + ", :view_count => #{view_count}" \
-   + ", :status => 'Active' )\n"
+  seed += <<HERE
+Person.create(id: #{new_id},
+  first_name: '#{first_name}',
+  last_name: '#{last_name}',
+  date_of_birth: '#{date_of_birth}',
+  height_feet: #{feet},
+  height_inches: #{inches},
+  hair_colour: '#{hair}',
+  eye_colour: '#{eye}',
+  gender: '#{sex}',
+  last_viewed_at: '#{last_viewed}',
+  view_count: #{view_count},
+  status: 'Active')
+HERE
 
 # ----- Get skills
   ord = 1
@@ -61,9 +66,11 @@ seed = "# encoding: utf-8\n"
   (doc/'//*[@id="ctl00_MainContentPlaceHolder_InterestsBulletedList"]/li').each do |e|
     txt = e.innerHTML.strip
 
-    seed += "Skill.create(:person_id => #{new_id}" \
-     + ", :display_order => #{ord}" \
-     + ", :skill_text => '#{txt}')\n"
+    seed += <<HERE
+Skill.create(person_id: #{new_id},
+  display_order: #{ord},
+  skill_text: '#{txt}')
+HERE
     ord += 1
   end
 
@@ -91,16 +98,20 @@ seed = "# encoding: utf-8\n"
 
     txt.gsub!(/Paul O.*Grady/, 'Paul O\\\'Grady')
 
-    seed += "Credit.create(:person_id => #{new_id}" \
-     + ", :display_order => #{ord}" \
-     + ", :credit_text => '#{txt}')\n"
+    seed += <<HERE
+Credit.create(person_id: #{new_id},
+  display_order: #{ord},
+  credit_text: '#{txt}')
+HERE
     ord += 1
   end
 
 # ----- Get image file
   Net::HTTP.start("www.ckcasting.co.uk") do |http|
     resp = http.get("/castbook/#{f}.jpg")
-    open("#{new_id}.jpg", "wb") { |file| file.write(resp.body) } if resp.code == '200'
+    open("#{new_id}.jpg", "wb") do |file|
+      file.write(resp.body)
+    end if resp.code == '200'
 
   end
 
@@ -109,10 +120,26 @@ seed = "# encoding: utf-8\n"
 end
 
 # ----- Finished
-seed.gsub!(':height_feet => ,', ':height_feet => 0,')
-seed.gsub!(':height_inches => ,', ':height_inches => 0,')
-seed.gsub!('=> ,', '=> nil,')
-seed.gsub!("=> '',", '=> nil,')
+seed += <<HERE
+x = User.new(name: 'dave', password_digest: BCrypt::Password.create('psion'))
+x.save(validate: false)
+fg = Person.where('first_name LIKE ?', '%&%').pluck(:id)
+fg.each_with_index do |v, i|
+    Family.create(id: i + 1, family_name: Person.find(v).last_name)
+end
+
+Person.where('first_name NOT LIKE ?', '%&%').each do |p|
+  Person.where('first_name LIKE ? AND last_name LIKE ? ', '%&%', '%' + p.last_name + '%').each do |g|
+    p.family_id = Family.where('family_name LIKE ?', "%" + g.last_name + "%").pluck(:id)[0]
+    p.save
+  end
+end
+HERE
+
+seed.gsub!('height_feet: ,', 'height_feet: 0,')
+seed.gsub!('height_inches: ,', 'height_inches: 0,')
+seed.gsub!(': ,', ': nil,')
+seed.gsub!(": '',", ': nil,')
 Dir.chdir('/home/dave/websites/ckcasting/db')
 File.open('seeds.rb', "w") { |file| file.write(seed) }
 puts " "

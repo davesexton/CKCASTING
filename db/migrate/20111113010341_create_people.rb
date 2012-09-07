@@ -14,6 +14,7 @@ class CreatePeople < ActiveRecord::Migration
       t.float :longitude
       t.string :telephone_number
       t.string :email_address
+      t.integer :family_id
       t.string :status, default: 'Active'
       t.datetime :last_viewed_at
       t.integer :view_count

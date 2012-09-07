@@ -44,8 +44,9 @@ class Person < ActiveRecord::Base
     allow_nil: true,
     message: "--- you can only upload image files"
 
-  has_many :Credits
-  has_many :Skills
+  has_many :credits
+  has_many :skills
+  belongs_to :family
 
   before_save :update_location
 

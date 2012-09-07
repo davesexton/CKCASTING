@@ -1,3 +1,15 @@
 <% @title = 'Admin' %>
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<h2>Website Administration</h2>
+<p>Use this page to administer your website and get information
+   about it's performance'</p>
+<h2>Website Performance</h2>
+<p>Click <%= link_to 'here', APP_CONFIG['ga_link'] %> to view the
+   Google Analyticts pages for this website (requires Google login).
+   Use these pages to see the number of visitors and find out how they
+   are finding your site.</p>
+<h2>Manage Cast Memebers</h2>
+<p>Click <%= link_to 'here', people_path %> to add or remove
+   images in the gallery. Images can be any size (they will be
+   automatticly resized, however larger images will take longer
+   to upload) and must be either in JPEG or PNG format.</p>
+<p><%= link_to 'Log Out', logout_url, method: :delete  %></p>
