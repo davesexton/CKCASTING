@@ -2,8 +2,8 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Family name</th>
-    <th>Person</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,8 +11,8 @@
 
 <% @families.each do |family| %>
   <tr>
+    <td><%= image_tag family.thumbnail_url, size: '52x60' %></td>
     <td><%= family.family_name %></td>
-    <td><%= family.person_id %></td>
     <td><%= link_to 'Show', family %></td>
     <td><%= link_to 'Edit', edit_family_path(family) %></td>
     <td><%= link_to 'Destroy', family, method: :delete, data: { confirm: 'Are you sure?' } %></td>

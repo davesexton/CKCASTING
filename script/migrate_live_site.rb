@@ -37,8 +37,8 @@ seed = "# encoding: utf-8\n"
   hair = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_HAIR_COLOURLabel"]').innerHTML
   eye = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_EYE_COLOURLabel"]').innerHTML
 
-# ----- Get sex
-  sex = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_SEXLabel"]').innerHTML
+# ----- Get gender
+  gender = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_SEXLabel"]').innerHTML
 
 # ----- Get view counts
   last_viewed = (doc/'//*[@id="ctl00_MainContentPlaceHolder_FormViewCastDetails_LAST_VIEWEDLabel"]').innerHTML
@@ -54,7 +54,7 @@ Person.create(id: #{new_id},
   height_inches: #{inches},
   hair_colour: '#{hair}',
   eye_colour: '#{eye}',
-  gender: '#{sex}',
+  gender: '#{gender}',
   last_viewed_at: '#{last_viewed}',
   view_count: #{view_count},
   status: 'Active')
@@ -123,17 +123,25 @@ end
 seed += <<HERE
 x = User.new(name: 'dave', password_digest: BCrypt::Password.create('psion'))
 x.save(validate: false)
+
+require "fileutils"
+
 fg = Person.where('first_name LIKE ?', '%&%').pluck(:id)
 fg.each_with_index do |v, i|
-    Family.create(id: i + 1, family_name: Person.find(v).last_name)
+  Family.create(id: i + 1, family_name: Person.find(v).last_name)
+  FileUtils.copy './app/assets/images/cast_images/' + v.to_s + '.jpg',
+                 './app/assets/images/family_images/' + (i + 1).to_s + '.jpg'
+  FileUtils.remove './app/assets/images/cast_images/' + v.to_s + '.jpg'
 end
 
-Person.where('first_name NOT LIKE ?', '%&%').each do |p|
+Person.where('first_name NOT LIKE ? ', '%&%').each do |p|
   Person.where('first_name LIKE ? AND last_name LIKE ? ', '%&%', '%' + p.last_name + '%').each do |g|
     p.family_id = Family.where('family_name LIKE ?', "%" + g.last_name + "%").pluck(:id)[0]
     p.save
   end
 end
+Person.where('first_name LIKE ? ', '%&%').destroy_all
+
 HERE
 
 seed.gsub!('height_feet: ,', 'height_feet: 0,')

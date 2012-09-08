@@ -2,7 +2,7 @@ class FamiliesController < ApplicationController
   # GET /families
   # GET /families.json
   def index
-    @families = Family.all
+    @families = Family.order(:family_name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,14 +12,14 @@ class FamiliesController < ApplicationController
 
   # GET /families/1
   # GET /families/1.json
-  def show
-    @family = Family.find(params[:id])
+#  def show
+#    @family = Family.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @family }
-    end
-  end
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.json { render json: @family }
+#    end
+#  end
 
   # GET /families/new
   # GET /families/new.json
@@ -44,8 +44,10 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       if @family.save
-        format.html { redirect_to @family, notice: 'Family was successfully created.' }
-        format.json { render json: @family, status: :created, location: @family }
+        format.html { redirect_to families_url,
+                      notice: 'Family was successfully created.' }
+        format.json { render json: @family,
+                      status: :created, location: @family }
       else
         format.html { render action: "new" }
         format.json { render json: @family.errors, status: :unprocessable_entity }
@@ -60,11 +62,13 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       if @family.update_attributes(params[:family])
-        format.html { redirect_to @family, notice: 'Family was successfully updated.' }
+        format.html { redirect_to families_url,
+                      notice: 'Family was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @family.errors, status: :unprocessable_entity }
+        format.json { render json: @family.errors,
+                      status: :unprocessable_entity }
       end
     end
   end

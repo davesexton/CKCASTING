@@ -11,6 +11,11 @@
           <label for="gender_<%= k %>"><%= v %></label>
         </div>
       <% end %>
+      <div class="filterLabel">Family Group:</div>
+      <div class="filterOption">
+        <input type="checkbox" name="family[]" value="true" id="family" />
+        <label for="family">In family group</label>
+      </div>
       <div class="filterLabel">Age Group:</div>
       <% @age_group.each do |k, v|  %>
         <div class="filterOption">

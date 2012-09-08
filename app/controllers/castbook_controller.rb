@@ -67,10 +67,17 @@ class CastbookController < ApplicationController
   def castlist
     cons = ['status = ?', 'Active']
     page_size = 16
+
 # Add gender parameters
     if params[:gender]
       cons[0] += ' AND gender IN(?)'
       cons << params[:gender]
+    end
+
+# Add family group
+    if params[:family]
+      cons[0] += ' AND family_id NOT ? '
+      cons << nil
     end
 
 # Add age parameters
