@@ -60,5 +60,5 @@
   </span><br />
 </div>
 <div id="castThumbs" />
-  <%= render 'castlist' %>
+  <%= render partial: 'shared/castlist', locals: {castlist: @castlist} %>
 </div>

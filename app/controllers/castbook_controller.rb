@@ -11,7 +11,7 @@ class CastbookController < ApplicationController
     page_size = 16
     offset = page * page_size
 
-    @castbook = Person.active.limit(page_size).offset(offset)
+    @castlist = Person.active.limit(page_size).offset(offset)
 
     @nav = (Person.count / page_size.to_f).ceil
 
@@ -52,12 +52,12 @@ class CastbookController < ApplicationController
       format.html # index.html.erb
       format.json {
         render json:
-         @castbook.as_json(
+         @castlist.as_json(
             only: [:id, :gender],
             methods: [:full_name, :height_group, :thumbnail_url])
       }
       format.xml {
-        render xml: @castbook.sample(25).to_xml(
+        render xml: @castlist.to_xml(
             only: [:id],
             methods: [:url, :thumbnail_url])
       }
@@ -126,9 +126,9 @@ class CastbookController < ApplicationController
     @pages = (Person.where(cons).active.count / page_size) + 1
     session[:page] = '1' if session[:page].to_i > @pages
 
-    @castbook = Person.where(cons).limit(page_size).offset((session[:page].to_i - 1) * page_size).active
+    castlist = Person.where(cons).limit(page_size).offset((session[:page].to_i - 1) * page_size).active
 
-    render partial: 'castlist'
+    render partial: 'shared/castlist', locals: {castlist: castlist}
   end
 
   def show

@@ -54,6 +54,10 @@ class Person < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def title
+    "#{first_name} #{last_name}"
+  end
+
   def update_location
     if !self.postcode.blank? and (self.latitude.blank? or self.longitude.blank?)
       loc = get_location
@@ -126,13 +130,13 @@ class Person < ActiveRecord::Base
   end
 
   def skill_list
-    Skill.where(person_id: id).order(:display_order).collect { |s| s.skill_text }.join(', ')
+    self.skills.order(:display_order).collect { |s| s.skill_text }.join(', ')
   end
 
   def skill_list=(text)
-    self.Skills.where(person_id: id).destroy_all
+    self.skills.where(person_id: id).destroy_all
     text.split(',').each_with_index do |s, i|
-      self.Skills.create(display_order: i, skill_text: s.strip.capitalize)
+      self.skills.create(display_order: i, skill_text: s.strip.capitalize)
     end
   end
 
@@ -145,11 +149,11 @@ class Person < ActiveRecord::Base
   end
 
   def credit_list=(text)
-    self.Credits.where(person_id: id).destroy_all
+    self.credits.destroy_all
     text.split("\n").each_with_index do |s, i|
       s.strip!
       s.gsub!(/\b(Uk|uk)\b/, 'UK')
-      self.Credits.create(display_order: i, credit_text: s)
+      self.credits.create(display_order: i, credit_text: s)
     end
   end
 

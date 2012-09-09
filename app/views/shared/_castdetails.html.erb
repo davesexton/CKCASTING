@@ -1,0 +1,84 @@
+ <table>
+  <tr>
+    <td colspan="2">
+      <h3><%= c.full_name %></h3>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="viewStat">
+      This profile has been viewed <%= c.view_count %> times
+      and was last viewed on the <%= c.last_viewed_at.strftime("%d-%b-%Y") %>
+      <% if c.family and show_family_link %>
+        <br /><%= c.first_name %> is part of a
+        <%= link_to 'family group',
+                    {controller: "family_groups", action: "show", id: c.family_id} %>
+        click <%= link_to 'here',
+                          {controller: "family_groups", action: "show", id: c.family_id} %>
+        to see all members
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="nowrap">
+      Gender:
+    </td>
+    <td>
+      <%= c.gender %>
+    </td>
+  </tr>
+  <tr>
+    <td class="nowrap">
+      Hair Colour:
+    </td>
+    <td>
+      <%= c.hair_colour %>
+    </td>
+  </tr>
+  <tr>
+    <td class="nowrap">
+      Eye Colour:
+    </td>
+    <td>
+      <%= c.eye_colour %>
+    </td>
+  </tr>
+  <tr>
+    <td class="nowrap">
+      Height:
+    </td>
+    <td>
+      <%= c.height_feet %>'&nbsp;
+      <%= c.height_inches %>"
+    </td>
+  </tr>
+  <tr>
+    <td>
+      URL:
+    </td>
+    <td><%= c.full_url %></td>
+  </tr>
+  <% if c.skill_list != '' %>
+  <tr>
+    <td>
+      Skills:
+    </td>
+    <td>
+    <%= c.skill_list %>
+    </td>
+  </tr>
+  <% end %>
+  <% if c.credit_list_array.size != 0 %>
+  <tr>
+    <td colspan="2">
+      Credits(<%= c.credit_list_array.size %>):
+      <ul>
+      <% c.credit_list_array.each do |c| %>
+      <li>
+      <%= c %>
+      </li>
+      <% end %>
+      </ul>
+    </td>
+  </tr>
+  <% end %>
+  </table>

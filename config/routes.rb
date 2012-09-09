@@ -1,7 +1,5 @@
 Ckcasting::Application.routes.draw do
 
-  resources :families
-
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
@@ -9,7 +7,7 @@ Ckcasting::Application.routes.draw do
   end
 
   resources :users
-
+  resources :families
   resources :applicants
 
   root :to => 'home#index'
@@ -21,6 +19,10 @@ Ckcasting::Application.routes.draw do
   match 'join' => 'join#index'
   match 'contact' => 'contact#index'
   match 'applicant' => 'applicant#index'
+
+  match 'family_groups' => 'family_groups#index'
+  match 'family_groups/family/(:id)' => 'family_groups#show'
+
   match 'admin' => 'admin#index'
 
   resources :applicants
