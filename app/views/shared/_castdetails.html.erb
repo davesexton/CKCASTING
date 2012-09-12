@@ -1,13 +1,26 @@
  <table>
-  <tr>
+  <% unless show_family_link %>
+    <tr>
+      <td colspan="2">
+        <div class="castThumb">
+          <%= image_tag c.thumbnail_url,
+                        alt: c.title,
+                        title: c.title,
+                        size: '137x158' %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+   <tr>
     <td colspan="2">
       <h3><%= c.full_name %></h3>
     </td>
   </tr>
   <tr>
     <td colspan="2" class="viewStat">
-      This profile has been viewed <%= c.view_count %> times
-      and was last viewed on the <%= c.last_viewed_at.strftime("%d-%b-%Y") %>
+      This profile has been viewed <%= pluralize(c.view_count, 'time') %>
+      and was last viewed on the
+      <%  #c.last_viewed_at.strftime("%d-%b-%Y") unless c.last_viewed_at.nil? %>
       <% if c.family and show_family_link %>
         <br /><%= c.first_name %> is part of a
         <%= link_to 'family group',
@@ -70,11 +83,11 @@
   <% if c.credit_list_array.size != 0 %>
   <tr>
     <td colspan="2">
-      Credits(<%= c.credit_list_array.size %>):
+      <%= pluralize(c.credits.size, "Credit") %>:
       <ul>
-      <% c.credit_list_array.each do |c| %>
+      <% c.credits.each do |c| %>
       <li>
-      <%= c %>
+      <%= c.credit_text %>
       </li>
       <% end %>
       </ul>

@@ -35,6 +35,7 @@ class FamiliesController < ApplicationController
   # GET /families/1/edit
   def edit
     @family = Family.find(params[:id])
+    @person = @family.get_available_people
   end
 
   # POST /families
@@ -59,9 +60,10 @@ class FamiliesController < ApplicationController
   # PUT /families/1.json
   def update
     @family = Family.find(params[:id])
-
     respond_to do |format|
+      #if params[:people] and
       if @family.update_attributes(params[:family])
+        @family.members = params[:members]
         format.html { redirect_to families_url,
                       notice: 'Family was successfully updated.' }
         format.json { head :no_content }

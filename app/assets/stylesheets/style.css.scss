@@ -107,6 +107,13 @@ footer {
       position: absolute;
     }
   }
+  .noCast {
+    font-size: 1.7em;
+    padding: 10px;
+  }
+  .castImgLabel {
+    padding-left: 20px;
+  }
   .columnCastImage {
     @include span(9);
   }
@@ -277,4 +284,12 @@ footer {
   #ShowHide {
     cursor: pointer;
   }
+}
+.checkboxSelect {
+  overflow: scroll;
+  height: 200px;
+  border: solid 1px #bbbbbb;
+  width: 300px;
+  overflow-x: hidden;
+  -ms-overflow-x: hidden;
 }

@@ -1,17 +1,23 @@
 class Family < ActiveRecord::Base
-  attr_accessible :family_name, :person_id
+  attr_accessible :family_name, :person_id, :members
+  attr_reader :title, :get_available_people
+
   has_many :people
 
   def title
-    if self.people.collect{|p| p.last_name}.uniq.length > 1
-      self.people.order([:last_name, :first_name]).collect do|p|
-        p.full_name
-      end.join(', ').reverse.sub(',', ' dna ').reverse
-    else
-      self.people.order(:first_name).collect do|p|
-        p.first_name
-      end.join(', ').reverse.sub(',', ' dna ').reverse + \
-      " " + self.people.collect{|p| p.last_name}[0]
+    begin
+      if self.people.collect{|p| p.last_name}.uniq.length > 1
+        self.people.order([:last_name, :first_name]).collect do|p|
+          p.full_name
+        end.join(', ').reverse.sub(',', ' dna ').reverse
+      else
+        self.people.order(:first_name).collect do|p|
+          p.first_name
+        end.join(', ').reverse.sub(',', ' dna ').reverse + \
+        " " + self.people.collect{|p| p.last_name}[0]
+      end
+    rescue
+      family_name
     end
   end
 
@@ -38,7 +44,25 @@ class Family < ActiveRecord::Base
     end
   end
 
+  def members=(list)
+    Person.where('family_id = ?', id).each do |p|
+      p.update_attribute(:family_id, nil)
+    end
+    Person.find(list).each do |p|
+      p.update_attribute(:family_id, id)
+    end unless list.nil?
+  end
+
+  def members
+    " "
+  end
+
+  def get_available_people
+    Person.where('family_id = ? OR family_id IS NULL', self.id).order([:last_name, :first_name])
+  end
+
   private
+
 
   def make_family_thumbnail
     require 'RMagick'

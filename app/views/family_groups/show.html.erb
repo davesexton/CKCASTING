@@ -1,13 +1,13 @@
-<h1>FamilyGroups#show</h1>
-<p>Find me in app/views/family_groups/show.html.erb</p>
-
+<% @title = @family_group.title %>
+<h2><%= @family_group.title %></h2>
 <div class="columnCastImage">
   <div class="castImage">
-  <%= image_tag @family_groups.image_url,
-                alt: @family_groups.title,
-                title: @family_groups.title,
+  <%= image_tag @family_group.image_url,
+                alt: @family_group.title,
+                title: @family_group.title,
                 size: '261x300' %>
   </div>
+  <div class="castImgLabel"><%= @family_group.title %></div>
 </div>
 <div class="columnCastDetails">
 <% @castlist.each do |c| %>

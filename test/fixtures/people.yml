@@ -11,8 +11,29 @@ good:
   eye_colour: Brown
   gender: Male
   postcode: RM16 6ES
+  family_id: 1
   latitude:
   longitude:
   telephone_number: 01375-456362
   email_address: me@host.com
+  last_viewed_at: 2012.09.10
+  status: Active
+
+good2:
+  id: 1001
+  first_name: First
+  last_name: Last
+  date_of_birth: 2011-11-13
+  height_feet: 1
+  height_inches: 1
+  hair_colour: Brown
+  eye_colour: Brown
+  gender: Male
+  postcode: RM16 6ES
+  family_id: 1
+  latitude:
+  longitude:
+  telephone_number: 01375-456362
+  last_viewed_at: 2012.09.10
+  email_address: me2@host.com
   status: Active

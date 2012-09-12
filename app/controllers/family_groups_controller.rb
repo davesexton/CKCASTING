@@ -8,6 +8,6 @@ class FamilyGroupsController < ApplicationController
 
   def show
     @castlist = Person.where('family_id IN (?)', params[:id]).order([:first_name, :last_name])
-    @family_groups = Family.find(params[:id])
+    @family_group = Family.find(params[:id])
   end
 end

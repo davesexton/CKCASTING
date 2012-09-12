@@ -4,4 +4,8 @@
      alt: c.title, title: c.title, size: '137x158'), c.url) %>
   </div>
 <% end %>
+<% if !castlist.empty?  %>
+  <span>Sorry no cast members match your criteria,<br />
+  please try again.</span>
+<% end %>
 <%= hidden_field_tag 'pages', @pages %>
