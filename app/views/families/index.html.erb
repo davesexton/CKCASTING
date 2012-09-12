@@ -1,24 +1,29 @@
 <% @title = 'Families' %>
 <h1>Listing families</h1>
 
+<% if @families.map{|f| f.people.size }.min < 2 %>
+  <p>* family groups with less than two members will not be displayed
+       on the website</p>
+<% end %>
 <table>
   <tr>
     <th></th>
     <th>Family name</th>
-    <th></th>
-    <th></th>
+    <th>Members</th>
+    <th><%= link_to 'New Group', new_family_path %></th>
   </tr>
 
 <% @families.each do |family| %>
   <tr>
     <td><%= image_tag family.thumbnail_url, size: '52x60' %></td>
-    <td><%= family.title unless family.title.nil? %></td>
-    <td><%= link_to 'Edit', edit_family_path(family) %></td>
-    <td><%= link_to 'Destroy', family, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to family.title, edit_family_path(family) %></td>
+    <td>
+      <%= pluralize(family.people.size, 'person') %>
+      <%= '*' if family.people.size < 2 %>
+    </td>
+    <td><%= link_to 'Remove', family, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Family', new_family_path %>

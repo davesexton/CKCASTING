@@ -4,6 +4,8 @@ class Family < ActiveRecord::Base
 
   has_many :people
 
+  validates :family_name, presence: true, uniqueness: true
+
   def title
     begin
       if self.people.collect{|p| p.last_name}.uniq.length > 1

@@ -1,5 +1,9 @@
-<h1>Editing family</h1>
-
+<% @title = 'Group Edit' %>
+<h2>Editing Family Group:  <%= @family.title %></h2>
+<p>
+  Change any details using the form below and then click the
+  update button to save the changes.
+</p>
 <%= render 'form' %>
 
 <%= link_to 'Back', families_path %>

@@ -1,6 +1,9 @@
 <% @title = 'Cast Edit' %>
-<h1>Editing person</h1>
-
+<h2>Editing Person: <%= @person.full_name %></h2>
+<p>
+  Change any details using the form below and then click the
+  update button to save the changes.
+</p>
 <%= render 'form' %>
 
 <%= link_to 'Back', people_path %>

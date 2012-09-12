@@ -1,8 +1,15 @@
 <% @title = 'Cast Manager' %>
 <h2>Cast Manager</h2>
+<p>
+  Listed below are all cast members, active and inactive. Use the link
+  below to switch between active and inactive. Cast members cannot be
+  deleted only made inactive which will prevent them from being
+  displayed on the website. Use the name link to edit an individual's
+  details or use the new person link in the table header to create a
+  new cast member.
+</p>
 <p>Summary: <%= @summary %> cast members.</p>
 <p><a id="ShowHide">Show Inactive</a></p>
-
 <table class="castTable">
   <tr>
     <th></th>
@@ -14,7 +21,7 @@
     <th>Gender</th>
     <th>Last Viewed</th>
     <th>View Count</th>
-    <th></th>
+    <th><%= link_to 'New Person', new_person_path %></th>
   </tr>
 
 <% @people.each do |p| %>
@@ -40,5 +47,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New Person', new_person_path %>
