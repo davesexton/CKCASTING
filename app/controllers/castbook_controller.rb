@@ -1,21 +1,8 @@
 class CastbookController < ApplicationController
   skip_before_filter :authorize
+
   def index
-    session[:page] = 1 unless session[:page]
-    if params[:id]
-      page = params[:id]
-    else
-      page = session[:page]
-    end
-
-    page_size = 16
-    offset = page * page_size
-
-    @castlist = Person.active.limit(page_size).offset(offset)
-
-    @nav = (Person.count / page_size.to_f).ceil
-
-    @page = page
+    @castlist = Person.active.paginate(page: 1, per_page: 16)
 
 # data for gender checkboxes
     f = Hash.new(0)
@@ -126,8 +113,7 @@ class CastbookController < ApplicationController
     @pages = (Person.where(cons).active.count / page_size) + 1
     session[:page] = '1' if session[:page].to_i > @pages
 
-    castlist = Person.where(cons).limit(page_size).offset((session[:page].to_i - 1) * page_size).active
-
+    castlist = Person.where(cons).active.paginate(page: params[:page], per_page: 16)
     render partial: 'shared/castlist', locals: {castlist: castlist}
   end
 
@@ -144,14 +130,4 @@ class CastbookController < ApplicationController
 
   end
 
-  def random
-    @castbook = Person.all
-    respond_to do |format|
-      format.xml {
-        render xml: @castbook.sample(25).to_xml(
-            only: [:id],
-            methods: [:url, :carousel_url])
-      }
-    end
-  end
 end

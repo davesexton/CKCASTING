@@ -1,10 +1,17 @@
 class Family < ActiveRecord::Base
-  attr_accessible :family_name, :person_id, :members
+  attr_accessible :family_name, :person_id, :members, :image_upload
   attr_reader :title, :get_available_people
+  attr_accessor :file_type
+  attr_writer :image_upload
 
   has_many :people
 
   validates :family_name, presence: true, uniqueness: true
+
+  validates_format_of :file_type,
+    with: /^image/,
+    allow_nil: true,
+    message: "--- you can only upload image files"
 
   def title
     begin
@@ -46,6 +53,21 @@ class Family < ActiveRecord::Base
     end
   end
 
+  def image_upload=(img)
+    self.file_type = img.content_type.chomp
+    require 'RMagick'
+    img.rewind
+    img = Magick::Image::from_blob(img.read).first
+    img.resize_to_fill!(261, 300)
+    img = img.quantize(256, Magick::GRAYColorspace)
+
+    folder = Rails.root.join('app').join('assets').join('images').join('family_images')
+    file_name = folder.join("#{self.id}.jpg")
+    img.write(file_name)
+
+    make_family_thumbnail
+  end
+
   def members=(list)
     Person.where('family_id = ?', id).each do |p|
       p.update_attribute(:family_id, nil)
@@ -64,7 +86,6 @@ class Family < ActiveRecord::Base
   end
 
   private
-
 
   def make_family_thumbnail
     require 'RMagick'

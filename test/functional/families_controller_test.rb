@@ -17,6 +17,7 @@ class FamiliesControllerTest < ActionController::TestCase
   end
 
   test "should create family" do
+    @family.family_name = 'Test'
     assert_difference('Family.count') do
       post :create, family: @family.attributes
     end

@@ -8,6 +8,27 @@
 .nowrap {
   white-space: nowrap;
 }
+.pagination {
+  span, a, em {
+    border: solid 1pt #333333;
+    padding: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+  }
+  span, a {
+    background-color: #666666;
+    color: #ffffff;
+  }
+  em {
+    background-color: #ffffff;
+  }
+  margin-bottom: 10px;
+  a:hover {
+    text-decoration: underline;
+  }
+  text-align: center;
+}
 
 nav {
   height: 45px;
@@ -258,6 +279,14 @@ footer {
     * {
       margin-top: 0px;
     }
+  }
+  .fieldHelp {
+    margin: {
+      left: 170px;
+      bottom: 5px;
+    }
+    width: 300px;
+    font-style: italic;
   }
   .longSelect {
     width: 140px;

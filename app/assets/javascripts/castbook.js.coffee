@@ -17,32 +17,47 @@ ctIn = ()->
 ctOut = () ->
   $(".castThumb").stop().fadeTo('fast', 1)
 
-#TODO add code for zero cast
-castUpdate = () ->
-  #$('.castThumb img').attr('src', '/assets/progress.gif')
+updatePagination = (e) ->
+  if e == undefined
+    $('#page').val(1)
+  if /Next/.test($(e).text())
+    $('#page').val(parseInt($('#page').val()) + 1)
+  if /Prev/.test($(e).text())
+    $('#page').val(parseInt($('#page').val()) - 1)
+  if /\d+/.test($(e).text())
+    $('#page').val($(e).text())
+
+   # Next →
+
+  $('#castFilters input').parent().css('background-color', '#FFFFFF')
+  $('#castFilters input:checked').parent().css('background-color', '#FF6666')
   data = $('#castFilters').serialize()
-  $('#castThumbs').load 'castbook/castlist', data, (e) ->
+  $('#castThumbs').load 'castbook/castlist', data, () ->
     $(".castThumb").hover(ctIn, ctOut)
-    $('#castFilters input').parent().css('background-color', '#FFFFFF')
-    $('#castFilters input:checked').parent().css('background-color', '#FF6666')
-    $('#pageLinks a').show().css(pageLinkCold).slice($('#pages').val()).hide()
-    page = $('#page').val()
-    $("#pageLinks a:contains('#{page}')").css(pageLinkHot)
+    $('.pagination a').click (e) ->
+      e.preventDefault()
+      updatePagination(@)
 
 $ ->
   if $('.castbook').length > 0
-    castUpdate()
+
+    $('#castFilters input').parent().css('background-color', '#FFFFFF')
+    $('#castFilters input:checked').parent().css('background-color', '#FF6666')
+
     $('#castFilters input').change () ->
       $('#page').val(1)
-      castUpdate()
+      updatePagination()
 
     $('.reset').click (e) ->
       e.preventDefault
       $('#castFilters input[type=checkbox]').attr('checked', false)
-      castUpdate()
-    $('#pageLinks a').each () ->
-      @.preventDeault
-      $(@).attr('href', 'javascript:void(0);')
-      $(@).click (e) ->
-        $('#page').val @.innerHTML
-        castUpdate()
+      updatePagination()
+
+    $('.pagination a').click (e) ->
+      e.preventDefault()
+      updatePagination(@)
+
+
+
+
+#

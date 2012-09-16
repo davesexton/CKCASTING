@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 gem 'rmagick', '>= 2.13.1'
+gem 'will_paginate', '~> 3.0.3'
 gem 'debugger', group: [:development, :test]
 
 # To use ActiveModel has_secure_password

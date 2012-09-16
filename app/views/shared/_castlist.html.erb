@@ -1,3 +1,4 @@
+<%= will_paginate castlist %>
 <% castlist.each do |c| %>
   <div class="castThumb">
   <%= link_to(image_tag(c.thumbnail_url,
@@ -10,4 +11,4 @@
     please try again.
   </div>
 <% end %>
-<%= hidden_field_tag 'pages', @pages %>
+<%= will_paginate castlist %>

@@ -50,21 +50,13 @@
           <label for="eye_<%= k %>"><%= v %></label><br />
         </div>
       <% end %>
-      <%= hidden_field_tag 'page', @page %>
+      <%= hidden_field_tag 'page', @page, {value: '1'} %>
     </form>
   </fieldset>
 </div>
 
 <div class="columnCastList">
 
-<div class="pageNav">
-  Pages:
-  <span id="pageLinks">
-    <% (1..@nav).each do |n| %>
-      <%= link_to n, {controller: "castbook", action: "index", id: n} %>
-    <% end %>
-  </span><br />
-</div>
 <div id="castThumbs" />
   <%= render partial: 'shared/castlist', locals: {castlist: @castlist} %>
 </div>

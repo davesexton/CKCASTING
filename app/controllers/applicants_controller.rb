@@ -1,9 +1,9 @@
 class ApplicantsController < ApplicationController
-  skip_before_filter :authorize
+  skip_before_filter :authorize, only: [:new]
   # GET /applicants
   # GET /applicants.json
   def index
-    @applicants = Applicant.all
+    @applicants = Applicant.order('created_at DESC').paginate(page: params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,7 +53,8 @@ class ApplicantsController < ApplicationController
 
     respond_to do |format|
       if @applicant.save
-        format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
+        format.html { redirect_to applicants_url,
+                      notice: 'Thank you for your application.' }
         format.json { render json: @applicant, status: :created, location: @applicant }
       else
         format.html { render action: "new" }

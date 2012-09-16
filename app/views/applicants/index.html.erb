@@ -1,36 +1,11 @@
 <% @title = 'Applicants' %>
-<h1>Listing applicants</h1>
 
+<%= will_paginate @applicants %>
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Address line 1</th>
-    <th>Address line 2</th>
-    <th>Address line 3</th>
-    <th>Address line 4</th>
-    <th>Postcode</th>
-    <th>Date of birth</th>
-    <th>Gender</th>
-    <th>Height inches</th>
-    <th>Height feet</th>
-    <th>Hair colour</th>
-    <th>Eye colour</th>
-    <th>Skills</th>
-    <th>Gaurdian name 1</th>
-    <th>Gaurdian telephone 1</th>
-    <th>Gaurdian name 2</th>
-    <th>Gaurdian telephone 2</th>
-    <th>Gaurdian name 3</th>
-    <th>Gaurdian telephone 3</th>
-    <th>Email address</th>
-    <th>Fax</th>
-    <th>Stage credits</th>
-    <th>Tv credits</th>
-    <th>Film credits</th>
-    <th>Other credits</th>
-    <th></th>
-    <th></th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Created</th>
     <th></th>
   </tr>
 
@@ -38,37 +13,10 @@
   <tr>
     <td><%= applicant.first_name %></td>
     <td><%= applicant.last_name %></td>
-    <td><%= applicant.address_line_1 %></td>
-    <td><%= applicant.address_line_2 %></td>
-    <td><%= applicant.address_line_3 %></td>
-    <td><%= applicant.address_line_4 %></td>
-    <td><%= applicant.postcode %></td>
-    <td><%= applicant.date_of_birth %></td>
-    <td><%= applicant.gender %></td>
-    <td><%= applicant.height_inches %></td>
-    <td><%= applicant.height_feet %></td>
-    <td><%= applicant.hair_colour %></td>
-    <td><%= applicant.eye_colour %></td>
-    <td><%= applicant.skills %></td>
-    <td><%= applicant.gaurdian_name_1 %></td>
-    <td><%= applicant.gaurdian_telephone_1 %></td>
-    <td><%= applicant.gaurdian_name_2 %></td>
-    <td><%= applicant.gaurdian_telephone_2 %></td>
-    <td><%= applicant.gaurdian_name_3 %></td>
-    <td><%= applicant.gaurdian_telephone_3 %></td>
-    <td><%= applicant.email_address %></td>
-    <td><%= applicant.fax %></td>
-    <td><%= applicant.stage_credits %></td>
-    <td><%= applicant.tv_credits %></td>
-    <td><%= applicant.film_credits %></td>
-    <td><%= applicant.other_credits %></td>
+    <td><%= applicant.created_at.strftime("%d-%b-%Y") %></td>
+
     <td><%= link_to 'Show', applicant %></td>
-    <td><%= link_to 'Edit', edit_applicant_path(applicant) %></td>
-    <td><%= link_to 'Destroy', applicant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Applicant', new_applicant_path %>
+<%= will_paginate @applicants %>

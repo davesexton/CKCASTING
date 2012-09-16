@@ -38,6 +38,11 @@
                 class: 'label' %>
     <%= f.file_field 'image_upload' %>
   </div>
+  <div class="fieldHelp">
+    The ideal image size is 261 pixels wide by 300 pixels tall.
+    Images outside this range will be automatticlly resized and
+    croped to fit.
+  </div>
   <div class="field">
     <%= f.label :date_of_birth,
                 class: 'label' %>
