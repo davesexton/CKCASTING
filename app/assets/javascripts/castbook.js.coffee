@@ -27,8 +27,6 @@ updatePagination = (e) ->
   if /\d+/.test($(e).text())
     $('#page').val($(e).text())
 
-   # Next →
-
   $('#castFilters input').parent().css('background-color', '#FFFFFF')
   $('#castFilters input:checked').parent().css('background-color', '#FF6666')
   data = $('#castFilters').serialize()
@@ -56,8 +54,3 @@ $ ->
     $('.pagination a').click (e) ->
       e.preventDefault()
       updatePagination(@)
-
-
-
-
-#

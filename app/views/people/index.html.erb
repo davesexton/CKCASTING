@@ -9,7 +9,13 @@
   new cast member.
 </p>
 <p>Summary: <%= @summary %> cast members.</p>
-<p><a id="ShowHide">Show Inactive</a></p>
+<p>
+  Show: <a id="ShowHide">Inactive</a><br />
+  Download:
+  <%= link_to "CSV", people_path(format: "csv") %> |
+  <%= link_to "Excel", people_path(format: "xls") %><br />
+  Create: <%= link_to 'New Person', new_person_path %>
+</p>
 <table class="castTable">
   <tr>
     <th></th>
@@ -21,7 +27,7 @@
     <th>Gender</th>
     <th>Last Viewed</th>
     <th>View Count</th>
-    <th><%= link_to 'New Person', new_person_path %></th>
+    <th>Status</th>
   </tr>
 
 <% @people.each do |p| %>

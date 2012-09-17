@@ -3,7 +3,7 @@ class FamilyGroupsController < ApplicationController
 
   def index
     valid_ids = Family.all.map{|f| f.id if f.people.count > 1}.uniq
-    @family_groups = Family.where('id IN (?) ', valid_ids).order(:family_name)
+    @family_groups = Family.where('id IN (?) ', valid_ids).order(:family_name).paginate(page: params[:page], per_page: 16)
   end
 
   def show

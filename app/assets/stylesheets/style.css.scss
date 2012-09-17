@@ -28,6 +28,7 @@
     text-decoration: underline;
   }
   text-align: center;
+  clear: both;
 }
 
 nav {
@@ -321,4 +322,18 @@ footer {
   width: 300px;
   overflow-x: hidden;
   -ms-overflow-x: hidden;
+}
+.admin {
+  .adminTasks {
+    margin-top: 10px;
+    @include prepend(1);
+    @include span(19);
+
+  }
+  .adminTask {
+    width: 200px;
+  }
+  td {
+    vertical-align: top;
+  }
 }

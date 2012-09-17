@@ -2,7 +2,7 @@ class Person < ActiveRecord::Base
   attr_reader :full_name, :full_url, :url, :iamge_url,
               :thumnail_url, :carousel_url, :skill_list,
               :age_group, :age_group_id, :height_group,
-              :height_group_id, :hair_colour_group, :has_image
+              :height_group_id, :hair_colour_group, :has_image, :age
   attr_writer :image_upload
   attr_accessor :file_type
   scope :active, conditions: {status: 'Active'}
@@ -154,6 +154,13 @@ class Person < ActiveRecord::Base
       s.strip!
       s.gsub!(/\b(Uk|uk)\b/, 'UK')
       self.credits.create(display_order: i, credit_text: s)
+    end
+  end
+
+  def age
+    unless date_of_birth.nil?
+      months = (Date.today.year * 12 + Date.today.month) - (date_of_birth.year * 12 + date_of_birth.month)
+      (months / 12).to_i
     end
   end
 

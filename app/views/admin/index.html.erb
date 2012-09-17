@@ -1,15 +1,52 @@
 <% @title = 'Admin' %>
 <h2>Website Administration</h2>
 <p>Use this page to administer your website and get information
-   about it's performance'</p>
-<h2>Website Performance</h2>
-<p>Click <%= link_to 'here', APP_CONFIG['ga_link'] %> to view the
-   Google Analyticts pages for this website (requires Google login).
-   Use these pages to see the number of visitors and find out how they
-   are finding your site.</p>
-<h2>Manage Cast Memebers</h2>
-<p>Click <%= link_to 'here', people_path %> to add or remove
-   images in the gallery. Images can be any size (they will be
-   automatticly resized, however larger images will take longer
-   to upload) and must be either in JPEG or PNG format.</p>
-<p><%= link_to 'Log Out', logout_url, method: :delete  %></p>
+   about it's performance</p>
+
+<div>
+  Log out: <%= link_to @user.name, logout_url, method: :delete  %>
+</div>
+<div class="adminTasks">
+  <table>
+    <tr>
+      <td class='adminTask'>
+        <%= link_to 'Website Performance', APP_CONFIG['ga_link'] %>
+      </td>
+      <td>
+        Click <%= link_to 'here', APP_CONFIG['ga_link'] %> to view the
+        Google Analyticts pages for this website (requires Google login).
+        Use these pages to see the number of visitors and find out how they
+        are finding your site.
+      </td>
+    </tr>
+    <tr>
+      <td class='adminTask'>
+        <%= link_to 'Manage Cast Memebers', people_path %>
+      </td>
+      <td>
+        Click <%= link_to 'here', people_path %> edit to edit cast
+        members details, add new members or make current members
+        inactive.
+      </td>
+    </tr>
+    <tr>
+      <td class='adminTask'>
+        <%= link_to 'Manage Family Groups', families_path %>
+      </td>
+      <td>
+        Click <%= link_to 'here', families_path %> edit to edit cast
+        members details, add new members or make current members
+        inactive.
+      </td>
+    </tr>
+    <tr>
+      <td class='adminTask'>
+        <%= link_to 'View Applicants', applicants_path %>
+      </td>
+      <td>
+        Click <%= link_to 'here', applicants_path %> to view
+        all applications to join CK Casting.
+      </td>
+    </tr>
+  </table>
+</div>

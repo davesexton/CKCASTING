@@ -5,8 +5,8 @@
 $ ->
   $('#ShowHide').click (e)->
     e.preventDefault
-    if $(@).text() == 'Show Inactive'
-      $(@).text('Show Active')
+    if $(@).text() == 'Inactive'
+      $(@).text('Active')
     else
-      $(@).text('Show Inactive')
+      $(@).text('Inactive')
     $('.castTable tr').toggleClass('castHide castShow')

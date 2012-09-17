@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="People">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">First Name</Data></Cell>
+        <Cell><Data ss:Type="String">Last Name</Data></Cell>
+        <Cell><Data ss:Type="String">Date of Birth</Data></Cell>
+        <Cell><Data ss:Type="String">Age</Data></Cell>
+        <Cell><Data ss:Type="String">Height</Data></Cell>
+        <Cell><Data ss:Type="String">Hair Colour</Data></Cell>
+        <Cell><Data ss:Type="String">Eye Colour</Data></Cell>
+        <Cell><Data ss:Type="String">Gender</Data></Cell>
+        <Cell><Data ss:Type="String">Skills</Data></Cell>
+        <Cell><Data ss:Type="String">Postcode</Data></Cell>
+        <Cell><Data ss:Type="String">Latitude</Data></Cell>
+        <Cell><Data ss:Type="String">Longitude</Data></Cell>
+        <Cell><Data ss:Type="String">Telephone Number</Data></Cell>
+        <Cell><Data ss:Type="String">Email Address</Data></Cell>
+        <Cell><Data ss:Type="String">Family</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">Last Viewed At</Data></Cell>
+        <Cell><Data ss:Type="String">View Count</Data></Cell>
+        <Cell><Data ss:Type="String">Created At</Data></Cell>
+        <Cell><Data ss:Type="String">Updated At</Data></Cell>
+      </Row>
+    <% @people.each do |p| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= p.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.first_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.last_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.date_of_birth.strftime("%d-%b-%Y") if p.date_of_birth %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= p.age %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.height_feet %>ft <%= p.height_inches %>in</Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.hair_colour %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.eye_colour %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.gender %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.skill_list %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.postcode %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= p.latitude %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= p.longitude %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.telephone_number %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.email_address %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.family.title if p.family %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.status %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.last_viewed_at.strftime("%d-%b-%Y") if p.last_viewed_at %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= p.view_count %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.created_at.strftime("%d-%b-%Y") if p.created_at %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.updated_at.strftime("%d-%b-%Y") if p.updated_at %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+  <Worksheet ss:Name="Credits">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">First Name</Data></Cell>
+        <Cell><Data ss:Type="String">Last Name</Data></Cell>
+        <Cell><Data ss:Type="String">Credit</Data></Cell>
+      </Row>
+    <% @people.each do |p| %>
+      <% p.credits.order(:display_order).each do |c| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= p.first_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.last_name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= c.display_order %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= c.credit_text %></Data></Cell>
+      </Row>
+      <% end %>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

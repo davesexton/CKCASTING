@@ -10,7 +10,5 @@
 <div class="columnCastDetails">
   <%= render partial: 'shared/castdetails',
              locals: {c: @castbook, show_family_link: true} %>
-
-   link_to 'Edit', edit_castbook_path(@castbook)  |
-   link_to 'Back', castbook_path
+<%= link_to_function "Back", "history.back()" %>
 </div>
