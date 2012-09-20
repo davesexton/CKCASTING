@@ -5,7 +5,7 @@ imgs = []
 
 $ ->
   $('#flashMessage').delay(500).fadeIn('normal', ->
-    $(@).delay(4000).fadeOut()
+    $(@).delay(6000).fadeOut()
   )
 
 $ ->

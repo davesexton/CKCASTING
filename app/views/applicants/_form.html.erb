@@ -10,128 +10,126 @@
       </ul>
     </div>
   <% end %>
-<div class="candidateDetails">
-<fieldset>
-<legend>Candidate's Details</legend>
-  <div class="field">
-    <%= f.label :first_name, class: 'appLabel' %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name, class: 'appLabel' %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label 'Street', class: 'appLabel' %>
-    <%= f.text_field :address_line_1 %>
-  </div>
-  <div class="field">
-    <%= f.label 'Town', class: 'appLabel' %>
-    <%= f.text_field :address_line_2 %>
-  </div>
-  <div class="field">
-    <%= f.label 'Town', class: 'appLabel' %>
-    <%= f.text_field :address_line_3 %>
-  </div>
-  <div class="field">
-    <%= f.label 'City', class: 'appLabel' %>
-    <%= f.text_field :address_line_4 %>
-  </div>
-  <div class="field">
-    <%= f.label :postcode, class: 'appLabel' %>
-    <%= f.text_field :postcode %>
-  </div>
-  <div class="field">
-    <%= f.label :date_of_birth, class: 'appLabel' %>
-    <%= f.date_select :date_of_birth, :order => [:day, :month, :year] %>
-  </div>
-  <div class="field">
-    <%= f.label :gender, class: 'appLabel' %>
-    <%= f.select(:gender, options_for_select([['Male'],['Female']])) %>
-  </div>
-  <div class="field">
-    <%= f.label :height_feet, 'Height', class: 'appLabel' %>
-    <%= f.select(:height_feet, options_for_select( (0..7).to_a )) %>
-    <%= label_tag nil, 'feet' %>
-    <%= f.select(:height_inches, options_for_select( (0..11).to_a )) %>
-    <%= label_tag nil, 'inches' %>
-  </div>
-  <div class="field">
-    <%= f.label :hair_colour, class: 'appLabel' %>
-    <%= f.select(:hair_colour, options_for_select(@hair_colour)) %>
-  </div>
-  <div class="field">
-    <%= f.label :eye_colour, class: 'appLabel' %>
-    <%= f.select(:eye_colour, options_for_select(@eye_colour)) %>
-  </div>
-  <div class="field">
-    <%= f.label 'Skills, Music / Drama Exams, Hobbies', class: 'appLabel' %>
-    <%= f.text_area :skills %>
-  </div>
-</fieldset>
-</div>
-<div class="gaurdianDetails">
-<fieldset>
-<legend>Parent or Guardian Contact Details</legend>
-  <p>First Parent or Guardian</p>
-  <div class="field">
-    <%= f.label 'Name', class: 'appLabel' %>
-    <%= f.text_field :gaurdian_name_1 %>
-  </div>
-  <div class="field">
-    <%= f.label 'Telephone', class: 'appLabel' %>
-    <%= f.text_field :gaurdian_telephone_1 %>
-  </div>
-  <div class="field">
-    <%= f.label 'Email address', class: 'appLabel' %>
-    <%= f.text_field :email_address %>
-  </div>
-  <div class="field">
-    <%= f.label :fax, class: 'appLabel' %>
-    <%= f.text_field :fax %>
-  </div>
-  <p>Second Parent or Guardian</p>
-  <div class="field">
-    <%= f.label 'Name', class: 'appLabel' %>
-    <%= f.text_field :gaurdian_name_2 %>
-  </div>
-  <div class="field">
-    <%= f.label 'Telephone', class: 'appLabel' %>
-    <%= f.text_field :gaurdian_telephone_2 %>
-  </div>
-  <p>Third Parent or Guardian</p>
-  <div class="field">
-    <%= f.label 'Name', class: 'appLabel' %>
-    <%= f.text_field :gaurdian_name_3 %>
-  </div>
-  <div class="field">
-    <%= f.label 'Telephone', class: 'appLabel' %>
-    <%= f.text_field :gaurdian_telephone_3 %>
-  </div>
-</fieldset>
-</div>
-<div class="candidateSkills">
-<fieldset>
-<legend>Pro/Amateur Performance Credits</legend>
-  <div class="field">
-    <%= f.label :stage_credits, class: 'appLabel' %>
-    <%= f.text_area :stage_credits %>
-  </div>
-  <div class="field">
-    <%= f.label :tv_credits, class: 'appLabel' %>
-    <%= f.text_area :tv_credits %>
-  </div>
-  <div class="field">
-    <%= f.label :film_credits, class: 'appLabel' %>
-    <%= f.text_area :film_credits %>
-  </div>
-  <div class="field">
-    <%= f.label :other_credits, class: 'appLabel' %>
-    <%= f.text_area :other_credits %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Submit Application' %>
-  </div>
-</fieldset>
+<div class="applicantDetails">
+  <fieldset>
+  <legend>Candidate's Details</legend>
+    <div class="field">
+      <%= f.label :first_name, class: 'appLabel' %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name, class: 'appLabel' %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= f.label 'Street', class: 'appLabel' %>
+      <%= f.text_field :address_line_1 %>
+    </div>
+    <div class="field">
+      <%= f.label 'Town', class: 'appLabel' %>
+      <%= f.text_field :address_line_2 %>
+    </div>
+    <div class="field">
+      <%= f.label 'City', class: 'appLabel' %>
+      <%= f.text_field :address_line_3 %>
+    </div>
+    <div class="field">
+      <%= f.label 'Region', class: 'appLabel' %>
+      <%= f.text_field :address_line_4 %>
+    </div>
+    <div class="field">
+      <%= f.label :postcode, class: 'appLabel' %>
+      <%= f.text_field :postcode %>
+    </div>
+    <div class="field">
+      <%= f.label :date_of_birth, class: 'appLabel' %>
+      <%= f.date_select :date_of_birth, :order => [:day, :month, :year] %>
+    </div>
+    <div class="field">
+      <%= f.label :gender, class: 'appLabel' %>
+      <%= f.select(:gender, options_for_select([['Male'],['Female']])) %>
+    </div>
+    <div class="field">
+      <%= f.label :height_feet, 'Height', class: 'appLabel' %>
+      <%= f.select(:height_feet, options_for_select( (0..7).to_a )) %>
+      feet
+      <%= f.select(:height_inches, options_for_select( (0..11).to_a )) %>
+      inches
+    </div>
+    <div class="field">
+      <%= f.label :hair_colour, class: 'appLabel' %>
+      <%= f.select(:hair_colour, options_for_select(@hair_colour)) %>
+    </div>
+    <div class="field">
+      <%= f.label :eye_colour, class: 'appLabel' %>
+      <%= f.select(:eye_colour, options_for_select(@eye_colour)) %>
+    </div>
+    <div class="field">
+      <%= f.label 'Skills, Music / Drama Exams, Hobbies', class: 'appLabel' %>
+      <%= f.text_area :skills %>
+    </div>
+  </fieldset>
+  <fieldset>
+  <legend>Parent or Guardian Contact Details</legend>
+    First Parent or Guardian
+    <div class="field">
+      <%= f.label 'Name', class: 'appLabel' %>
+      <%= f.text_field :gaurdian_name_1 %>
+    </div>
+    <div class="field">
+      <%= f.label 'Telephone', class: 'appLabel' %>
+      <%= f.text_field :gaurdian_telephone_1 %>
+    </div>
+    <div class="field">
+      <%= f.label 'Email address', class: 'appLabel' %>
+      <%= f.text_field :email_address %>
+    </div>
+    <div class="field">
+      <%= f.label :fax, class: 'appLabel' %>
+      <%= f.text_field :fax %>
+    </div>
+    <br />
+    Second Parent or Guardian
+    <div class="field">
+      <%= f.label 'Name', class: 'appLabel' %>
+      <%= f.text_field :gaurdian_name_2 %>
+    </div>
+    <div class="field">
+      <%= f.label 'Telephone', class: 'appLabel' %>
+      <%= f.text_field :gaurdian_telephone_2 %>
+    </div>
+    <br />
+    Third Parent or Guardian
+    <div class="field">
+      <%= f.label 'Name', class: 'appLabel' %>
+      <%= f.text_field :gaurdian_name_3 %>
+    </div>
+    <div class="field">
+      <%= f.label 'Telephone', class: 'appLabel' %>
+      <%= f.text_field :gaurdian_telephone_3 %>
+    </div>
+  </fieldset>
+  <fieldset>
+  <legend>Pro/Amateur Performance Credits</legend>
+    <div class="field">
+      <%= f.label :stage_credits, class: 'appLabel' %>
+      <%= f.text_area :stage_credits %>
+    </div>
+    <div class="field">
+      <%= f.label :tv_credits, 'TV credits', class: 'appLabel' %>
+      <%= f.text_area :tv_credits %>
+    </div>
+    <div class="field">
+      <%= f.label :film_credits, class: 'appLabel' %>
+      <%= f.text_area :film_credits %>
+    </div>
+    <div class="field">
+      <%= f.label :other_credits, 'Other (voice overs; radio; modelling etc...):', class: 'appLabel' %>
+      <%= f.text_area :other_credits %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Submit Application' %>
+    </div>
+  </fieldset>
 </div>
 <% end %>

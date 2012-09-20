@@ -1,0 +1,202 @@
+@import 'compass';
+@import 'compass/reset';
+@import 'blueprint';
+@import 'blueprint/typography';
+@import 'blueprint/form';
+@import 'compass/utilities/tables';
+@import 'compass/css3';
+@import 'home';
+@import 'join';
+@import 'castbook';
+@import 'people';
+@import 'admin';
+
+$blueprint-font-family: 'Verdana';
+@include blueprint-typography-defaults;
+
+*, html {
+  line-height: 1.3em;
+  /*font-family: Verdana; */
+  color: #444455;
+}
+h2 {
+  font-size: 1.1em;
+}
+.pagination {
+    padding: 5px;
+  span, a, em {
+    border: solid 1pt #333333;
+    padding: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+  }
+  span, a {
+    background-color: #666666;
+    color: #ffffff;
+  }
+  em {
+    background-color: #ffffff;
+  }
+  margin: {
+    bottom: 10px;
+    top: 10px;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  text-align: center;
+  clear: both;
+}
+.container {
+  @include container;
+  min-height: 500px;
+  /*@include showgrid(); */
+}
+
+header {
+  @include prepend(1);
+  @include column(22);
+  @include append(1);
+  @include last;
+  hgroup {
+    height: 100px;
+  }
+}
+footer {
+  @include column(24);
+  @include last;
+  text-align: center;
+  height: 40px;
+  margin-top: 20px;
+}
+#main {
+  @include prepend(1);
+  @include column(22);
+  @include append(1);
+  @include last();
+  min-height: 500px;
+}
+nav {
+  height: 45px;
+  top: 15px;
+  * {
+    font-family: Verdana;
+  }
+  div {
+    float: left;
+    padding: 0px 5px 6px 5px;
+    border: {
+      style: solid;
+      width: 0px 0px 4px 0px;
+      color: #EEEEEE;
+    }
+    margin-right: 5px;
+    font: {
+      size: 1em;
+      family: Verdana;
+    }
+    a {
+      text-decoration: none;
+    }
+    &:hover {
+      border-color: #0000AA;
+    }
+  }
+  .activeNav {
+    border-color: #660000;
+    &:hover {
+      border-color: #660000;
+    }
+  }
+}
+
+.castImage {
+  background-image: image-url('cast_image_frame.gif');
+  width: 316px;
+  height: 363px;
+  padding: 0px;
+  position: relative;
+  img {
+    position: absolute;
+    left: 27px;
+    top: 30px;
+  }
+}
+
+.castThumb {
+  float: left;
+  background-image: image-url('cast_thumb_frame.gif');
+  width: 166px;
+  height: 191px;
+  position: relative;
+  img {
+    left: 15px;
+    top: 17px;
+    position: absolute;
+  }
+}
+
+.pageDesc {
+  @include column(22);
+  @include last;
+  @include append-bottom(1.5em);
+}
+
+.field {
+  label {
+    display: block;
+    float: left;
+    margin-top: 4px;
+    width: 170px;
+    &:after {
+      content: ': ';
+    }
+  }
+  margin-top: 0.2em;
+  textarea {
+    width: 488px;
+  }
+  .longLabel {
+    clear: left;
+    width: 600px;
+    &:after {
+      content: ': ';
+    }
+  }
+  #person_skill_list {
+    width: 488px;
+  }
+}
+.fieldHelp {
+  font-style: italic;
+  font-size: 0.8em;
+  margin: {
+    left: 170px;
+    top: 2px;
+  }
+  width: 320px;
+}
+.longSelect {
+  width: 140px;
+}
+$default-box-shadow-h-offset: 4px;
+$default-box-shadow-v-offset: 4px;
+#flashMessage {
+  position: absolute;
+  font-family: Verdana;
+  display: none;
+  width: 770px;
+  top: -100px;
+  left: 5px;
+  padding: 7px;
+  padding-left: 10px;
+  background-color: #000000;
+  color: #ffffff;
+  @include single-box-shadow();
+  @include border-radius(6px, 6px);
+}
+
+#flashHolder {
+  position: relative;
+}

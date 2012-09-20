@@ -3,17 +3,17 @@
   <fieldset>
     <legend>Please Log In</legend>
 
-    <div>
-      <%= label_tag :name, 'Name:' %>
+    <div class="field">
+      <%= label_tag :name, 'Name' %>
       <%= text_field_tag :name, params[:name] %>
     </div>
 
-    <div>
-      <%= label_tag :password, 'Password:' %>
+    <div class="field">
+      <%= label_tag :password, 'Password' %>
       <%= password_field_tag :password, params[:password] %>
     </div>
 
-    <div>
+    <div class="field">
       <%= submit_tag "Login" %>
     </div>
 

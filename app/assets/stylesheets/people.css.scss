@@ -1,0 +1,55 @@
+.people, .families, .applicants {
+  .imageColumn {
+    @include column(5);
+  }
+  .fieldColumn {
+    @include column(17);
+    @include last;
+  }
+  .actionColumn {
+    @include column(5);
+  }
+  .infoColumn {
+    @include prepend(7);
+    @include column(10);
+    @include last;
+  }
+  .checkboxSelect {
+    overflow: scroll;
+    height: 200px;
+    border: solid 1px #bbbbbb;
+    width: 318px;
+    overflow-x: hidden;
+    -ms-overflow-x: hidden;
+  }
+  table {
+    $table-color: #ffffff;
+    @include table-scaffolding;
+    @include alternating-rows-and-columns($table-color, #dddddd, #222222, #cccccc);
+  }
+  .info {
+    padding-top: 5px;
+    font-size: 0.8em;
+    font-style: italic;
+  }
+  td {
+    text-align: center;
+  }
+  .applicantDetails {
+    @include prepend(1);
+    @include column(20);
+    @include append(1);
+    @include last;
+  }
+  fieldset {
+    border-top: solid 3px #cccccc;
+    margin: {
+      top: 5px;
+      bottom: 15px;
+    }
+  }
+  legend {
+    margin-left: 15px;
+    font-weight: bold;
+  }
+}

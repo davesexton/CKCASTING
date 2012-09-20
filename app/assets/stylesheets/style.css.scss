@@ -8,193 +8,7 @@
 .nowrap {
   white-space: nowrap;
 }
-.pagination {
-  span, a, em {
-    border: solid 1pt #333333;
-    padding: 3px;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-  }
-  span, a {
-    background-color: #666666;
-    color: #ffffff;
-  }
-  em {
-    background-color: #ffffff;
-  }
-  margin-bottom: 10px;
-  a:hover {
-    text-decoration: underline;
-  }
-  text-align: center;
-  clear: both;
-}
 
-nav {
-  height: 45px;
-  top: 15px;
-  div {
-    float: left;
-    padding: 0px 5px 6px 5px;
-    border: {
-      style: solid;
-      width: 0px 0px 4px 0px;
-      color: #EEEEEE;
-    }
-    margin-right: 5px;
-    font: {
-      size: 1.2em;
-      family: Verdana;
-    }
-    a {
-      text-decoration: none;
-    }
-    &:hover {
-      border-color: #0000AA;
-    }
-  }
-  .activeNav {
-    border-color: #660000;
-    &:hover {
-      border-color: #660000;
-    }
-  }
-}
-header {
-  @include prepend(1);
-  @include span(22);
-  @include append(1);
-  @include last;
-  hgroup {
-    height: 80px;
-  }
-}
-footer {
-  @include span(24);
-  @include last;
-  text-align: center;
-  height: 40px;
-  margin-top: 20px;
-}
-#main {
-  @include prepend(1);
-  @include span(22);
-  @include append(1);
-  @include last;
-  font-size: 11pt;
-  min-height: 500px;
-}
-/* --- HOME --- */
-.home {
-    #carouselImages {
-        display: none;
-    }
-}
-/* --- CASTBOOK --- */
-.castbook, .family_groups {
-  fieldset {
-    padding: 0px;
-    input {
-      margin-left:20px;
-    }
-    .reset {
-      margin-left:20px;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-  .castImage {
-    background-image: url('cast_image_frame.gif');
-    width: 316px;
-    height: 363px;
-    padding: 0px;
-    position: relative;
-    img {
-      position: absolute;
-      left: 27px;
-      top: 30px;
-    }
-  }
-  .castThumb {
-    float: left;
-    background-image: url('cast_thumb_frame.gif');
-    width: 166px;
-    height: 191px;
-    position: relative;
-    img {
-      left: 15px;
-      top: 17px;
-      position: absolute;
-    }
-  }
-  .noCast {
-    font-size: 1.7em;
-    padding: 10px;
-  }
-  .castImgLabel {
-    padding-left: 20px;
-  }
-  .columnCastImage {
-    @include span(9);
-  }
-  .columnCastDetails {
-    @include span(13);
-    @include last;
-    padding-top: 9px;
-  }
-  .columnFilter {
-    @include span(5);
-    .filterLabel {
-      border-top: dashed 1px #666666;
-      background-color: #CCCCCC;
-    }
-  }
-  .columnCastList {
-    @include span(17);
-    @include last;
-  }
-  .viewStat {
-    font: {
-      size: smaller;
-      style: italic;
-    }
-  }
-  .pageNav {
-    font-size: larger;
-    padding-left: 10px;
-    font-weight: bold;
-    a {
-      color: #ffffff;
-      background-color: #666666;
-      border: solid 1pt #333333;
-      width: 14pt;
-      display: inline-block;
-      text-align: center;
-      text-decoration: none;
-      font-weight: none;
-      &:hover {
-        text-decoration: underline;
-        font-weight: bold;
-        background-color: #333333;
-      }
-    }
-  }
-}
-/* --- JOIN --- */
-.join {
-  .joinDetail {
-    @include span(22);
-    @include last;
-    & > div {
-      @include prepend(1);
-      @include span(20);
-      @include append(1);
-      vertical-align: top;
-    }
-  }
-}
 /* --- APPLICANT FORM --- */
 .applicants {
   .appDetails {
@@ -239,7 +53,7 @@ footer {
     margin-bottom: 0px;
   }
 }
-/* --- APPLICANT FORM --- */
+/* --- CONTACt FORM --- */
 .contact {
   .contactDetail {
      @include span(22);
@@ -315,14 +129,7 @@ footer {
     cursor: pointer;
   }
 }
-.checkboxSelect {
-  overflow: scroll;
-  height: 200px;
-  border: solid 1px #bbbbbb;
-  width: 300px;
-  overflow-x: hidden;
-  -ms-overflow-x: hidden;
-}
+
 .admin {
   .adminTasks {
     margin-top: 10px;

@@ -21,10 +21,10 @@
     </tr>
     <tr>
       <td class='adminTask'>
-        <%= link_to 'Manage Cast Memebers', people_path %>
+        <%= link_to 'Manage Cast Members', people_path %>
       </td>
       <td>
-        Click <%= link_to 'here', people_path %> edit to edit cast
+        Click <%= link_to 'here', people_path %> to edit cast
         members details, add new members or make current members
         inactive.
       </td>
@@ -34,9 +34,8 @@
         <%= link_to 'Manage Family Groups', families_path %>
       </td>
       <td>
-        Click <%= link_to 'here', families_path %> edit to edit cast
-        members details, add new members or make current members
-        inactive.
+        Click <%= link_to 'here', families_path %> to edit family
+         groups, add or remove groups.
       </td>
     </tr>
     <tr>
@@ -46,6 +45,15 @@
       <td>
         Click <%= link_to 'here', applicants_path %> to view
         all applications to join CK Casting.
+      </td>
+    </tr>
+    <tr>
+      <td class='adminTask'>
+        <%= link_to 'Manage Users', users_path %>
+      </td>
+      <td>
+        Click <%= link_to 'here', users_path %> to create or
+        delete individuals who can administer this website.
       </td>
     </tr>
   </table>

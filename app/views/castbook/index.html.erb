@@ -1,5 +1,5 @@
 <% @title = 'Cast Book' %>
-<div>
+<div class="pageDesc">
 <p>Our cast book contains all current available cast members, use the page
    numbers below to step through each page. Just click on a cast member's
    image to see their details. Use the filter section on the left-hand
@@ -56,7 +56,7 @@
 </div>
 
 <div class="columnCastList">
-
-<div id="castThumbs" />
-  <%= render partial: 'shared/castlist', locals: {castlist: @castlist} %>
+  <div id="castThumbs" />
+    <%= render partial: 'shared/castlist', locals: {castlist: @castlist} %>
+  </div>
 </div>

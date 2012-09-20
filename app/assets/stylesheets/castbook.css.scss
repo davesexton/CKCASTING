@@ -1,0 +1,63 @@
+.castbook, .family_groups {
+  .columnFilter {
+    @include column(5);
+    .filterLabel {
+      border-top: dashed 1px #666666;
+      background-color: #CCCCCC;
+    }
+  }
+  .columnCastList {
+    @include column(17);
+    @include last;
+  }
+
+  fieldset {
+    border: solid 1px #cccccc;
+    padding: 0px;
+    input {
+      margin-left:20px;
+    }
+    .reset {
+      margin-left:20px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  legend {
+    margin-left: 15px;
+  }
+
+  .columnCastImage {
+    @include column(9);
+    @include prepend-top(1.5em);
+  }
+
+  .columnCastDetails {
+    @include column(13);
+    @include last;
+    @include prepend-top(1.5em);
+  }
+  .viewStat {
+    font: {
+      size: smaller;
+      style: italic;
+    }
+  }
+  .noCast {
+    font-size: 1.7em;
+    padding: 10px;
+  }
+  .filterLabel {
+    padding: 2px;
+    margin-top: 3px;
+  }
+  .filterOption{
+     margin-top: 2px;
+  }
+  .castImgLabel {
+    text-align: center;
+    width: 316px;
+  }
+}
