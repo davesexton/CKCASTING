@@ -52,4 +52,12 @@
     margin-left: 15px;
     font-weight: bold;
   }
+  #ShowHide {
+    cursor: pointer;
+  }
+  .castTable {
+    .castHide {
+      display: none;
+    }
+  }
 }

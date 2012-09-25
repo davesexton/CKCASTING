@@ -1,135 +1,123 @@
-<p id="notice"><%= notice %></p>
+<% @title = 'Applicant' %>
 
-<p>
-  <b>First name:</b>
-  <%= @applicant.first_name %>
-</p>
+<div class="applicantDetails">
+  <table class="applicantTable">
+    <tr>
+      <th colspan="2">Applicant's Details'</th>
+    </tr>
+    <tr>
+      <td><b>First name:</b></td>
+      <td><%= @applicant.first_name %></td>
+    </tr>
+    <tr>
+      <td><b>Last name:</b></td>
+      <td><%= @applicant.last_name %></td>
+    </tr>
+    <tr>
+      <td><b>Address:</b></td>
+      <td>
+        <%= @applicant.address_line_1 %><br />
+        <%= @applicant.address_line_2 %><br />
+        <%= @applicant.address_line_3 %><br />
+        <%= @applicant.address_line_4 %><br />
+      </td>
+    </tr>
+    <tr>
+      <td><b>Postcode:</b></td>
+      <td><%= @applicant.postcode %></td>
+    </tr>
+    <tr>
+      <td><b>Date of birth:</b></td>
+      <td><%= @applicant.date_of_birth.strftime("%d-%b-%Y") unless @applicant.date_of_birth.nil?  %></td>
+    </tr>
+    <tr>
+      <td><b>Gender:</b></td>
+      <td><%= @applicant.gender %></td>
+    </tr>
+    <tr>
+      <td>Height:</td>
+      <td>
+        <%= @applicant.height_feet %> ft
+        <%= @applicant.height_inches %> ins
+      </td>
+    </tr>
+    <tr>
+      <td><b>Hair colour:</b></td>
+      <td><%= @applicant.hair_colour %></td>
+    </tr>
+    <tr>
+      <td><b>Eye colour:</b></td>
+      <td><%= @applicant.eye_colour %></td>
+    </tr>
+    <tr>
+      <td><b>Skills:</b></td>
+      <td><%= @applicant.skills %></td>
+    </tr>
+    <tr>
+      <td colspan="2">First Parent or Gaurdian</td>
+    </tr>
+    <tr>
+      <td><b>Name:</b></td>
+      <td><%= @applicant.gaurdian_name_1 %></td>
+    </tr>
 
-<p>
-  <b>Last name:</b>
-  <%= @applicant.last_name %>
-</p>
-
-<p>
-  <b>Address line 1:</b>
-  <%= @applicant.address_line_1 %>
-</p>
-
-<p>
-  <b>Address line 2:</b>
-  <%= @applicant.address_line_2 %>
-</p>
-
-<p>
-  <b>Address line 3:</b>
-  <%= @applicant.address_line_3 %>
-</p>
-
-<p>
-  <b>Address line 4:</b>
-  <%= @applicant.address_line_4 %>
-</p>
-
-<p>
-  <b>Postcode:</b>
-  <%= @applicant.postcode %>
-</p>
-
-<p>
-  <b>Date of birth:</b>
-  <%= @applicant.date_of_birth %>
-</p>
-
-<p>
-  <b>Gender:</b>
-  <%= @applicant.gender %>
-</p>
-
-<p>
-  <b>Height inches:</b>
-  <%= @applicant.height_inches %>
-</p>
-
-<p>
-  <b>Height feet:</b>
-  <%= @applicant.height_feet %>
-</p>
-
-<p>
-  <b>Hair colour:</b>
-  <%= @applicant.hair_colour %>
-</p>
-
-<p>
-  <b>Eye colour:</b>
-  <%= @applicant.eye_colour %>
-</p>
-
-<p>
-  <b>Skills:</b>
-  <%= @applicant.skills %>
-</p>
-
-<p>
-  <b>Gaurdian name 1:</b>
-  <%= @applicant.gaurdian_name_1 %>
-</p>
-
-<p>
-  <b>Gaurdian telephone 1:</b>
-  <%= @applicant.gaurdian_telephone_1 %>
-</p>
-
-<p>
-  <b>Gaurdian name 2:</b>
-  <%= @applicant.gaurdian_name_2 %>
-</p>
-
-<p>
-  <b>Gaurdian telephone 2:</b>
-  <%= @applicant.gaurdian_telephone_2 %>
-</p>
-
-<p>
-  <b>Gaurdian name 3:</b>
-  <%= @applicant.gaurdian_name_3 %>
-</p>
-
-<p>
-  <b>Gaurdian telephone 3:</b>
-  <%= @applicant.gaurdian_telephone_3 %>
-</p>
-
-<p>
-  <b>Email address:</b>
-  <%= @applicant.email_address %>
-</p>
-
-<p>
-  <b>Fax:</b>
-  <%= @applicant.fax %>
-</p>
-
-<p>
-  <b>Stage credits:</b>
-  <%= @applicant.stage_credits %>
-</p>
-
-<p>
-  <b>Tv credits:</b>
-  <%= @applicant.tv_credits %>
-</p>
-
-<p>
-  <b>Film credits:</b>
-  <%= @applicant.film_credits %>
-</p>
-
-<p>
-  <b>Other credits:</b>
-  <%= @applicant.other_credits %>
-</p>
+  </table>
 
 
-<%= link_to 'Edit', edit_applicant_path(@applicant) %> |
-<%= link_to 'Back', applicants_path %>
+  <p>
+    <b>Gaurdian telephone 1:</b>
+    <%= @applicant.gaurdian_telephone_1 %>
+  </p>
+
+  <p>
+    <b>Gaurdian name 2:</b>
+    <%= @applicant.gaurdian_name_2 %>
+  </p>
+
+  <p>
+    <b>Gaurdian telephone 2:</b>
+    <%= @applicant.gaurdian_telephone_2 %>
+  </p>
+
+  <p>
+    <b>Gaurdian name 3:</b>
+    <%= @applicant.gaurdian_name_3 %>
+  </p>
+
+  <p>
+    <b>Gaurdian telephone 3:</b>
+    <%= @applicant.gaurdian_telephone_3 %>
+  </p>
+
+  <p>
+    <b>Email address:</b>
+    <%= @applicant.email_address %>
+  </p>
+
+  <p>
+    <b>Fax:</b>
+    <%= @applicant.fax %>
+  </p>
+
+  <p>
+    <b>Stage credits:</b>
+    <%= @applicant.stage_credits %>
+  </p>
+
+  <p>
+    <b>Tv credits:</b>
+    <%= @applicant.tv_credits %>
+  </p>
+
+  <p>
+    <b>Film credits:</b>
+    <%= @applicant.film_credits %>
+  </p>
+
+  <p>
+    <b>Other credits:</b>
+    <%= @applicant.other_credits %>
+  </p>
+
+  <%= link_to 'Back', applicants_path %>
+</div>

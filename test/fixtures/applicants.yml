@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+good:
   first_name: MyString
   last_name: MyString
   address_line_1: MyString
@@ -9,7 +9,7 @@ one:
   address_line_4: MyString
   postcode: MyString
   date_of_birth: 2012-07-10
-  gender: MyString
+  gender: Male
   height_inches: 1
   height_feet: 1
   hair_colour: MyString
@@ -37,7 +37,7 @@ two:
   address_line_4: MyString
   postcode: MyString
   date_of_birth: 2012-07-10
-  gender: MyString
+  gender: Female
   height_inches: 1
   height_feet: 1
   hair_colour: MyString

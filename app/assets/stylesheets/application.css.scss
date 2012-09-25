@@ -16,7 +16,6 @@ $blueprint-font-family: 'Verdana';
 
 *, html {
   line-height: 1.3em;
-  /*font-family: Verdana; */
   color: #444455;
 }
 h2 {
@@ -51,7 +50,11 @@ h2 {
 .container {
   @include container;
   min-height: 500px;
-  /*@include showgrid(); */
+  /* @include showgrid(); */
+}
+
+b {
+  font-weight: bold;
 }
 
 header {

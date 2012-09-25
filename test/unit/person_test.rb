@@ -9,19 +9,32 @@ class PersonTest < ActiveSupport::TestCase
   test "person attributes must not be empty" do
     person = @new_person
     assert person.invalid?, 'invalid record is valid'
+
     assert person.errors[:last_name].any?, 'blank last name alowed'
+    assert_equal "can't be blank",
+                 person.errors[:last_name].join(';')
+
     assert person.errors[:first_name].any?, 'blank first name allowed'
+    assert_equal "can't be blank",
+                 person.errors[:first_name].join(';')
+
     assert person.errors[:gender].any?, 'blank gender allowed'
-    assert_equal person.status, 'Active', 'new status does not default to Active'
+    assert_equal " is not a valid gender",
+                 person.errors[:gender].join(';')
+
+    assert_equal person.status, 'Active',
+                                'new status does not default to Active'
+
     assert_equal person.height_inches, 0, 'new height in inches does not default to 0'
     assert_equal person.height_feet, 0, 'new height in feet does not default to 0'
   end
 
   test "gender must be male or female" do
-    #person = Person.find(people(:good).id)
     person = @good_person
     assert person.valid?
     person.gender = 'xxxx'
+    assert person.invalid?, 'invalid gender allowed'
+    person.gender = ''
     assert person.invalid?, 'invalid gender allowed'
     person.gender = nil
     assert person.invalid?, 'blank gender allowed'
