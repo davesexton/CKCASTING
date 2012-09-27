@@ -31,9 +31,9 @@ class ApplicantTest < ActiveSupport::TestCase
     assert_equal "can't be blank",
                  applicant.errors[:date_of_birth].join(';')
 
-    assert applicant.errors[:postcode].any?, 'blank postcode allowed'
-    assert_equal "can't be blank",
-                 applicant.errors[:postcode].join(';')
+    #assert applicant.errors[:postcode].any?, 'blank postcode allowed'
+    #assert_equal "can't be blank",
+    #             applicant.errors[:postcode].join(';')
 
     assert applicant.errors[:address_line_1].any?, 'blank address line 1 allowed'
     assert_equal "can't be blank",
@@ -46,6 +46,10 @@ class ApplicantTest < ActiveSupport::TestCase
     assert applicant.errors[:eye_colour].any?, 'blank eye_colour allowed'
     assert_equal "can't be blank",
                  applicant.errors[:eye_colour].join(';')
+
+    assert applicant.errors[:gaurdian_name_1].any?, 'blank gaurdian name allowed'
+    assert_equal "can't be blank",
+                 applicant.errors[:gaurdian_name_1].join(';')
 
   end
 
@@ -62,6 +66,16 @@ class ApplicantTest < ActiveSupport::TestCase
     assert applicant.valid?, 'valid gender is invalid'
     applicant.gender = 'Female'
     assert applicant.valid?, 'valid gender is invalid'
+  end
+
+  test "postcode must be a valid format" do
+    applicant = @good_applicant
+    assert applicant.valid?
+    applicant.postcode = 'xxx'
+    assert applicant.invalid?, 'invalid postcode allowed'
+    assert_equal "postcode is invalid",
+                 applicant.errors[:postcode].join(';')
+
   end
 
 end

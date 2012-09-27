@@ -11,11 +11,16 @@ class Applicant < ActiveRecord::Base
                   :tv_credits
 
   validates :first_name, :last_name, :email_address, :date_of_birth,
-            :postcode, :address_line_1, :hair_colour, :eye_colour,
+            #:postcode,
+            :address_line_1, :hair_colour, :eye_colour,
+            :gaurdian_name_1,
             :presence => true
-
 
   validates :gender, inclusion: {
     in: %w(Male Female),
     message: "%{value} is not a valid gender" }
+
+  validates :postcode, format: {
+    with: /^((([A-PR-UWYZ])([0-9][0-9A-HJKS-UW]?))|(([A-PR-UWYZ][A-HK-Y])([0-9][0-9ABEHMNPRV-Y]?))\s{0,2}(([0-9])([ABD-HJLNP-UW-Z])([ABD-HJLNP-UW-Z])))|(((GI)(R))\s{0,2}((0)(A)(A)))$/,
+    message: "postcode is invalid"}
 end

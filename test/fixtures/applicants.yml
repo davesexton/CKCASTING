@@ -7,7 +7,7 @@ good:
   address_line_2: MyString
   address_line_3: MyString
   address_line_4: MyString
-  postcode: MyString
+  postcode: RM16 6ES
   date_of_birth: 2012-07-10
   gender: Male
   height_inches: 1
@@ -35,7 +35,7 @@ two:
   address_line_2: MyString
   address_line_3: MyString
   address_line_4: MyString
-  postcode: MyString
+  postcode: RM16 6ES
   date_of_birth: 2012-07-10
   gender: Female
   height_inches: 1
