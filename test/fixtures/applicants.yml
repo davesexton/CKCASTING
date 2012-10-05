@@ -16,13 +16,13 @@ good:
   eye_colour: MyString
   skills: MyText
   gaurdian_name_1: MyString
-  gaurdian_telephone_1: MyString
+  gaurdian_telephone_1: 0123-4567890
   gaurdian_name_2: MyString
-  gaurdian_telephone_2: MyString
+  gaurdian_telephone_2: 0123-4567890
   gaurdian_name_3: MyString
-  gaurdian_telephone_3: MyString
+  gaurdian_telephone_3: 0123-4567890
   email_address: MyString
-  fax: MyString
+  fax: 0123-4567890
   stage_credits: MyText
   tv_credits: MyText
   film_credits: MyText
@@ -44,13 +44,13 @@ two:
   eye_colour: MyString
   skills: MyText
   gaurdian_name_1: MyString
-  gaurdian_telephone_1: MyString
+  gaurdian_telephone_1: 0123-4567890
   gaurdian_name_2: MyString
-  gaurdian_telephone_2: MyString
+  gaurdian_telephone_2: 0123-4567890
   gaurdian_name_3: MyString
-  gaurdian_telephone_3: MyString
+  gaurdian_telephone_3: 0123-4567890
   email_address: MyString
-  fax: MyString
+  fax: 0123-4567890
   stage_credits: MyText
   tv_credits: MyText
   film_credits: MyText

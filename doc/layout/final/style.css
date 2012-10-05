@@ -1,0 +1,44 @@
+/*
+** This CSS code is not done to the web.
+** The automatic HTML and CSS code are only a helper.
+*/
+
+body {
+  text-align: center;
+}
+
+#element-1 {
+  top: 0px;
+  height: 221px;
+  width: 950px;
+  background: url("header.png") no-repeat;
+  position: absolute;
+  left: 0px;
+}
+
+#element-2 {
+  top: 482px;
+  height: 1px;
+  width: 950px;
+  background: url("content.png") no-repeat;
+  position: absolute;
+  left: 0px;
+}
+
+#element-3 {
+  top: 540px;
+  height: 60px;
+  width: 950px;
+  background: url("footer.png") no-repeat;
+  position: absolute;
+  left: 0px;
+}
+
+#element-4 {
+  top: 0px;
+  height: 891px;
+  width: 1px;
+  background: url("background.png") no-repeat;
+  position: absolute;
+  left: 0px;
+}

@@ -18,6 +18,9 @@ $blueprint-font-family: 'Verdana';
   line-height: 1.3em;
   color: #444455;
 }
+body {
+  background-image: image-url('background.png');
+}
 h2 {
   font-size: 1.1em;
 }
@@ -63,15 +66,23 @@ header {
   @include append(1);
   @include last;
   hgroup {
-    height: 100px;
+    h1 {
+      font-size: 1em;
+      color: #cccccc;
+    }
+    position: relative;
+    top: 130px;
+    left: 180px;
   }
+  background-image: image-url('header.png');
+  height: 220px;
 }
 footer {
   @include column(24);
   @include last;
   text-align: center;
-  height: 40px;
-  margin-top: 20px;
+  height: 60px;
+  background-image: image-url('footer.png');
 }
 #main {
   @include prepend(1);
@@ -79,10 +90,13 @@ footer {
   @include append(1);
   @include last();
   min-height: 500px;
+  background-image: image-url('content.png');
 }
 nav {
-  height: 45px;
-  top: 15px;
+  height: 5px;
+  position: absolute;
+  top: 160px;
+  left: 250px;
   * {
     font-family: Verdana;
   }

@@ -23,4 +23,11 @@ class Applicant < ActiveRecord::Base
   validates :postcode, format: {
     with: /^((([A-PR-UWYZ])([0-9][0-9A-HJKS-UW]?))|(([A-PR-UWYZ][A-HK-Y])([0-9][0-9ABEHMNPRV-Y]?))\s{0,2}(([0-9])([ABD-HJLNP-UW-Z])([ABD-HJLNP-UW-Z])))|(((GI)(R))\s{0,2}((0)(A)(A)))$/,
     message: "postcode is invalid"}
+
+  validates :gaurdian_telephone_1, :gaurdian_telephone_2,
+            :gaurdian_telephone_3, :fax, format: {
+    allow_nil: true,
+    with: /(\s*\(?0\d{4}\)?(\s*|-)\d{3}(\s*|-)\d{3}\s*)|(\s*\(?0\d{3}\)?(\s*|-)\d{3}(\s*|-)\d{4}\s*)|(\s*(7|8)(\d{7}|\d{3}(\-|\s{1})\d{4})\s*)/,
+    message: "telephone number is invalid"}
+
 end

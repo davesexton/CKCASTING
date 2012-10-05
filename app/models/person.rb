@@ -39,10 +39,9 @@ class Person < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  validates_format_of :file_type,
+  validates :file_type, format: {
     with: /^image/,
-    allow_nil: true,
-    message: "--- you can only upload image files"
+    message: "--- you can only upload image files"}
 
   has_many :credits
   has_many :skills
