@@ -40,7 +40,7 @@ class ApplicantsController < ApplicationController
   # GET /applicants/1/edit
   def edit
     @hair_colour = HairColour.select(:hair_colour).order(:hair_colour).map(&:hair_colour)
-   @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
+    @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
     @applicant = Applicant.find(params[:id])
   end
 
@@ -48,12 +48,12 @@ class ApplicantsController < ApplicationController
   # POST /applicants.json
   def create
     @hair_colour = HairColour.select(:hair_colour).order(:hair_colour).map(&:hair_colour)
-   @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
+    @eye_colour = EyeColour.select(:eye_colour).order(:eye_colour).map(&:eye_colour)
     @applicant = Applicant.new(params[:applicant])
 
     respond_to do |format|
       if @applicant.save
-        format.html { redirect_to applicants_url,
+        format.html { redirect_to home_url,
                       notice: 'Thank you for your application.' }
         format.json { render json: @applicant, status: :created, location: @applicant }
       else

@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html>
+<%= tag(:html, ({data: {web_property_id: APP_CONFIG['ga_id']}} if APP_CONFIG['ga_id'] ), true) %>
 <head>
   <title>CK Casting<%= ' - ' + @title unless @title == nil %></title>
+    <% if @description %>
+    <meta name="description" content="<%= @description %>">
+    <meta name="keywords" content="cast agency,casting agency,child performers,child actors,child singers,child dancers">
+  <% end %>
+  <meta name="author" content="Dave Sexton">
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

@@ -258,7 +258,7 @@ class PersonTest < ActiveSupport::TestCase
                  person.errors[:date_of_birth].join(';')
   end
 
-  test 'check location poition' do
+  test 'check location position' do
     person = @good_person
     person.latitude = nil
     person.longitude = nil
@@ -266,10 +266,9 @@ class PersonTest < ActiveSupport::TestCase
     person.save
     assert_equal 51.4901008605957, person.latitude, 'incorrect latitude'
     assert_equal 0.30873599648475647, person.longitude, 'incorrect longitude'
-
     person.latitude = nil
     person.longitude = nil
-    person.postcode = 'xxxx'
+    person.postcode = 'xxxxzyx'
     person.save
     assert_equal nil, person.latitude, 'incorrect latitude'
     assert_equal nil, person.longitude, 'incorrect longitude'

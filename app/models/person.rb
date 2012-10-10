@@ -41,7 +41,9 @@ class Person < ActiveRecord::Base
 
   validates :file_type, format: {
     with: /^image/,
-    message: "--- you can only upload image files"}
+    message: "--- you can only upload image files",
+    allow_nil: true
+    }
 
   has_many :credits
   has_many :skills

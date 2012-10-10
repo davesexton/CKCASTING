@@ -12,8 +12,8 @@ good:
   gender: Male
   height_inches: 1
   height_feet: 1
-  hair_colour: MyString
-  eye_colour: MyString
+  hair_colour: Black
+  eye_colour: Black
   skills: MyText
   gaurdian_name_1: MyString
   gaurdian_telephone_1: 0123-4567890
@@ -40,8 +40,8 @@ two:
   gender: Female
   height_inches: 1
   height_feet: 1
-  hair_colour: MyString
-  eye_colour: MyString
+  hair_colour: Brown
+  eye_colour: Brown
   skills: MyText
   gaurdian_name_1: MyString
   gaurdian_telephone_1: 0123-4567890

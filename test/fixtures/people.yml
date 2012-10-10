@@ -16,7 +16,7 @@ good:
   longitude:
   telephone_number: 01375-456362
   email_address: me@host.com
-  last_viewed_at: 2012.09.10
+  last_viewed_at: 2012-09-10
   status: Active
 
 good2:
@@ -34,6 +34,6 @@ good2:
   latitude:
   longitude:
   telephone_number: 01375-456362
-  last_viewed_at: 2012.09.10
+  last_viewed_at: 2012-09-10
   email_address: me2@host.com
   status: Active
