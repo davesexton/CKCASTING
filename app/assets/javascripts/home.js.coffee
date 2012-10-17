@@ -49,8 +49,6 @@ $ ->
       $(canvas).mousemove (e)->
         mouseX = e.pageX - $(@).offset().left
         mouseY = e.pageY - $(@).offset().top
-        #mouseX = e.pageX - @.offsetLeft
-        #mouseY = e.pageY - @.offsetTop
         speed = ((canvasWidth / 2) - mouseX) / 10000
         currentId = null
         for img in imgs

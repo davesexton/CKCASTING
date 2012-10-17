@@ -10,6 +10,7 @@
 @import 'castbook';
 @import 'people';
 @import 'admin';
+@import 'contact';
 
 $blueprint-font-family: 'Verdana';
 @include blueprint-typography-defaults;
@@ -115,12 +116,17 @@ nav {
     }
     a {
       text-decoration: none;
+      color: #ffffff;
+      &:visited {
+        color: #ffffff;
+      }
     }
     &:hover {
       border-color: #0000AA;
     }
   }
   .activeNav {
+    color: #cccccc;
     border-color: #660000;
     &:hover {
       border-color: #660000;

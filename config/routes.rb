@@ -17,8 +17,11 @@ Ckcasting::Application.routes.draw do
   match 'castbook/cast/(:id)' => 'castbook#show'
   match 'home' => 'home#index'
   match 'join' => 'join#index'
-  match 'contact' => 'contact#index'
-  match 'applicant' => 'applicant#index'
+  get 'contact' => 'contact#index'
+  post 'contact' => 'contact#send_message'
+
+  get 'applicant' => 'applicant#index'
+  #post 'applicant' => 'applicant#send_mail'
 
   match 'family_groups' => 'family_groups#index'
   match 'family_groups/family/(:id)' => 'family_groups#show'
