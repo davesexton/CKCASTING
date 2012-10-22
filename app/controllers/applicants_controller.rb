@@ -1,5 +1,5 @@
 class ApplicantsController < ApplicationController
-  skip_before_filter :authorize, only: [:new]
+  skip_before_filter :authorize, only: [:new, :create]
   # GET /applicants
   # GET /applicants.json
   def index
@@ -53,12 +53,17 @@ class ApplicantsController < ApplicationController
 
     respond_to do |format|
       if @applicant.save
+        Notifier.join_notifier(@applicant).deliver
+        Notifier.join_acknowledge(@applicant).deliver
         format.html { redirect_to home_url,
                       notice: 'Thank you for your application.' }
-        format.json { render json: @applicant, status: :created, location: @applicant }
+        format.json { render json: @applicant,
+                      status: :created,
+                      location: @applicant }
       else
         format.html { render action: "new" }
-        format.json { render json: @applicant.errors, status: :unprocessable_entity }
+        format.json { render json: @applicant.errors,
+                      status: :unprocessable_entity }
       end
     end
   end

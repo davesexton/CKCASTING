@@ -32,7 +32,7 @@ class ApplicantTest < ActiveSupport::TestCase
                  applicant.errors[:date_of_birth].join(';')
 
     assert applicant.errors[:postcode].any?, 'blank postcode allowed'
-    assert_equal "postcode is invalid",
+    assert_equal "is invalid",
                  applicant.errors[:postcode].join(';')
 
     assert applicant.errors[:address_line_1].any?, 'blank address line 1 allowed'
@@ -73,7 +73,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert applicant.valid?
     applicant.postcode = 'xxx'
     assert applicant.invalid?, 'invalid postcode allowed'
-    assert_equal "postcode is invalid",
+    assert_equal "is invalid",
                  applicant.errors[:postcode].join(';')
 
   end
@@ -85,7 +85,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert applicant.invalid?, 'invalid gaurdian telephone 1 allowed'
     applicant.gaurdian_telephone_1 = '99-999-9999'
     assert applicant.invalid?, 'invalid gaurdian telephone 1 allowed'
-    assert_equal "telephone number is invalid",
+    assert_equal "number is invalid",
                  applicant.errors[:gaurdian_telephone_1].join(';')
     applicant.gaurdian_telephone_1 = '0123-4567890'
     assert applicant.valid?
@@ -94,7 +94,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert applicant.invalid?, 'invalid gaurdian telephone 2 allowed'
     applicant.gaurdian_telephone_2 = '99-999-9999'
     assert applicant.invalid?, 'invalid gaurdian telephone 2 allowed'
-    assert_equal "telephone number is invalid",
+    assert_equal "number is invalid",
                  applicant.errors[:gaurdian_telephone_2].join(';')
     applicant.gaurdian_telephone_2 = '0123-4567890'
     assert applicant.valid?
@@ -103,7 +103,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert applicant.invalid?, 'invalid gaurdian telephone 3 allowed'
     applicant.gaurdian_telephone_3 = '99-999-9999'
     assert applicant.invalid?, 'invalid gaurdian telephone 3 allowed'
-    assert_equal "telephone number is invalid",
+    assert_equal "number is invalid",
                  applicant.errors[:gaurdian_telephone_3].join(';')
     applicant.gaurdian_telephone_3 = '0123-4567890'
     assert applicant.valid?
@@ -112,7 +112,7 @@ class ApplicantTest < ActiveSupport::TestCase
     assert applicant.invalid?, 'invalid fax allowed'
     applicant.fax = '99-999-9999'
     assert applicant.invalid?, 'invalid fax allowed'
-    assert_equal "telephone number is invalid",
+    assert_equal "number is invalid",
                  applicant.errors[:fax].join(';')
     applicant.fax = '0123-4567890'
     assert applicant.valid?

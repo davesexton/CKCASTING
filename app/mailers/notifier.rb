@@ -6,10 +6,10 @@ class Notifier < ActionMailer::Base
   #
   #   en.notifier.join_acknowledge.subject
   #
-  def join_acknowledge
+  def join_acknowledge(applicant)
     @greeting = "Hi"
-
-    mail to: "to@example.org"
+    @applicant = applicant
+    mail to: applicant.email_address
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,10 +17,11 @@ class Notifier < ActionMailer::Base
   #
   #   en.notifier.join_notifier.subject
   #
-  def join_notifier
+  def join_notifier(applicant)
     @greeting = "Hi"
-
-    mail to: "to@example.org"
+    @applicant = applicant
+    mail subject: "CK Casting Application For #{applicant.first_name} #{applicant.last_name}",
+         to: APP_CONFIG['email_to']
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -32,7 +33,7 @@ class Notifier < ActionMailer::Base
     @greeting = "Hi"
     @message = message
     mail subject: 'Message from CK Casting',
-         to: APP_CONFIG['email_to']
+         to: message.email
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -43,7 +44,7 @@ class Notifier < ActionMailer::Base
   def contact_notifier(message)
     @greeting = "Hi"
     @message = message
-    mail subject: 'Contact nessage from CK Casting',
+    mail subject: "CK Casting Contact Message From #{message.name}",
          to: APP_CONFIG['email_to']
   end
 end

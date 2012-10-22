@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      applicant:
+        gaurdian_name_1: "First gaurdian's name"
+        address_line_1: 'First address line'
+        gaurdian_telephone_1: "First gaurdian's telephone"
+        gaurdian_telephone_2: "Second gaurdian's telephone"
+        gaurdian_telephone_3: "Third gaurdian's telephone"
+        postcode: 'Postcode'

@@ -28,9 +28,9 @@ good:
   film_credits: MyText
   other_credits: MyText
 
-two:
-  first_name: MyString
-  last_name: MyString
+mail:
+  first_name: New
+  last_name: Applicant
   address_line_1: MyString
   address_line_2: MyString
   address_line_3: MyString
@@ -49,7 +49,7 @@ two:
   gaurdian_telephone_2: 0123-4567890
   gaurdian_name_3: MyString
   gaurdian_telephone_3: 0123-4567890
-  email_address: MyString
+  email_address: test@test.co.uk
   fax: 0123-4567890
   stage_credits: MyText
   tv_credits: MyText
