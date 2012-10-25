@@ -189,6 +189,25 @@ class PersonTest < ActiveSupport::TestCase
 
   end
 
+  test 'check postcode format' do
+    person = @good_person
+
+    person.postcode = 'RMM6ESS'
+    assert person.invalid?, 'Invalid postcode allowed'
+    assert_equal "format is invalid",
+                 person.errors[:postcode].join(';')
+
+    person.postcode = 'RM66ES'
+    assert person.valid?, 'Valid postcode with no space not allowed'
+
+    person.postcode = 'WC1X 8UE'
+    assert person.valid?, 'Valid west central postcode not allowed'
+
+    person.postcode = 'RM6 6ES'
+    assert person.valid?, 'Valid postcode not allowed'
+
+  end
+
   test 'check hair colour groups' do
     person = @good_person
 

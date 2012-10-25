@@ -1,5 +1,5 @@
 require 'test_helper'
-#TODO Add applicant unit tests
+
 class ApplicantTest < ActiveSupport::TestCase
 
   def setup
@@ -70,11 +70,24 @@ class ApplicantTest < ActiveSupport::TestCase
 
   test "postcode must be a valid format" do
     applicant = @good_applicant
-    assert applicant.valid?
+
     applicant.postcode = 'xxx'
     assert applicant.invalid?, 'invalid postcode allowed'
     assert_equal "is invalid",
                  applicant.errors[:postcode].join(';')
+
+    applicant = @good_applicant
+    applicant.postcode = 'RMM6ESS'
+    assert applicant.invalid?, 'Invalid postcode allowed'
+
+    applicant.postcode = 'RM66ES'
+    assert applicant.valid?, 'Valid postcode with no space not allowed'
+
+    applicant.postcode = 'WC1X 8UE'
+    assert applicant.valid?, 'Valid west central postcode not allowed'
+
+    applicant.postcode = 'RM6 6ES'
+    assert applicant.valid?, 'Valid postcode not allowed'
 
   end
 

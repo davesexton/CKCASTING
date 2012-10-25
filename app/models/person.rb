@@ -7,9 +7,8 @@ class Person < ActiveRecord::Base
   attr_accessor :file_type
   scope :active, conditions: {status: 'Active'}
 
-#TODO validate postcode
 #TODO capture user name for edits
-#TODO add validations to prevent HTML injection
+
   validates :gender, inclusion: {
     in: %w(Male Female),
     message: "%{value} is not a valid gender",
@@ -44,6 +43,11 @@ class Person < ActiveRecord::Base
     message: "--- you can only upload image files",
     allow_nil: true
     }
+
+  validates :postcode, format: {
+    allow_nil: true,
+    with: /^((([A-PR-UWYZ])([0-9][0-9A-HJKS-UW]?))|(([A-PR-UWYZ][A-HK-Y])([0-9][0-9ABEHMNPRV-Y]?))\s{0,2}(([0-9])([ABD-HJLNP-UW-Z])([ABD-HJLNP-UW-Z])))|(((GI)(R))\s{0,2}((0)(A)(A)))$/,
+    message: "format is invalid"}
 
   has_many :credits
   has_many :skills
