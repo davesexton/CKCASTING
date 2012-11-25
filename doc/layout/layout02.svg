@@ -24,10 +24,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.2228244"
-     inkscape:cx="161.9884"
-     inkscape:cy="-102.78073"
+     inkscape:cx="316.24"
+     inkscape:cy="519.77193"
      inkscape:document-units="px"
-     inkscape:current-layer="webslicer-layer"
+     inkscape:current-layer="layer3"
      showgrid="false"
      width="1000px"
      inkscape:showpageshadow="false"
@@ -39,7 +39,8 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:snap-global="true"
-     inkscape:snap-to-guides="true">
+     inkscape:snap-to-guides="true"
+     inkscape:snap-bbox="true">
     <sodipodi:guide
        position="40,599.99999"
        orientation="200,0"
@@ -214,7 +215,7 @@
        id="guide3973" />
     <sodipodi:guide
        orientation="0,1"
-       position="0,380"
+       position="0,370"
        id="guide4176" />
   </sodipodi:namedview>
   <defs
@@ -576,9 +577,10 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Background"
-     style="display:inline">
+     style="display:none"
+     sodipodi:insensitive="true">
     <rect
-       style="opacity:0.94999999999999996;color:#000000;fill:#b3b3b3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.42499994999999990;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="opacity:0.95;color:#000000;fill:#b3b3b3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3757-1"
        width="20"
        height="901.76038"
@@ -594,13 +596,13 @@
        style="opacity:0.95;color:#000000;fill:url(#linearGradient3934);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
   <g
-     sodipodi:insensitive="true"
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="Shadow"
-     style="opacity:0.56734691;display:inline">
+     style="opacity:0.56734691;display:inline"
+     sodipodi:insensitive="true">
     <rect
-       style="opacity:0.95;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter5065);enable-background:accumulate"
+       style="opacity:0.95999995;color:#000000;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;filter:url(#filter5065);enable-background:accumulate"
        id="rect4139"
        width="910"
        height="560"
@@ -609,7 +611,7 @@
        ry="18.384777" />
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      sodipodi:insensitive="true"
      inkscape:groupmode="layer"
      id="layer7"
@@ -623,13 +625,12 @@
        y="200.00002" />
   </g>
   <g
-     sodipodi:insensitive="true"
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Header"
      style="display:inline">
     <path
-       style="color:#000000;fill:#000080;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;fill:#00008f;fill-opacity:0.94117647;fill-rule:evenodd;stroke:none;stroke-width:1.42499994999999990;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="M 36.25,20 C 27.240045,20 20,27.240045 20,36.25 l 0,146.75 0,0.75 0,16.25 16.25,0 877.5,0 16.25,0 0,-16.25 0,-0.75 0,-146.75 C 930,27.240045 922.75995,20 913.75,20 l -877.5,0 z"
        id="rect4036"
        inkscape:connector-curvature="0" />
@@ -640,12 +641,20 @@
        height="180"
        x="219.50613"
        y="20.00001" />
+    <rect
+       style="opacity:0.95999995;color:#000000;fill:#02054c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3906"
+       width="910"
+       height="29.999994"
+       x="20"
+       y="170.00002" />
   </g>
   <g
      style="display:none"
      inkscape:label="Title"
      id="layer10"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
     <text
        xml:space="preserve"
        style="font-size:28.71791077px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffd5d5;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
@@ -786,13 +795,13 @@
        transform="matrix(1.0049385,0.29938557,-0.37002143,1.0005714,-116.84889,-645.58995)" />
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:groupmode="layer"
      id="layer8"
      inkscape:label="Nav"
      sodipodi:insensitive="true" />
   <g
-     style="display:inline"
+     style="display:none"
      id="webslicer-layer"
      inkscape:label="Web Slicer"
      inkscape:groupmode="layer">
@@ -800,9 +809,9 @@
        style="opacity:0.5;fill:#ff0000"
        id="header"
        x="0"
-       y="9.9999997e-06"
+       y="1.2581082e-14"
        width="950"
-       height="221.14951">
+       height="230">
       <desc
          id="desc4409">format: png
 dpi: 90

@@ -22,12 +22,14 @@ $blueprint-font-family: 'Verdana';
 }
 body {
   background-image: image-url('background.png');
+  background-repeat: repeat-x;
+  background-color: #b3b3b3;
 }
 h2 {
   font-size: 1.1em;
 }
 .pagination {
-    padding: 5px;
+  padding: 5px;
   span, a, em {
     border: solid 1pt #333333;
     padding: 3px;
