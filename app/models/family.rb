@@ -35,19 +35,19 @@ class Family < ActiveRecord::Base
   end
 
   def image_url
-    path = "./app/assets/images/family_images/#{id}.jpg"
+    path = Rails.root.join('public', 'family_images', "#{id}.jpg")
     if FileTest.exist?(path)
-      "family_images/#{id}.jpg"
+      "/family_images/#{id}.jpg"
     else
       'default_cast_image.jpg'
     end
   end
 
   def thumbnail_url
-    if FileTest.exist?("./app/assets/images/family_images/#{id}.jpg")
-      path = "./app/assets/images/family_thumbs/#{id}.jpg"
+    if FileTest.exist?(Rails.root.join('public', 'family_images', "#{id}.jpg"))
+      path = Rails.root.join('public', 'family_thumbs', "#{id}.jpg")
       make_family_thumbnail unless FileTest.exist?(path)
-      "family_thumbs/#{id}.jpg"
+      "/family_thumbs/#{id}.jpg"
     else
       'default_cast_image_thumb.jpg'
     end
@@ -56,13 +56,14 @@ class Family < ActiveRecord::Base
   def image_upload=(img)
     self.file_type = img.content_type.chomp
     require 'RMagick'
+
     img.rewind
     img = Magick::Image::from_blob(img.read).first
     img.resize_to_fill!(261, 300)
     img = img.quantize(256, Magick::GRAYColorspace)
 
-    folder = Rails.root.join('app').join('assets').join('images').join('family_images')
-    file_name = folder.join("#{self.id}.jpg")
+    #folder = Rails.root.join('public', 'family_images')
+    file_name = Rails.root.join('public', 'family_images', "#{self.id}.jpg")
     img.write(file_name)
 
     make_family_thumbnail
@@ -90,8 +91,9 @@ class Family < ActiveRecord::Base
   def make_family_thumbnail
     require 'RMagick'
 
-    path = "./app/assets/images/family_images/#{id}.jpg"
-    thumb = "./app/assets/images/family_thumbs/#{id}.jpg"
+    path = Rails.root.join('public', 'family_images', "#{id}.jpg")
+    thumb = Rails.root.join('public', 'family_thumbs', "#{id}.jpg")
+
     img = Magick::Image::read(path).first
     img.crop_resized!(137, 158, Magick::NorthGravity)
     img.write(thumb)

@@ -6,7 +6,7 @@ require 'open-uri'
 require "net/http"
 
 # ----- Delete images
-Dir.chdir('/home/dave/websites/ckcasting/app/assets/images/cast_images')
+Dir.chdir('/home/dave/websites/ckcasting/public/cast_images')
 Dir['*.jpg'].each { |f| File.delete f }
 
 # ----- Set variables
@@ -121,7 +121,7 @@ end
 
 # ----- Finished
 seed += <<HERE
-x = User.new(name: 'dave', password_digest: BCrypt::Password.create('psion'))
+x = User.new(name: 'dave', password_digest: BCrypt::Password.create('Psion123'))
 x.save(validate: false)
 
 require "fileutils"
@@ -129,9 +129,9 @@ require "fileutils"
 fg = Person.where('first_name LIKE ?', '%&%').pluck(:id)
 fg.each_with_index do |v, i|
   Family.create(id: i + 1, family_name: Person.find(v).last_name)
-  FileUtils.copy './app/assets/images/cast_images/' + v.to_s + '.jpg',
-                 './app/assets/images/family_images/' + (i + 1).to_s + '.jpg'
-  FileUtils.remove './app/assets/images/cast_images/' + v.to_s + '.jpg'
+  FileUtils.copy './public/cast_images/' + v.to_s + '.jpg',
+                 './public/family_images/' + (i + 1).to_s + '.jpg'
+  FileUtils.remove './public/cast_images/' + v.to_s + '.jpg'
 end
 
 Person.where('first_name NOT LIKE ? ', '%&%').each do |p|

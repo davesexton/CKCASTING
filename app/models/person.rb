@@ -88,32 +88,32 @@ class Person < ActiveRecord::Base
   end
 
   def image_url
-    path = "./app/assets/images/cast_images/#{id}.jpg"
+    path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
     if FileTest.exist?(path)
-      "cast_images/#{id}.jpg"
+      "/cast_images/#{id}.jpg"
     else
       'default_cast_image.jpg'
     end
   end
 
   def thumbnail_url
-    if FileTest.exist?("./app/assets/images/cast_images/#{id}.jpg")
-      path = "./app/assets/images/cast_thumbs/#{id}.jpg"
+    if FileTest.exist?(Rails.root.join('public', 'cast_images', "#{id}.jpg"))
+      path = Rails.root.join('public', 'cast_thumbs', "#{id}.jpg")
       make_cast_thumbnail unless FileTest.exist?(path)
-      "cast_thumbs/#{id}.jpg"
+      "/cast_thumbs/#{id}.jpg"
     else
       'default_cast_image_thumb.jpg'
     end
   end
 
   def carousel_url
-    path = "./app/assets/images/cast_carousel/#{id}.jpg"
+    path = Rails.root.join('public', 'cast_carousel', "#{id}.jpg")
     make_cast_carousel unless FileTest.exist?(path)
-    "/assets/cast_carousel/#{id}.jpg"
+    "/cast_carousel/#{id}.jpg"
   end
 
   def self.has_image
-    path = './app/assets/images/cast_images/*.jpg'
+    path = Rails.root.join('public', 'cast_images', '*.jpg')
     ids = Dir[path].map {|f| f.match('\d+')[0]}
     where(id: ids)
   end
@@ -127,8 +127,7 @@ class Person < ActiveRecord::Base
     img.resize_to_fill!(261, 300)
     img = img.quantize(256, Magick::GRAYColorspace)
 
-    folder = Rails.root.join('app').join('assets').join('images').join('cast_images')
-    file_name = folder.join("#{self.id}.jpg")
+    file_name = Rails.root.join('public', 'cast_images', "#{self.id}.jpg")
     img.write(file_name)
     make_cast_carousel
     make_cast_thumbnail
@@ -236,8 +235,8 @@ class Person < ActiveRecord::Base
   def make_cast_thumbnail
     require 'RMagick'
 
-    path = "./app/assets/images/cast_images/#{id}.jpg"
-    thumb = "./app/assets/images/cast_thumbs/#{id}.jpg"
+    path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
+    thumb = Rails.root.join('public', 'cast_thumbs', "#{id}.jpg")
     img = Magick::Image::read(path).first
     img.crop_resized!(137, 158, Magick::NorthGravity)
     img.write(thumb)
@@ -245,8 +244,9 @@ class Person < ActiveRecord::Base
 
   def make_cast_carousel
     require 'RMagick'
-    path = "./app/assets/images/cast_images/#{id}.jpg"
-    thumb = "./app/assets/images/cast_carousel/#{id}.jpg"
+
+    path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
+    carousel = Rails.root.join('public', 'cast_carousel', "#{id}.jpg")
 
     if File.exist?(path)
       results = Magick::ImageList.new
@@ -259,7 +259,7 @@ class Person < ActiveRecord::Base
       bg = Magick::Image.new(result.columns, result.rows) {self.background_color = "#FFFFFF"}
       final = bg.composite(result, Magick::NorthGravity, Magick::OverCompositeOp)
 
-      final.write(thumb)
+      final.write(carousel)
     end
   end
 
