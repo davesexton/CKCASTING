@@ -6,8 +6,14 @@ require 'open-uri'
 require "net/http"
 
 # ----- Delete images
+`rm ~/websites/ckcasting/public/cast_images/*.jpg`
+`rm ~/websites/ckcasting/public/cast_carousel/*.jpg`
+`rm ~/websites/ckcasting/public/cast_thumbs/*.jpg`
+`rm ~/websites/ckcasting/public/family_thumbs/*.jpg`
+`rm ~/websites/ckcasting/public/family_images/*.jpg`
+
 Dir.chdir('/home/dave/websites/ckcasting/public/cast_images')
-Dir['*.jpg'].each { |f| File.delete f }
+#Dir['*.jpg'].each { |f| File.delete f }
 
 # ----- Set variables
 new_id = 1
@@ -141,6 +147,8 @@ Person.where('first_name NOT LIKE ? ', '%&%').each do |p|
   end
 end
 Person.where('first_name LIKE ? ', '%&%').destroy_all
+
+Rails.cache.clear
 
 HERE
 

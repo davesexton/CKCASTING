@@ -63,12 +63,15 @@ h2 {
 b {
   font-weight: bold;
 }
-
+h1 {
+  font-size: 1.25em;
+  color: #111111;
+}
 header {
-  @include prepend(1);
-  @include column(22);
+  @include column(23);
   @include append(1);
   @include last;
+  position: relative;
   hgroup {
     h1 {
       font-size: 1em;
@@ -80,12 +83,19 @@ header {
   }
   background-image: image-url('header.png');
   height: 220px;
+  #logo {
+    position: absolute;
+    left: 25px;
+    top: 0px;
+  }
 }
 footer {
   @include column(24);
   @include last;
   text-align: center;
-  height: 60px;
+  height: 50px;
+  color: #ffffff;
+  padding-top:10px;
   background-image: image-url('footer.png');
 }
 #main {
@@ -94,13 +104,14 @@ footer {
   @include append(1);
   @include last();
   min-height: 500px;
+  padding-top: 10px;
   background-image: image-url('content.png');
 }
 nav {
-  height: 5px;
+  height: 35px;
   position: absolute;
   top: 160px;
-  left: 250px;
+  left: 230px;
   * {
     font-family: Verdana;
   }

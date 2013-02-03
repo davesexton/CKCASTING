@@ -15,9 +15,9 @@
 <body class="<%= controller.controller_name %>">
   <div id="container" class="container">
     <header>
+     <%= link_to(image_tag('logo.png',
+     alt: 'logo', title: 'logo', size: '198x230'), '/', {id: 'logo'}) %>
      <hgroup>
-     <h1>Welcome to CK Casting - a new and exciting agency for babies and toddlers to young
-         adults.</h1>
      </hgroup>
       <nav>
         <div class="<%= 'activeNav' if controller.controller_name == 'home' %>">

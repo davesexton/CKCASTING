@@ -63,7 +63,6 @@ $ ->
           $(@).css('cursor','auto')
           showClick = false
 
-
 #Click handler
 #----------------------------------------
       $(canvas).click (e)->
