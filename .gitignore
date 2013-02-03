@@ -3,7 +3,12 @@ db/*.sqlite3
 log/*.log
 tmp/
 .sass-cache/
-app/assets/images/cast_thumbs/*.jpg
-config.config.yml
+config/config.yml
+config/database.yml
 *~
 *.*~
+public/cast_carousel/
+public/cast_images/
+public/cast_thumbs/
+public/family_images/
+public/family_thumbs/

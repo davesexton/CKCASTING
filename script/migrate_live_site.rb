@@ -6,11 +6,11 @@ require 'open-uri'
 require "net/http"
 
 # ----- Delete images
-`rm ~/websites/ckcasting/public/cast_images/*.jpg`
-`rm ~/websites/ckcasting/public/cast_carousel/*.jpg`
-`rm ~/websites/ckcasting/public/cast_thumbs/*.jpg`
-`rm ~/websites/ckcasting/public/family_thumbs/*.jpg`
-`rm ~/websites/ckcasting/public/family_images/*.jpg`
+`rm ./public/cast_images/*.jpg`
+`rm ./public/cast_carousel/*.jpg`
+`rm ./public/cast_thumbs/*.jpg`
+`rm ./public/family_thumbs/*.jpg`
+`rm ./public/family_images/*.jpg`
 
 Dir.chdir('/home/dave/websites/ckcasting/public/cast_images')
 #Dir['*.jpg'].each { |f| File.delete f }
