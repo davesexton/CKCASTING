@@ -1,6 +1,15 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
+#IE8 fixes
+d = document
+d.createElement 'header'
+d.createElement 'nav'
+d.createElement 'hgroup'
+d.createElement 'footer'
+d.createElement 'section'
+
 imgs = []
 
 $ ->
@@ -26,8 +35,8 @@ $ ->
       canvasHeight = canvas.height
       radiusX = 375
       radiusY = 20
-      mouseX = 0
-      mouseY = 0
+      mouseX = null
+      mouseY = null
       showClick = false
       currentId = null
       centerX = (canvasWidth / 2) - 46
@@ -51,23 +60,13 @@ $ ->
         mouseY = e.pageY - $(@).offset().top
         speed = ((canvasWidth / 2) - mouseX) / 10000
         currentId = null
-        for img in imgs
-          if mouseX > img.x() and
-          mouseX < img.x() + img.width() and
-          mouseY > img.y() and
-          mouseY < img.y() + (img.height() * 0.75)
-            currentId = img.id
-            $(@).css('cursor','pointer')
-            showClick = true
-        if currentId == null
-          $(@).css('cursor','auto')
-          showClick = false
 
 #Click handler
 #----------------------------------------
       $(canvas).click (e)->
-        showClick = false
-        window.location.href = currentId
+        if currentId != null
+          showClick = false
+          window.location.href = currentId
 
 #Define image object
 #----------------------------------------
@@ -147,6 +146,18 @@ $ ->
             drawEllipse context, centerX, centerY + 120, radiusX, radiusY + 10
             #context.globalCompositeOperation = 'source-over'
             #context.fillStyle = "rgba(0, 0, 0, 0.2)"
+
+          if mouseX > img.x() and
+          mouseX < img.x() + img.width() and
+          mouseY > img.y() and
+          mouseY < img.y() + (img.height() * 0.75)
+            currentId = img.id
+            $(canvas).css('cursor', 'pointer')
+            showClick = true
+        if currentId == null
+          $(canvas).css('cursor','auto')
+          showClick = false
+
         if showClick
           context.save()
           context.fillStyle = "rgba(255, 255, 255, 0.8)"
