@@ -63,8 +63,11 @@ class CastbookController < ApplicationController
 
 # Add family group
     if params[:family]
-      cons[0] += ' AND family_id NOT ? '
-      cons << nil
+#      cons[0] += ' AND family_id NOT ? '
+#      cons << nil
+
+      cons[0] += ' AND family_id > ? '
+      cons << 0
     end
 
 # Add age parameters

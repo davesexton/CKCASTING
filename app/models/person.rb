@@ -187,11 +187,11 @@ class Person < ActiveRecord::Base
   def self.age_groups
     now = Time.now.utc
     [{id: 0, text: 'Under 3 years', from: now - 3.years, to: now},
-     {id: 1, text: '3 - 6 years', from: now - 6.years, to: now - 3.years},
-     {id: 2, text: '6 - 9 years', from: now - 9.years, to: now - 6.years},
-     {id: 3, text: '9 - 12 years', from: now - 12.years, to: now - 9.years},
-     {id: 4, text: '12 - 15 years', from: now - 15.years, to: now - 12.years},
-     {id: 5, text: '15 - 18 years', from: now - 18.years, to: now - 15.years},
+     {id: 1, text: '3-6 years', from: now - 6.years, to: now - 3.years},
+     {id: 2, text: '6-9 years', from: now - 9.years, to: now - 6.years},
+     {id: 3, text: '9-12 years', from: now - 12.years, to: now - 9.years},
+     {id: 4, text: '12-15 years', from: now - 15.years, to: now - 12.years},
+     {id: 5, text: '15-18 years', from: now - 18.years, to: now - 15.years},
      {id: 6, text: 'Over 18 years', from: now - 200.years, to: now - 18.years}
     ]
   end
@@ -208,9 +208,9 @@ class Person < ActiveRecord::Base
 
   def self.height_groups
     [{id: 0, text: 'Under 3 foot', from: 0, to: 35},
-     {id: 1, text: '3 - 4 foot', from: 36, to: 47},
-     {id: 2, text: '4 - 5 foot', from: 48, to: 59},
-     {id: 3, text: '5 - 6 foot', from: 60, to: 71},
+     {id: 1, text: '3-4 foot', from: 36, to: 47},
+     {id: 2, text: '4-5 foot', from: 48, to: 59},
+     {id: 3, text: '5-6 foot', from: 60, to: 71},
      {id: 4, text: 'Over 6 foot', from: 72, to: 200}
     ]
   end
