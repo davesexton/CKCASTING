@@ -23,11 +23,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.473599"
-     inkscape:cx="164.43747"
+     inkscape:zoom="1.7758019"
+     inkscape:cx="114.60083"
      inkscape:cy="502.92909"
      inkscape:document-units="px"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer4"
      showgrid="false"
      width="1000px"
      inkscape:showpageshadow="false"
@@ -554,14 +554,6 @@
        r="72.760422"
        gradientTransform="matrix(1,0,0,0.64102643,0,37.802401)"
        gradientUnits="userSpaceOnUse" />
-    <filter
-       inkscape:collect="always"
-       id="filter5394">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="2.9153513"
-         id="feGaussianBlur5396" />
-    </filter>
   </defs>
   <metadata
      id="metadata7">
@@ -715,7 +707,8 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Header"
-     style="display:none">
+     style="display:none"
+     sodipodi:insensitive="true">
     <path
        style="color:#000000;fill:#00008f;fill-opacity:0.94117647;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="M 36.25,20 C 27.240045,20 20,27.240045 20,36.25 l 0,146.75 0,0.75 0,16.25 16.25,0 877.5,0 16.25,0 0,-16.25 0,-0.75 0,-146.75 C 930,27.240045 922.75995,20 913.75,20 l -877.5,0 z"
@@ -741,7 +734,8 @@
      inkscape:groupmode="layer"
      id="layer9"
      inkscape:label="Banner"
-     style="display:none">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <image
        style="display:inline"
        y="9.9999997e-06"
@@ -811,8 +805,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Logo"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <path
        sodipodi:type="arc"
        style="opacity:0.95;color:#000000;fill:#0000ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.52499998;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -901,17 +894,17 @@
        transform="matrix(1.0049385,0.29938557,-0.37002143,1.0005714,-116.84889,-645.58995)" />
     <text
        xml:space="preserve"
-       style="font-size:39.14178085px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.2962963;fill:#bfacff;fill-opacity:1;stroke:none;display:inline;filter:url(#filter5394);font-family:Sans"
-       x="-84.331604"
-       y="135.34865"
+       style="font-size:39.14178085000000351px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.98999999000000005;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       x="26.562071"
+       y="146.11806"
        id="text2985-80"
        sodipodi:linespacing="125%"
-       transform="matrix(0.8422649,-0.03435592,0.04834842,1.1853028,94.48566,8.6735986)"><tspan
+       transform="matrix(0.8422649,-0.03435592,0.04834842,1.1853028,0,0)"><tspan
          sodipodi:role="line"
          id="tspan2987-4"
-         x="-84.331604"
-         y="135.34865"
-         style="font-size:140.91043091px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#bfacff;fill-opacity:1;stroke:none;font-family:Spumoni LP Std;-inkscape-font-specification:Spumoni LP Std">CK</tspan></text>
+         x="26.562071"
+         y="146.11806"
+         style="font-size:140.91043091000000231px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Spumoni LP Std;-inkscape-font-specification:Spumoni LP Std">CK</tspan></text>
   </g>
   <g
      style="display:inline"
