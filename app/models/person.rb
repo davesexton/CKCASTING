@@ -46,7 +46,7 @@ class Person < ActiveRecord::Base
 
   validates :postcode, format: {
     allow_nil: true,
-    with: /^((([A-PR-UWYZ])([0-9][0-9A-HJKS-UW]?))|(([A-PR-UWYZ][A-HK-Y])([0-9][0-9ABEHMNPRV-Y]?))\s{0,2}(([0-9])([ABD-HJLNP-UW-Z])([ABD-HJLNP-UW-Z])))|(((GI)(R))\s{0,2}((0)(A)(A)))$/,
+    with: /(^$)|(^((([A-PR-UWYZ])([0-9][0-9A-HJKS-UW]?))|(([A-PR-UWYZ][A-HK-Y])([0-9][0-9ABEHMNPRV-Y]?))\s{0,2}(([0-9])([ABD-HJLNP-UW-Z])([ABD-HJLNP-UW-Z])))|(((GI)(R))\s{0,2}((0)(A)(A)))$)/,
     message: "format is invalid"}
 
   has_many :credits
@@ -131,6 +131,15 @@ class Person < ActiveRecord::Base
     img.write(file_name)
     make_cast_carousel
     make_cast_thumbnail
+  end
+
+  def self.has_news
+    ids = Credit.where("credit_text LIKE '*%'").pluck(:person_id).uniq
+    where(id: ids)
+  end
+
+  def news_item
+    self.credits.where("credit_text like '*%'").pluck(:credit_text)[0][1..-1]
   end
 
   def skill_list

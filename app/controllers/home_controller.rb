@@ -3,5 +3,6 @@ class HomeController < ApplicationController
 
   def index
     @carousel = Person.has_image.active.all.sample(21)
+    @news = Person.has_news.active.all.sample(12)
   end
 end

@@ -2,4 +2,56 @@
   #carouselImages {
     display: none;
   }
+  #aboutus {
+    @include column(14);
+  }
+  #news {
+    @include column(8);
+    @include last;
+    font-size: 0.7em;
+    h2 {
+      margin-bottom: 0.1em;
+      font-weight: bold;
+    }
+    p {
+      margin-bottom: 1px;
+    }
+    #newsHeading {
+      color: #fff;
+      background-color: #02054c;
+      padding: 0.1em;
+      padding-left: 2em;
+      margin-bottom: 0em;
+      border: 1px solid #fff;
+    }
+    #scroller {
+      list-style: none;
+      padding: 0em;
+      /* border: 1px solid #9DB029; */
+      margin: 0em 0em;
+      overflow: hidden;
+      max-height: 400px;
+      height: 400px;
+      min-height: 400px;
+    }
+    #scroller li {
+      border: 1px solid #ddd;
+      width: 100%;
+      margin: 0.25em;
+      padding: 0.5em;
+      background-color: #eee;
+    }
+    #scroller li img {
+      margin-right: 0.5em;
+      height: 60px;
+    }
+    .scrollContainer {
+      position: relative;
+      overflow: auto;
+    }
+    .scrollImg {
+      float: left;
+      height: 100%;
+    }
+  }
 }

@@ -10,12 +10,34 @@ d.createElement 'hgroup'
 d.createElement 'footer'
 d.createElement 'section'
 
+scroll = ->
+  $('#scroller li').each((i, e)->
+    if i > 3
+      $(e).fadeOut()
+  )
+  $('#scroller li:first').animate({'margin-top': '4px'}, 500, ->
+    li = $('#scroller li:last')
+    $('#scroller li:last').remove()
+    $('#scroller').prepend(li)
+    h = ($('#scroller li:first').outerHeight() * -1)
+    li.show().css('margin-top', h + 'px')
+    li.css('margin-top', h + 'px').show()
+    $(this).css('margin-top', 'auto')
+  )
+
 imgs = []
 
 $ ->
   $('#flashMessage').delay(500).fadeIn('normal', ->
     $(@).delay(6000).fadeOut()
   )
+  h = ($('#scroller li:first').outerHeight() * -1)
+  $('#scroller li:first').css('margin-top', h + 'px')
+  $('#scroller li').each((i, e)->
+    if i > 4
+      $(e).fadeOut()
+  )
+  setInterval scroll, 5000
 
 $ ->
   $('nav > div').click( (e) ->

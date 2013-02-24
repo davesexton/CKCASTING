@@ -92,7 +92,11 @@
       <ul>
       <% c.credits.each do |c| %>
       <li>
-      <%= c.credit_text %>
+      <% if c.credit_text =~ /$*/ %>
+        <%= c.credit_text[1..-1] %>
+      <% else %>
+        <%= c.credit_text %>
+      <% end %>
       </li>
       <% end %>
       </ul>

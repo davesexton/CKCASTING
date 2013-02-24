@@ -1,24 +1,46 @@
 <% @title = 'Home' %>
 <% @description = 'A casting agency that specialises in film, TV, commercial and theatrical casting' %>
-<h1>Welcome to CK Casting - a new and exciting agency for babies and toddlers to young
-         adults.</h1>
-<p>We are a casting agency that specialises in film, TV, commercial and
-   theatrical casting. We know that you will find working with our children
-   a successful and pleasureable experience.
-</p>
-<p>CK Casting offers so much more...</p>
-<ul>
-    <li>A specialised agency, solely representing children, young adults, siblings and twins.</li>
-    <li>A site designed exclusively for casting professionals.</li>
-    <li>Highly-experienced and trained child actors, singers and dancers.</li>
-    <li>Children attend regular classes to maintain a high standard of performance.</li>
-    <li>All children are based within easy access to Central London.</li>
-    <li>We are happy to arrange performance licences as required, quickly and free of charge.</li>
-    <li>We are constantly updating our files with new children joining throughout the year.</li>
-</ul>
+<div id="aboutus">
+  <h1>Welcome to CK Casting - a new and exciting agency for babies and toddlers to young
+           adults.</h1>
+  <p>We are a casting agency that specialises in film, TV, commercial and
+     theatrical casting. We know that you will find working with our children
+     a successful and pleasureable experience.
+  </p>
+  <p>CK Casting offers so much more...</p>
+  <ul>
+      <li>A specialised agency, solely representing children, young adults, siblings and twins.</li>
+      <li>A site designed exclusively for casting professionals.</li>
+      <li>Highly-experienced and trained child actors, singers and dancers.</li>
+      <li>Children attend regular classes to maintain a high standard of performance.</li>
+      <li>All children are based within easy access to Central London.</li>
+      <li>We are happy to arrange performance licences as required, quickly and free of charge.</li>
+      <li>We are constantly updating our files with new children joining throughout the year.</li>
+  </ul>
+</div>
+<div id="news">
+  <div id="newsHeading">LATEST NEWS</div>
+  <ul id="scroller">
+    <% @news.each do |n| %>
+    <li>
+      <div class="scrollContainer">
+        <div class="scrollImg">
+          <%= link_to(image_tag(n.thumbnail_url,
+            alt: n.title, title: n.title, size: '52x60'), n.url) %>
 
-<canvas width="858" height="200" id="carousel">
-</canvas>
+        </div>
+        <div>
+          <h2><%= n.full_name %></h2>
+          <p><%= n.news_item %></p>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<div>
+  <canvas width="858" height="200" id="carousel"></canvas>
+</div>
 <div id="carouselImages">
     <% @carousel.each do |c| %>
         <%= image_tag c.carousel_url, id: "img#{c.id}" %>

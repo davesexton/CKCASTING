@@ -38,6 +38,7 @@ updatePagination = (e) ->
 
 $ ->
   if $('.castbook').length > 0
+    $(".castThumb").hover(ctIn, ctOut)
 
     $('#castFilters input').parent().css('background-color', '#FFFFFF')
     $('#castFilters input:checked').parent().css('background-color', '#FF6666')
