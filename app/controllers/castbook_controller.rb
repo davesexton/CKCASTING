@@ -2,7 +2,7 @@ class CastbookController < ApplicationController
   skip_before_filter :authorize
 
   def index
-    @castlist = Person.active.paginate(page: 1, per_page: 16)
+    @castlist = Person.active.order('date_of_birth DESC').paginate(page: 1, per_page: 16)
 
 # data for gender checkboxes
     f = Hash.new(0)
@@ -116,7 +116,7 @@ class CastbookController < ApplicationController
     @pages = (Person.where(cons).active.count / page_size) + 1
     session[:page] = '1' if session[:page].to_i > @pages
 
-    castlist = Person.where(cons).active.paginate(page: params[:page], per_page: 16)
+    castlist = Person.where(cons).active.order('date_of_birth DESC').paginate(page: params[:page], per_page: 16)
     render partial: 'shared/castlist', locals: {castlist: castlist}
   end
 

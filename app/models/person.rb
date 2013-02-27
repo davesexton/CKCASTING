@@ -154,11 +154,15 @@ class Person < ActiveRecord::Base
   end
 
   def credit_list
-    Credit.where(person_id: id).order(:display_order).collect { |s| s.credit_text }.join("\n")
+    Credit.where(person_id: id).order(:display_order).collect do |s|
+      s.credit_text
+    end.join("\n")
   end
 
   def credit_list_array
-    Credit.where(person_id: id).order(:display_order).collect { |s| s.credit_text }
+    Credit.where(person_id: id).order(:display_order).collect do |s|
+      s.credit_text
+    end
   end
 
   def credit_list=(text)

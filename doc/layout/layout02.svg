@@ -24,10 +24,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7758019"
-     inkscape:cx="114.60083"
+     inkscape:cx="14.92755"
      inkscape:cy="502.92909"
      inkscape:document-units="px"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer3"
      showgrid="false"
      width="1000px"
      inkscape:showpageshadow="false"
@@ -707,8 +707,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Header"
-     style="display:none"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <path
        style="color:#000000;fill:#00008f;fill-opacity:0.94117647;fill-rule:evenodd;stroke:none;stroke-width:1.42499995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="M 36.25,20 C 27.240045,20 20,27.240045 20,36.25 l 0,146.75 0,0.75 0,16.25 16.25,0 877.5,0 16.25,0 0,-16.25 0,-0.75 0,-146.75 C 930,27.240045 922.75995,20 913.75,20 l -877.5,0 z"
