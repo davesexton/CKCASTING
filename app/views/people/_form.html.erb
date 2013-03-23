@@ -44,7 +44,7 @@
     </div>
     <div class="field">
       <%= f.label :date_of_birth %>
-      <%= f.date_select :date_of_birth, :order => [:day, :month, :year] %>
+      <%= f.date_select :date_of_birth, :order => [:day, :month, :year], start_year: Date.today.year - 90 %>
     </div>
     <div class="field">
       <%= f.label :height_feet,
