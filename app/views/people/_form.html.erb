@@ -49,7 +49,9 @@
     <div class="field">
       <%= f.label :height_feet,
                   'Height' %>
-      <%= f.select :height_feet, @heights_feet, selected: f.object.height_feet %>
+      <%= f.select :height_feet,
+                    @heights_feet,
+                    selected: f.object.height_feet %>
       &nbsp;ft&nbsp;
       <%= f.select :height_inches, @heights_inches, selected: f.object.height_inches %>
       &nbsp;in

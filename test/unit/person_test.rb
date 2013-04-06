@@ -120,63 +120,63 @@ class PersonTest < ActiveSupport::TestCase
     assert_equal 0, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 3.years - 1.day
-    assert_equal '3 - 6 years', person.age_group
+    assert_equal '3-6 years', person.age_group
     assert_equal 1, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 6.years + 1.day
-    assert_equal '3 - 6 years', person.age_group
+    assert_equal '3-6 years', person.age_group
     assert_equal 1, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 6.years
-    assert_equal '3 - 6 years', person.age_group
+    assert_equal '3-6 years', person.age_group
     assert_equal 1, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 6.years - 1.day
-    assert_equal '6 - 9 years', person.age_group
+    assert_equal '6-9 years', person.age_group
     assert_equal 2, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 9.years + 1.day
-    assert_equal '6 - 9 years', person.age_group
+    assert_equal '6-9 years', person.age_group
     assert_equal 2, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 9.years
-    assert_equal '6 - 9 years', person.age_group
+    assert_equal '6-9 years', person.age_group
     assert_equal 2, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 9.years - 1.day
-    assert_equal '9 - 12 years', person.age_group
+    assert_equal '9-12 years', person.age_group
     assert_equal 3, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 12.years + 1.day
-    assert_equal '9 - 12 years', person.age_group
+    assert_equal '9-12 years', person.age_group
     assert_equal 3, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 12.years
-    assert_equal '9 - 12 years', person.age_group
+    assert_equal '9-12 years', person.age_group
     assert_equal 3, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 12.years - 1.day
-    assert_equal '12 - 15 years', person.age_group
+    assert_equal '12-15 years', person.age_group
     assert_equal 4, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 15.years + 1.day
-    assert_equal '12 - 15 years', person.age_group
+    assert_equal '12-15 years', person.age_group
     assert_equal 4, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 15.years
-    assert_equal '12 - 15 years', person.age_group
+    assert_equal '12-15 years', person.age_group
     assert_equal 4, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 15.years - 1.day
-    assert_equal '15 - 18 years', person.age_group
+    assert_equal '15-18 years', person.age_group
     assert_equal 5, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 18.years + 1.day
-    assert_equal '15 - 18 years', person.age_group
+    assert_equal '15-18 years', person.age_group
     assert_equal 5, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 18.years
-    assert_equal '15 - 18 years', person.age_group
+    assert_equal '15-18 years', person.age_group
     assert_equal 5, person.age_group_id
 
     person.date_of_birth = Time.now.utc - 18.years - 1.day
@@ -231,32 +231,32 @@ class PersonTest < ActiveSupport::TestCase
 
     person.height_feet = 3
     person.height_inches = 0
-    assert_equal '3 - 4 foot', person.height_group
+    assert_equal '3-4 foot', person.height_group
     assert_equal 1, person.height_group_id
 
     person.height_feet = 3
     person.height_inches = 11
-    assert_equal '3 - 4 foot', person.height_group
+    assert_equal '3-4 foot', person.height_group
     assert_equal 1, person.height_group_id
 
     person.height_feet = 4
     person.height_inches = 0
-    assert_equal '4 - 5 foot', person.height_group
+    assert_equal '4-5 foot', person.height_group
     assert_equal 2, person.height_group_id
 
     person.height_feet = 4
     person.height_inches = 11
-    assert_equal '4 - 5 foot', person.height_group
+    assert_equal '4-5 foot', person.height_group
     assert_equal 2, person.height_group_id
 
     person.height_feet = 5
     person.height_inches = 0
-    assert_equal '5 - 6 foot', person.height_group
+    assert_equal '5-6 foot', person.height_group
     assert_equal 3, person.height_group_id
 
     person.height_feet = 5
     person.height_inches = 11
-    assert_equal '5 - 6 foot', person.height_group
+    assert_equal '5-6 foot', person.height_group
     assert_equal 3, person.height_group_id
 
     person.height_feet = 6

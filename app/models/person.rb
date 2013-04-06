@@ -5,9 +5,16 @@ class Person < ActiveRecord::Base
               :height_group_id, :hair_colour_group, :has_image, :age
   attr_writer :image_upload
   attr_accessor :file_type
+
+  #attr_accessible
+
   scope :active, conditions: {status: 'Active'}
 
 #TODO capture user name for edits
+
+  has_many :credits, dependent: :destroy
+  has_many :skills, dependent: :destroy
+  belongs_to :family
 
   validates :gender, inclusion: {
     in: %w(Male Female),
@@ -48,10 +55,6 @@ class Person < ActiveRecord::Base
     allow_nil: true,
     with: /(^$)|(^((([A-PR-UWYZ])([0-9][0-9A-HJKS-UW]?))|(([A-PR-UWYZ][A-HK-Y])([0-9][0-9ABEHMNPRV-Y]?))\s{0,2}(([0-9])([ABD-HJLNP-UW-Z])([ABD-HJLNP-UW-Z])))|(((GI)(R))\s{0,2}((0)(A)(A)))$)/,
     message: "format is invalid"}
-
-  has_many :credits
-  has_many :skills
-  belongs_to :family
 
   before_save :update_location
 
@@ -119,18 +122,20 @@ class Person < ActiveRecord::Base
   end
 
   def image_upload=(img)
-    self.file_type = img.content_type.chomp
+    if id && img
+      self.file_type = img.content_type.chomp
 
-    require 'RMagick'
-    img.rewind
-    img = Magick::Image::from_blob(img.read).first
-    img.resize_to_fill!(261, 300)
-    img = img.quantize(256, Magick::GRAYColorspace)
+      require 'RMagick'
+      img.rewind
+      img = Magick::Image::from_blob(img.read).first
+      img.resize_to_fill!(261, 300)
+      img = img.quantize(256, Magick::GRAYColorspace)
 
-    file_name = Rails.root.join('public', 'cast_images', "#{self.id}.jpg")
-    img.write(file_name)
-    make_cast_carousel
-    make_cast_thumbnail
+      file_name = Rails.root.join('public', 'cast_images', "#{self.id}.jpg")
+      img.write(file_name)
+      make_cast_carousel
+      make_cast_thumbnail
+    end
   end
 
   def self.has_news
@@ -143,13 +148,15 @@ class Person < ActiveRecord::Base
   end
 
   def skill_list
-    self.skills.order(:display_order).collect { |s| s.skill_text }.join(', ')
+    skills.order(:display_order).collect { |s| s.skill_text }.join(', ')
   end
 
   def skill_list=(text)
-    self.skills.where(person_id: id).destroy_all
-    text.split(',').each_with_index do |s, i|
-      self.skills.create(display_order: i, skill_text: s.strip.capitalize)
+    if id && text
+      skills.destroy_all
+      text.split(',').each_with_index do |s, i|
+        skills.create(display_order: i, skill_text: s.strip.capitalize)
+      end
     end
   end
 
@@ -166,11 +173,13 @@ class Person < ActiveRecord::Base
   end
 
   def credit_list=(text)
-    self.credits.destroy_all
-    text.split("\n").each_with_index do |s, i|
-      s.strip!
-      s.gsub!(/\b(Uk|uk)\b/, 'UK')
-      self.credits.create(display_order: i, credit_text: s)
+    if id && text
+      credits.destroy_all
+      text.split("\n").each_with_index do |s, i|
+        s.strip!
+        s.gsub!(/\b(Uk|uk)\b/, 'UK')
+        credits.create(display_order: i, credit_text: s)
+      end
     end
   end
 
@@ -241,6 +250,26 @@ class Person < ActiveRecord::Base
       self.last_viewed_at = Time.now.utc
       self.view_count = 1
     end
+  end
+
+  def self.get_heights_feet
+    (0..7).map{ |i| i}
+  end
+
+  def self.get_hair_colours
+    HairColour.order(:hair_colour).pluck(:hair_colour)
+  end
+
+  def self.get_eye_colours
+    EyeColour.order(:eye_colour).pluck(:eye_colour)
+  end
+
+  def self.get_heights_feet
+    (0..7).map{ |i| i}
+  end
+
+  def self.get_heights_inches
+    (0..11).map{ |i| i}
   end
 
   private

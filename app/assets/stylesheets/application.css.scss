@@ -16,6 +16,22 @@
 $blueprint-font-family: 'Verdana';
 @include blueprint-typography-defaults;
 
+#notice {
+  position: fixed;
+  left: 0px;
+  top: -60px;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  background-color: #000;
+  color: #ffffff;
+  font-size: 150%;
+  div {
+    margin-top: 10px;
+    color: #ffffff;
+  }
+}
+
 *, html {
   line-height: 1.3em;
   color: #444455;

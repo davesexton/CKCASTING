@@ -9,4 +9,4 @@ $ ->
       $(@).text('Active')
     else
       $(@).text('Inactive')
-    $('.castTable tr').toggleClass('castHide castShow')
+    $('.castTable tr:gt(0)').toggleClass('castHide castShow')

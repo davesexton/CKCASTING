@@ -38,9 +38,9 @@
       </nav>
     </header>
     <section id="main">
-      <% flash.each do |key, value| %>
-        <div id="flashHolder">
-          <%= content_tag(:div, sanitize(value), class: "flash #{key}", id: 'flashMessage') %>
+      <% if notice %>
+        <div id="notice">
+          <div><%= notice %></div>
         </div>
       <% end %>
       <%= yield %>

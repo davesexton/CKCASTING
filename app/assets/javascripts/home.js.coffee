@@ -27,17 +27,27 @@ scroll = ->
 
 imgs = []
 
+#$ ->
+#  $('#flashMessage').delay(500).fadeIn('normal', ->
+#    $(@).delay(6000).fadeOut()
+#  )
+#  h = ($('#scroller li:first').outerHeight() * -1)
+#  $('#scroller li:first').css('margin-top', h + 'px')
+#  $('#scroller li').each((i, e)->
+#    if i > 4
+#      $(e).fadeOut()
+#  )
+#  setInterval scroll, 5000
+
 $ ->
-  $('#flashMessage').delay(500).fadeIn('normal', ->
-    $(@).delay(6000).fadeOut()
-  )
-  h = ($('#scroller li:first').outerHeight() * -1)
-  $('#scroller li:first').css('margin-top', h + 'px')
-  $('#scroller li').each((i, e)->
-    if i > 4
-      $(e).fadeOut()
-  )
-  setInterval scroll, 5000
+  $('#notice').animate {
+    top: 0
+  }, 500, ->
+    setTimeout ->
+      $('#notice').animate {
+        top: -60
+      }, 500
+    , 3000
 
 $ ->
   $('nav > div').click( (e) ->

@@ -16,7 +16,10 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
-
+    @hair_colours = Person.get_hair_colours
+    @eye_colours = Person.get_eye_colours
+    @heights_feet = Person.get_heights_feet
+    @heights_inches = Person.get_heights_inches
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @person }
@@ -27,10 +30,10 @@ class PeopleController < ApplicationController
   # GET /people/new.json
   def new
     @person = Person.new
-    @hair_colours = get_hair_colours
-    @eye_colours = get_eye_colours
-    @heights_feet = get_heights_feet
-    @heights_inches = get_heights_inches
+    @hair_colours = Person.get_hair_colours
+    @eye_colours = Person.get_eye_colours
+    @heights_feet = Person.get_heights_feet
+    @heights_inches = Person.get_heights_inches
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,21 +44,34 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    @hair_colours = get_hair_colours
-    @eye_colours = get_eye_colours
-    @heights_feet = get_heights_feet
-    @heights_inches = get_heights_inches
+    @hair_colours = Person.get_hair_colours
+    @eye_colours = Person.get_eye_colours
+    @heights_feet = Person.get_heights_feet
+    @heights_inches = Person.get_heights_inches
+
+    rescue ActiveRecord::RecordNotFound
+      redirect_to people_url, notice: 'Cast member not found'
   end
 
   # POST /people
   # POST /people.json
   def create
     @person = Person.new(params[:person])
+    @heights_feet = Person.get_heights_feet
+    @heights_inches = Person.get_heights_inches
+    @hair_colours = Person.get_hair_colours
+    @eye_colours = Person.get_eye_colours
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
-        format.json { render json: @person, status: :created, location: @person }
+        @person.skill_list = params[:person][:skill_list]
+        @person.credit_list = params[:person][:credit_list]
+        @person.image_upload = params[:person][:image_upload]
+        @person.save
+        format.html { redirect_to people_url,
+                      notice: "Cast member #{@person.full_name} was successfully created" }
+        format.json { render json: @person,
+                      status: :created, location: @person }
       else
         format.html { render action: "new" }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -67,10 +83,10 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
-    @hair_colours = get_hair_colours
-    @eye_colours = get_eye_colours
-    @heights_feet = get_heights_feet
-    @heights_inches = get_heights_inches
+    @hair_colours = Person.get_hair_colours
+    @eye_colours = Person.get_eye_colours
+    @heights_feet = Person.get_heights_feet
+    @heights_inches = Person.get_heights_inches
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
@@ -119,24 +135,6 @@ class PeopleController < ApplicationController
                     notice: "Cast member #{@person.full_name} was successfully activated." }
       format.json { head :ok }
     end
-  end
-
-  private
-
-  def get_hair_colours
-    HairColour.order(:hair_colour).pluck(:hair_colour)
-  end
-
-  def get_eye_colours
-    EyeColour.order(:eye_colour).pluck(:eye_colour)
-  end
-
-  def get_heights_feet
-    (0..7).map{ |i| i}
-  end
-
-  def get_heights_inches
-    (0..11).map{ |i| i}
   end
 
 end
