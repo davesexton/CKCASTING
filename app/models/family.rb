@@ -60,9 +60,8 @@ class Family < ActiveRecord::Base
     img.rewind
     img = Magick::Image::from_blob(img.read).first
     img.resize_to_fill!(261, 300)
-    img = img.quantize(256, Magick::GRAYColorspace)
+    #img = img.quantize(256, Magick::GRAYColorspace)
 
-    #folder = Rails.root.join('public', 'family_images')
     file_name = Rails.root.join('public', 'family_images', "#{self.id}.jpg")
     img.write(file_name)
 
