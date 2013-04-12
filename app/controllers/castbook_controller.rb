@@ -123,6 +123,8 @@ class CastbookController < ApplicationController
   def show
     if Person.exists?(params[:id])
       cast = Person.find(params[:id])
+
+      #cast.update_last_viewed_at unless cast.last_viewed_at
       @castbook = cast
 
       cast.update_last_viewed_at

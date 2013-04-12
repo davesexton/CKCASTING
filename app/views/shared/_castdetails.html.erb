@@ -20,8 +20,7 @@
     <td colspan="2" class="viewStat">
       This profile has been viewed <%= pluralize(c.view_count, 'time') %>
       and was last viewed on the
-      <%= c.last_viewed_at.strftime("%d-%b-%Y") #unless c.last_viewed_at.nil?
-       %>
+      <%= c.last_viewed.strftime("%d-%b-%Y") %>
       <% if c.family and show_family_link %>
         <br /><%= c.first_name %> is part of a
         <%= link_to 'family group',

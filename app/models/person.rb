@@ -245,11 +245,16 @@ class Person < ActiveRecord::Base
     if last_viewed_at
       self.view_count += 1 if (Time.now.utc.to_date - last_viewed_at.to_date).to_i > 1
       self.last_viewed_at = Time.now.utc
-      self.save
     else
       self.last_viewed_at = Time.now.utc
       self.view_count = 1
     end
+    self.save
+  end
+
+  def last_viewed
+    update_last_viewed_at unless self[:last_viewed_at]
+    last_viewed_at
   end
 
   def self.get_heights_feet
