@@ -93,7 +93,7 @@ class Person < ActiveRecord::Base
   def image_url
     path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
     if FileTest.exist?(path)
-      "/cast_images/#{id}.jpg"
+      "/cast_images/#{id}.jpg?timestamp=#{Time.now.to_i}"
     else
       'default_cast_image.jpg'
     end
@@ -103,7 +103,7 @@ class Person < ActiveRecord::Base
     if FileTest.exist?(Rails.root.join('public', 'cast_images', "#{id}.jpg"))
       path = Rails.root.join('public', 'cast_thumbs', "#{id}.jpg")
       make_cast_thumbnail unless FileTest.exist?(path)
-      "/cast_thumbs/#{id}.jpg"
+      "/cast_thumbs/#{id}.jpg?timestamp=#{Time.now.to_i}"
     else
       'default_cast_image_thumb.jpg'
     end
@@ -112,7 +112,7 @@ class Person < ActiveRecord::Base
   def carousel_url
     path = Rails.root.join('public', 'cast_carousel', "#{id}.jpg")
     make_cast_carousel unless FileTest.exist?(path)
-    "/cast_carousel/#{id}.jpg"
+    "/cast_carousel/#{id}.jpg?timestamp=#{Time.now.to_i}"
   end
 
   def self.has_image
