@@ -66,6 +66,7 @@ class Family < ActiveRecord::Base
     img.write(file_name)
 
     make_family_thumbnail
+
   end
 
   def members=(list)
