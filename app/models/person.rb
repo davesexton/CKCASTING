@@ -6,7 +6,7 @@ class Person < ActiveRecord::Base
   attr_writer :image_upload
   attr_accessor :file_type
 
-  #attr_accessible
+  include Backup
 
   scope :active, conditions: {status: 'Active'}
 

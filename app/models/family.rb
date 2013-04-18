@@ -4,6 +4,8 @@ class Family < ActiveRecord::Base
   attr_accessor :file_type
   attr_writer :image_upload
 
+  include Backup
+
   has_many :people
 
   validates :family_name, presence: true, uniqueness: true
