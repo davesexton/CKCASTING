@@ -2,7 +2,32 @@ namespace :dev do
   desc "Reseed development database with live data"
   task :reseed => :environment do
 
-    require "net/http"
+    require 'net/http'
+    require 'open-uri'
+    require 'hpricot'
+
+    cred = ARGV[1].split('@')
+
+    uri = URI.parse('http://www.ckcasting.co.uk:80/login')
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.set_form_data({name: cred[0], password: cred[1]})
+
+    response = http.request(request)
+
+    cookies  = response.response['set-cookie']
+
+    request = Net::HTTP::Get.new('/backup')
+    request['Cookie'] = cookies
+    response = http.request(request)
+
+    seed_file = Rails.root.join('db', 'seeds.rb')
+    doc = Hpricot(response.body)
+    File.open(seed_file, 'w:ASCII-8BIT') {|f| f.write((doc/'/pre').innerHTML) }
+
+    exit
+    debugger
 
     puts "Removing cast thumbnail images"
     dir = Rails.root.join('public', 'cast_thumbs')

@@ -5,12 +5,13 @@ class AdminController < ApplicationController
 
   def backup
 
-    str = Person.seed_output
-    str += Credit.seed_output
-    str += Skill.seed_output
-    str += User.seed_output
-    str += HairColour.seed_output
-    str += EyeColour.seed_output
+    str = Person.to_rb
+    str += Credit.to_rb
+    str += Skill.to_rb
+    str += User.to_rb
+    str += HairColour.to_rb
+    str += EyeColour.to_rb
+    str += Applicant.to_rb
 
     str = "<pre># encoding: utf-8\n#{str}\n</pre>"
 

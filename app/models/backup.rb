@@ -5,28 +5,22 @@ module Backup
   end
 
   module ClassMethods
-    def seed_output
 
-      s = ''
-      last = self.attribute_names.last
-      self.all.to_yaml.each_line do |line|
-
-        line.gsub!(/^---$/, '')
-        line.gsub!(/"/, '\"')
-        line.gsub!("attributes:\n", '')
-
-        line.gsub!(/- !ruby\/object:(\w+)/, "#{self.name}.create(")
-        line.gsub!(/: (.*)/, ': "\1",')
-        line.gsub!(/: ("(\d*)")/, ': \2')
-        line.gsub!(/: ,/, ': ""',)
-        if line =~ /#{last}/
-          line.reverse!.sub!(',', ')').reverse!
-        end
-        #line.gsub!(/('[^']*)(')([^']*')/, '\1\\\\\2\3')
-        s += line
-      end
-      s
+    def to_rb
+      self.all.map do |m|
+        "#{self.name}.create(\n" +
+        m.attributes.map do |a|
+          if a[1].class == Fixnum
+            "  #{a[0]}: #{a[1]}"
+          elsif a[1].class == String
+            "  #{a[0]}: '#{a[1].gsub(/'/,"\\\\'")}'"
+          else
+            "  #{a[0]}: '#{a[1]}'"
+          end
+        end.join(",\n") + ")\n"
+      end.join("\n")
     end
+
   end
 
 end
