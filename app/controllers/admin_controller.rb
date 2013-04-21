@@ -14,7 +14,7 @@ class AdminController < ApplicationController
     str += EyeColour.to_rb
     str += Applicant.to_rb
 
-    str = "<pre># encoding: utf-8\n x = '\n #{str}\n</pre>"
+    str = "<pre># encoding: utf-8\n#{str}\n</pre>"
 
     respond_to do |format|
       format.html {render text: str }
