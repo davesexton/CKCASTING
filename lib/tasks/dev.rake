@@ -6,6 +6,11 @@ namespace :dev do
     require 'open-uri'
     require 'hpricot'
 
+    unless ARGV[1] && ARGV[1] =~ /@/
+      puts "ERROR: Missing or invalid creditials parameter"
+      exit
+    end
+
     cred = ARGV[1].split('@')
 
     uri = URI.parse('http://www.ckcasting.co.uk:80/login')
@@ -24,10 +29,22 @@ namespace :dev do
 
     seed_file = Rails.root.join('db', 'seeds.rb')
     doc = Hpricot(response.body)
-    File.open(seed_file, 'w:ASCII-8BIT') {|f| f.write((doc/'/pre').innerHTML) }
+    File.open(seed_file, 'w:ASCII-8BIT') {|f| f.write((doc/'/pre').innerHTML)}
+
+    check = `ruby -c #{Rails.root.join('db','seeds.rb')} 2>&1`
+
+    if $?.exitstatus != 0
+      puts "ERROR: Invalid seeds.rb file"
+      puts check.gsub("\n", '')
+      exit
+    end
+
+    Rake::Task['db:drop'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
+    Rake::Task['db:seed'].invoke
 
     exit
-    debugger
 
     puts "Removing cast thumbnail images"
     dir = Rails.root.join('public', 'cast_thumbs')

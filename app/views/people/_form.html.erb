@@ -12,7 +12,7 @@
   <% end %>
   <div class="imageColumn">
     <div class="castThumb">
-      <%= image_tag f.object.thumbnail_url %>
+      <%= image_tag f.object.thumbnail_path %>
     </div>
   </div>
   <div class="fieldColumn">
@@ -44,7 +44,10 @@
     </div>
     <div class="field">
       <%= f.label :date_of_birth %>
-      <%= f.date_select :date_of_birth, :order => [:day, :month, :year], start_year: Date.today.year - 90 %>
+      <%= f.date_select :date_of_birth,
+          :order => [:day, :month, :year],
+          start_year: Date.today.year - 90,
+          end_year: Date.today.year %>
     </div>
     <div class="field">
       <%= f.label :height_feet,
@@ -53,7 +56,8 @@
                     @heights_feet,
                     selected: f.object.height_feet %>
       &nbsp;ft&nbsp;
-      <%= f.select :height_inches, @heights_inches, selected: f.object.height_inches %>
+      <%= f.select :height_inches, @heights_inches,
+                   selected: f.object.height_inches %>
       &nbsp;in
     </div>
     <div class="field">

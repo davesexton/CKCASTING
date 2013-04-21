@@ -25,7 +25,7 @@
     <li>
       <div class="scrollContainer">
         <div class="scrollImg">
-          <%= link_to(image_tag(n.thumbnail_url,
+          <%= link_to(image_tag(n.thumbnail_path,
             alt: n.title, title: n.title, size: '52x60'), n.url) %>
 
         </div>
@@ -43,6 +43,6 @@
 </div>
 <div id="carouselImages">
     <% @carousel.each do |c| %>
-        <%= image_tag c.carousel_url, id: "img#{c.id}" %>
+        <%= image_tag c.carousel_path, id: "img#{c.id}" %>
     <% end %>
 </div>

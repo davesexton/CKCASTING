@@ -41,12 +41,12 @@ class CastbookController < ApplicationController
         render json:
          @castlist.as_json(
             only: [:id, :gender],
-            methods: [:full_name, :height_group, :thumbnail_url])
+            methods: [:full_name, :height_group, :thumbnail_path])
       }
       format.xml {
         render xml: @castlist.to_xml(
             only: [:id],
-            methods: [:url, :thumbnail_url])
+            methods: [:url, :thumbnail_path])
       }
     end
   end

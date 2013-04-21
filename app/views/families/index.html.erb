@@ -19,7 +19,7 @@
     </tr>
   <% @families.each do |family| %>
     <tr>
-      <td><%= image_tag family.thumbnail_url, size: '52x60' %></td>
+      <td><%= image_tag family.thumbnail_path, size: '52x60' %></td>
       <td><%= link_to family.title, edit_family_path(family) %></td>
       <td>
         <%= pluralize(family.people.size, 'person') %>

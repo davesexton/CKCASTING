@@ -1,7 +1,7 @@
 <% @title = @castbook.full_name %>
 <div class="columnCastImage">
   <div class="castImage">
-  <%= image_tag @castbook.image_url,
+  <%= image_tag @castbook.image_path,
                 alt: @castbook.full_name,
                 title: @castbook.full_name,
                 size: '261x300' %>

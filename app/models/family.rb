@@ -36,7 +36,7 @@ class Family < ActiveRecord::Base
     "/family_groups/family/#{id}"
   end
 
-  def image_url
+  def image_path
     path = Rails.root.join('public', 'family_images', "#{id}.jpg")
     if FileTest.exist?(path)
       "/family_images/#{id}.jpg?timestamp=#{Time.now.to_i}"
@@ -45,7 +45,7 @@ class Family < ActiveRecord::Base
     end
   end
 
-  def thumbnail_url
+  def thumbnail_path
     if FileTest.exist?(Rails.root.join('public', 'family_images', "#{id}.jpg"))
       path = Rails.root.join('public', 'family_thumbs', "#{id}.jpg")
       make_family_thumbnail unless FileTest.exist?(path)

@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
-  attr_reader :full_name, :full_url, :url, :iamge_url,
-              :thumnail_url, :carousel_url, :skill_list,
+  attr_reader :full_name, :full_url, :url, :iamge_path,
+              :thumnail_path, :carousel_path, :skill_list,
               :age_group, :age_group_id, :height_group,
               :height_group_id, :hair_colour_group, :has_image, :age
   attr_writer :image_upload
@@ -90,7 +90,7 @@ class Person < ActiveRecord::Base
     "/castbook/cast/#{id}"
   end
 
-  def image_url
+  def image_path
     path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
     if FileTest.exist?(path)
       "/cast_images/#{id}.jpg?timestamp=#{Time.now.to_i}"
@@ -99,7 +99,7 @@ class Person < ActiveRecord::Base
     end
   end
 
-  def thumbnail_url
+  def thumbnail_path
     if FileTest.exist?(Rails.root.join('public', 'cast_images', "#{id}.jpg"))
       path = Rails.root.join('public', 'cast_thumbs', "#{id}.jpg")
       make_cast_thumbnail unless FileTest.exist?(path)
@@ -109,7 +109,7 @@ class Person < ActiveRecord::Base
     end
   end
 
-  def carousel_url
+  def carousel_path
     path = Rails.root.join('public', 'cast_carousel', "#{id}.jpg")
     make_cast_carousel unless FileTest.exist?(path)
     "/cast_carousel/#{id}.jpg?timestamp=#{Time.now.to_i}"
@@ -185,14 +185,17 @@ class Person < ActiveRecord::Base
 
   def age
     unless date_of_birth.nil?
-      months = (Date.today.year * 12 + Date.today.month) - (date_of_birth.year * 12 + date_of_birth.month)
+      months = (Date.today.year * 12 + Date.today.month)
+        - (date_of_birth.year * 12 + date_of_birth.month)
       (months / 12).to_i
     end
   end
 
   def age_group
     if date_of_birth
-      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth < e[:to].to_date}[0][:text]
+      Person.age_groups.select do |i|
+        date_of_birth.between?(i[:from], i[:to])
+      end[0][:text]
     else
       Person.age_groups.last[:text]
     end
@@ -200,22 +203,21 @@ class Person < ActiveRecord::Base
 
   def age_group_id
     if date_of_birth
-      Person.age_groups.select{|e| date_of_birth >= e[:from].to_date and date_of_birth < e[:to].to_date}[0][:id]
+      Person.age_groups.select do |i|
+        date_of_birth.between?(i[:from], i[:to])
+      end[0][:id]
     else
       Person.age_groups.last[:id]
     end
   end
 
   def self.age_groups
-    now = Time.now.utc
-    [{id: 0, text: 'Under 3 years', from: now - 3.years, to: now},
-     {id: 1, text: '3-6 years', from: now - 6.years, to: now - 3.years},
-     {id: 2, text: '6-9 years', from: now - 9.years, to: now - 6.years},
-     {id: 3, text: '9-12 years', from: now - 12.years, to: now - 9.years},
-     {id: 4, text: '12-15 years', from: now - 15.years, to: now - 12.years},
-     {id: 5, text: '15-18 years', from: now - 18.years, to: now - 15.years},
-     {id: 6, text: 'Over 18 years', from: now - 200.years, to: now - 18.years}
-    ]
+    (0..6).collect do |i|
+      {id: i,
+       text: "#{i * 3}-#{i * 3 + 3} years".sub('0-', 'Under ').sub('18-21', 'Over 18'),
+       from: (i == 6 ? 200 : i * 3 + 3).years.ago.to_date,
+       to: (i * 3).years.ago.to_date}
+    end
   end
 
   def height_group
@@ -257,10 +259,6 @@ class Person < ActiveRecord::Base
     last_viewed_at
   end
 
-  def self.get_heights_feet
-    (0..7).map{ |i| i}
-  end
-
   def self.get_hair_colours
     HairColour.order(:hair_colour).pluck(:hair_colour)
   end
@@ -270,11 +268,11 @@ class Person < ActiveRecord::Base
   end
 
   def self.get_heights_feet
-    (0..7).map{ |i| i}
+    (0..7).to_a
   end
 
   def self.get_heights_inches
-    (0..11).map{ |i| i}
+    (0..11).to_a
   end
 
   private
@@ -311,13 +309,13 @@ class Person < ActiveRecord::Base
   end
 
   def date_of_birth_cannot_be_in_the_furtue
-    if !date_of_birth.blank? and date_of_birth >= Time.now.utc.to_date
+    if !date_of_birth.blank? and date_of_birth >= Date.today
       errors.add(:date_of_birth, "date of birth can't be greater than today")
     end
   end
 
   def date_of_birth_cannot_give_age_over_100
-    if !date_of_birth.blank? and date_of_birth <= Time.now.utc.to_date - 100.years
+    if !date_of_birth.blank? and date_of_birth <= 100.years.ago.to_date
       errors.add(:date_of_birth, "date of birth can't be more than 100 years in the past")
     end
   end
