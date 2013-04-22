@@ -1,23 +1,23 @@
 namespace :dev do
   desc "Reseed development database with live data"
-  task :reseed => :environment do
+  task :reseed, [:name, :password] => :environment do |t, args|
 
     require 'net/http'
     require 'open-uri'
     require 'hpricot'
 
-    unless ARGV[1] && ARGV[1] =~ /@/
+    puts args.password
+
+    if args.name.nil? || args.password.nil?
       puts "ERROR: Missing or invalid creditials parameter"
       exit
     end
-
-    cred = ARGV[1].split('@')
 
     uri = URI.parse('http://www.ckcasting.co.uk:80/login')
     http = Net::HTTP.new(uri.host, uri.port)
 
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data({name: cred[0], password: cred[1]})
+    request.set_form_data({name: args.name, password: args.password})
 
     response = http.request(request)
 
@@ -38,13 +38,14 @@ namespace :dev do
       puts check.gsub("\n", '')
       exit
     end
+    debugger
 
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
     Rake::Task['db:seed'].invoke
 
-    exit
+    puts "Database reseeded!"
 
     puts "Removing cast thumbnail images"
     dir = Rails.root.join('public', 'cast_thumbs')
