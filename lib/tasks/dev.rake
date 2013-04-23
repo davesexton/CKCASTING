@@ -6,8 +6,6 @@ namespace :dev do
     require 'open-uri'
     require 'hpricot'
 
-    puts args.password
-
     if args.name.nil? || args.password.nil?
       puts "ERROR: Missing or invalid creditials parameter"
       exit
@@ -38,7 +36,6 @@ namespace :dev do
       puts check.gsub("\n", '')
       exit
     end
-    debugger
 
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
