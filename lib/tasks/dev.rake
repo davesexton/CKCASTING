@@ -42,7 +42,7 @@ namespace :dev do
     Rake::Task['db:migrate'].invoke
     puts "Stsrting database seeding..."
     Rake::Task['db:seed'].invoke
-    puts "Database reseeded!"
+    puts 'Database reseeded!'
 
     puts "Removing cast thumbnail images"
     dir = Rails.root.join('public', 'cast_thumbs')

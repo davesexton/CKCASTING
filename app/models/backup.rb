@@ -23,7 +23,7 @@ module Backup
         end.join(",\n") + ")\n" +
         "#{self.name.downcase}.id = #{m.id}\n" +
         "#{self.name.downcase}.save(validate: false)"
-      end.join("\n") + "\nputs ''#{self.name} records created'\n"
+      end.join("\n") + "\nputs '#{self.name} records created'\n"
     end
 
   end
