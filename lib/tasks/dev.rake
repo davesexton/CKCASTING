@@ -40,8 +40,8 @@ namespace :dev do
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
+    puts "Stsrting database seeding..."
     Rake::Task['db:seed'].invoke
-
     puts "Database reseeded!"
 
     puts "Removing cast thumbnail images"

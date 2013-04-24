@@ -7,7 +7,7 @@ module Backup
   module ClassMethods
 
     def to_rb
-      self.order(:id).all.map do |m|
+      self.order('id DESC').all.map do |m|
         "#-------------------------\n" +
         "#{self.name.downcase} = #{self.name}.new(\n" +
         m.attributes.except('id', 'created_at', 'updated_at').map do |a|
@@ -23,7 +23,7 @@ module Backup
         end.join(",\n") + ")\n" +
         "#{self.name.downcase}.id = #{m.id}\n" +
         "#{self.name.downcase}.save(validate: false)"
-      end.join("\n") + "\n"
+      end.join("\n") + "\nputs ''#{self.name} records created'\n"
     end
 
   end
