@@ -10,8 +10,6 @@ class AdminController < ApplicationController
     str += Credit.to_rb
     str += Skill.to_rb
     str += User.to_rb
-    str += HairColour.to_rb
-    str += EyeColour.to_rb
     str += Applicant.to_rb
 
     str = "<pre># encoding: utf-8\n#{str}\n</pre>"
