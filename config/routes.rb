@@ -14,7 +14,7 @@ Ckcasting::Application.routes.draw do
 
   match 'castbook/castlist' => 'castbook#castlist'
   match 'castbook/(:id)' => 'castbook#index'
-  match 'castbook/cast/(:id)' => 'castbook#show'
+  match 'castbook/cast/(:id)' => 'castbook#show', as: :cast
   match 'home' => 'home#index'
   match 'join' => 'join#index'
   get 'backup' => 'admin#backup'

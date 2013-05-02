@@ -74,7 +74,7 @@
     </td>
     <td><%= c.full_url %></td>
   </tr>
-  <% if c.skill_list != '' %>
+  <% unless c.skill_list.blank? %>
   <tr>
     <td>
       Skills:
@@ -84,7 +84,7 @@
     </td>
   </tr>
   <% end %>
-  <% if c.credit_list_array.size != 0 %>
+  <% if c.credits.any? %>
   <tr>
     <td colspan="2">
       <%= pluralize(c.credits.size, "Credit") %>:
@@ -98,4 +98,12 @@
     </td>
   </tr>
   <% end %>
+  <tr>
+    <td colspan="2">
+      <%= link_to "Download PDF cast sheet",
+                  cast_path(c.id, format: "pdf"),
+                  target: '_blank' %><br />
+      <%= link_to_function "Back to listing", "history.back()" %>
+    </td>
+  </tr>
   </table>

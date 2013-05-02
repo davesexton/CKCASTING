@@ -2,7 +2,7 @@
   .adminTasks {
     margin-top: 10px;
     @include prepend(1);
-    @include span(19);
+    @include column(19);
 
   }
   .adminTask {

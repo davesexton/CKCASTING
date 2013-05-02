@@ -90,6 +90,10 @@ class Person < ActiveRecord::Base
     "/castbook/cast/#{id}"
   end
 
+  def pdf_name
+    full_name.downcase.gsub(/[^a-z-]+/, '_')
+  end
+
   def image_path
     path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
     if FileTest.exist?(path)
@@ -97,6 +101,10 @@ class Person < ActiveRecord::Base
     else
       'default_cast_image.jpg'
     end
+  end
+
+  def pdf_image_path
+    "public/cast_images/#{id}.jpg"
   end
 
   def thumbnail_path

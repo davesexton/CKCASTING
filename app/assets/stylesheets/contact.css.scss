@@ -1,5 +1,11 @@
 .contact {
   .contactDetail {
-    @include prepend(1);
+   /* @include prepend(1); */
+    @include column(12);
+  }
+  .contactAlt {
+    @include column(2);
+    color: #ff0000;
+    font-size: 24pt;
   }
 }

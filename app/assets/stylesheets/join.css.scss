@@ -1,10 +1,10 @@
 .join {
   .joinDetail {
-    @include span(22);
+    @include column(22);
     @include last;
     & > div {
       @include prepend(1);
-      @include span(20);
+      @include column(20);
       @include append(1);
       vertical-align: top;
     }
