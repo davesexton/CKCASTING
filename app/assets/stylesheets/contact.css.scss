@@ -4,8 +4,8 @@
     @include column(12);
   }
   .contactAlt {
-    @include column(2);
-    color: #ff0000;
-    font-size: 24pt;
+    @include column(9);
+    @include last;
+    text-align: center;
   }
 }

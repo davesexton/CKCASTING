@@ -1,8 +1,10 @@
 <% @title = 'Contact' %>
 <% @description = 'Get in conntact with us here at CK Casting' %>
+<div>
+  <p>If you would like to contact us please use the form below.</p>
+</div>
 <div class="contactDetail">
-  <p>If you would like to contact us please use the form below.
-  </p>
+
   <%= form_for @message, url: contact_path do |f| %>
     <%= f.label :name, 'Your name:' %><br />
     <%= f.text_field :name, size: 25 %><br />
@@ -16,5 +18,16 @@
   <% end %>
 </div>
 <div class="contactAlt">
-  ggg
+<h3>Contact Details:</h3>
+   Carmel Thomas<br />
+   01371-851-164<br />
+   07944-955-186<br /><br />
+   Charlotte Turner-Kersley<br />
+   07970-902-640<br /><br />
+
+   Parkview<br />
+   1 School Road<br />
+   Blackmore End<br />
+   Essex<br />
+   CM7 4DN<br />
 </div>
