@@ -217,7 +217,7 @@ class CastbookController < ApplicationController
              inline_format: true
         text "#{c1}Eye Colour:#{ce} #{cast.eye_colour}",
              inline_format: true
-        text "#{c1}Height:#{ce} #{cast.height_feet}' #{cast.height_feet}\"",
+        text "#{c1}Height:#{ce} #{cast.height_feet}' #{cast.height_inches}\"",
              inline_format: true
         move_down 15
         text "#{c1}URL:#{ce} <link href='#{cast.full_url}'>#{cast.full_url}</link>",

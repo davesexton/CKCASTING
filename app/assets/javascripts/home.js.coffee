@@ -23,15 +23,11 @@ scroll = ->
     li.show().css('margin-top', h + 'px')
     li.css('margin-top', h + 'px').show()
     $(this).css('margin-top', 'auto')
-    console.log 'hi'
   )
 
 imgs = []
 
 $ ->
-#  $('#flashMessage').delay(500).fadeIn('normal', ->
-#    $(@).delay(6000).fadeOut()
-#  )
   h = ($('#scroller li:first').outerHeight() * -1)
   $('#scroller li:first').css('margin-top', h + 'px')
   $('#scroller li').each((i, e)->
