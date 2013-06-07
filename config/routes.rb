@@ -18,6 +18,8 @@ Ckcasting::Application.routes.draw do
   match 'home' => 'home#index'
   match 'join' => 'join#index'
   get 'backup' => 'admin#backup'
+  get 'header' => 'admin#header'
+  post 'header' => 'admin#update'
   get 'contact' => 'contact#index'
   post 'contact' => 'contact#send_message'
 

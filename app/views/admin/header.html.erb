@@ -1,0 +1,30 @@
+<% @title = 'Header Manager' %>
+<h2>Header Manager</h2>
+
+<p>
+  Select seven cast members who's images you would like to appear
+  on the website header.
+</p>
+<%= form_tag({action: :update}, multipart: true) do %>
+<table class="">
+
+<% (1..7).each do |i| %>
+  <tr>
+    <td>
+      <% l = '' %>
+      <% l = ' (front)' if i == 1 %>
+      <% l = ' (back)' if i == 7 %>
+      <%= label_tag "Image #{i} #{l}" %>
+    </td>
+    <td>
+      <%= select_tag "images[#{i}]",
+          options_from_collection_for_select(@people.all, :id, :full_name) %>
+    </td>
+  </tr>
+
+
+<% end %>
+
+</table>
+<%= submit_tag 'Update header' %>
+<% end %>
