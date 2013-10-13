@@ -1,0 +1,25 @@
+- @title = 'Applicants'
+
+%p Below is a list of applications to join CK Casting.
+
+= will_paginate @applicants
+
+%table
+  %tr
+    %th First Name
+    %th Last Name
+    %th Created
+    %th
+
+  - @applicants.each do |applicant|
+    %tr
+      %td
+        = applicant.first_name
+      %td
+        = applicant.last_name
+      %td
+        = applicant.created_at_string
+      %td
+        = link_to 'Show', applicant
+
+= will_paginate @applicants

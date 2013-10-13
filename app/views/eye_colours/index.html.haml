@@ -1,0 +1,24 @@
+%h1 Listing eye_colours
+
+%table
+  %tr
+    %th Eye colour
+    %th
+    %th
+    %th
+
+  - @eye_colours.each do |eye_colour|
+    %tr
+      %td
+        = eye_colour.eye_colour
+      %td
+        = link_to 'Show', eye_colour
+      %td
+        = link_to 'Edit', edit_eye_colour_path(eye_colour)
+      %td
+        = link_to 'Destroy', eye_colour,
+                  data: { confirm: 'Are you sure?' }, method: :delete
+
+%br/
+
+= link_to 'New Eye colour', new_eye_colour_path

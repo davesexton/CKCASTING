@@ -1,0 +1,9 @@
+%p#notice
+  = notice
+%p
+  %b Eye colour:
+  = @eye_colour.eye_colour
+
+= link_to 'Edit', edit_eye_colour_path(@eye_colour)
+|
+= link_to 'Back', eye_colours_path

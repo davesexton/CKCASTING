@@ -1,0 +1,108 @@
+- @title = 'Applicant'
+
+%div.applicantDetails
+  %table.applicantTable
+    %tr
+      %th{colspan: 2}
+        Applicant's Details
+    %tr
+      %td.key First name:
+      %td.value
+        = @applicant.first_name
+    %tr
+      %td.key Last name:
+      %td.value
+        = @applicant.last_name
+    %tr
+      %td.key Address:
+      %td.value
+        = @applicant.address_line_1
+        %br/
+        = @applicant.address_line_2
+        %br/
+        = @applicant.address_line_3
+        %br/
+        = @applicant.address_line_4
+        %br/
+    %tr
+      %td.key Postcode:
+      %td.value
+        = @applicant.postcode
+    %tr
+      %td.key Date of birth:
+      %td.value
+        = @applicant.date_of_birth_string
+    %tr
+      %td.key Gender:
+      %td.value
+        = @applicant.gender
+    %tr
+      %td.key Height:
+      %td.value
+        = @applicant.height_string
+    %tr
+      %td.key Hair colour:
+      %td.value
+        = @applicant.hair_colour
+    %tr
+      %td.key Eye colour:
+      %td.value
+        = @applicant.eye_colour
+    %tr
+      %td.key Skills:
+      %td.value
+        = @applicant.skills
+    %tr
+      %th{colspan: 2} First Parent or Gaurdian
+    %tr
+      %td.key Name:
+      %td.value
+        = @applicant.gaurdian_name_1
+    %tr
+      %td.key Telephone:
+      %td.value
+        = @applicant.gaurdian_telephone_1
+    %tr
+      %td.key Email address:
+      %td.value
+        = @applicant.email_address
+    %tr
+      %th{colspan: 2} Second Parent or Gaurdian
+    %tr
+      %td.key Name:
+      %td.value
+        = @applicant.gaurdian_name_2
+    %tr
+      %td.key Telephone:
+      %td.value
+        = @applicant.gaurdian_telephone_2
+    %tr
+      %th{colspan: 2} Third Parent or Gaurdian
+    %tr
+      %td.key Name:
+      %td.value
+        = @applicant.gaurdian_name_3
+    %tr
+      %td.key Telephone:
+      %td.value
+        = @applicant.gaurdian_telephone_3
+    %tr
+      %th{colspan: 2} Credits
+    %tr
+      %td.key Stage:
+      %td.value
+        = @applicant.stage_credits
+    %tr
+      %td.key TV:
+      %td.value
+        = @applicant.tv_credits
+    %tr
+      %td.key Film
+      %td.value
+        = @applicant.film_credits
+    %tr
+      %td.key Other
+      %td.value
+        = @applicant.other_credits
+
+  = link_to 'Back', applicants_path

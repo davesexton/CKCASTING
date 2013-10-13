@@ -1,0 +1,15 @@
+%p#notice
+  = notice
+%p
+  %b Person:
+  = @credit.Person_id
+%p
+  %b Display order:
+  = @credit.display_order
+%p
+  %b Credit text:
+  = @credit.credit_text
+
+= link_to 'Edit', edit_credit_path(@credit)
+|
+= link_to 'Back', credits_path

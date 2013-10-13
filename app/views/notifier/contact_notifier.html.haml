@@ -1,0 +1,10 @@
+%b Comment recieved through CK Casting website
+%p
+  %b From:
+  = @message.name
+%p
+  %b Email:
+  = mail_to @message.email
+%p
+  %b Message:
+%p #{@message.message}

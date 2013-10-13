@@ -55,7 +55,7 @@ class ApplicantsController < ApplicationController
       if @applicant.save
         Notifier.join_notifier(@applicant).deliver
         Notifier.join_acknowledge(@applicant).deliver
-        format.html { redirect_to home_url,
+        format.html { redirect_to root_url,
                       notice: 'Thank you for your application.' }
         format.json { render json: @applicant,
                       status: :created,

@@ -1,0 +1,29 @@
+%h1 Listing skills
+
+%table
+  %tr
+    %th Person id
+    %th Display Order
+    %th Skill Text
+    %th
+    %th
+    %th
+
+  - @skills.each do |skill|
+    %tr
+      %td
+        = skill.Person_id
+      %td
+        = skill.display_order
+      %td
+        = skill.skill_text
+      %td
+        = link_to 'Show', skill
+      %td
+        = link_to 'Edit', edit_skill_path(skill)
+      %td
+        = link_to 'Destroy', skill, confirm: 'Are you sure?', method: :delete
+
+%br/
+
+= link_to 'New Skill', new_skill_path

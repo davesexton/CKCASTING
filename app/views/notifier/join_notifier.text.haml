@@ -1,0 +1,56 @@
+Application recieved through CK Casting website
+
+This application can be viewed online at:
+http://www.ckcasting.co.uk/aplicants/#{@applicant.id}
+
+Applicant's Details
+\-------------------
+First name: #{@applicant.first_name}
+Last name: #{@applicant.last_name}
+
+Address:
+= @applicant.address_line_1
+= @applicant.address_line_2
+= @applicant.address_line_3
+= @applicant.address_line_4
+Postcode: #{@applicant.postcode}
+
+Date of birth: #{@applicant.date_of_birth}
+Gender: #{@applicant.gender}
+
+Height: #{@applicant.height_string}
+Hair colour: #{@applicant.hair_colour}
+Eye colour: #{@applicant.eye_colour}
+
+Skills:
+#{@applicant.skills}
+
+First Parent or Gaurdian
+\------------------------
+Name: #{@applicant.gaurdian_name_1}
+Telephone: #{@applicant.gaurdian_telephone_1}
+Email address: #{@applicant.email_address}
+
+Second Parent or Gaurdian
+\-------------------------
+Name: #{@applicant.gaurdian_name_2}
+Telephone: #{@applicant.gaurdian_telephone_2}
+
+Third Parent or Gaurdian
+\------------------------
+Name: #{@applicant.gaurdian_name_3}
+Telephone: #{@applicant.gaurdian_telephone_3}
+
+Credits
+\-------
+stage:
+#{@applicant.stage_credits}
+
+TV:
+#{@applicant.tv_credits}
+
+Film:
+#{@applicant.film_credits}
+
+Other:
+#{@applicant.other_credits}

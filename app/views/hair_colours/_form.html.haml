@@ -1,0 +1,15 @@
+= form_for(@hair_colour) do |f|
+  - if @hair_colour.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@hair_colour.errors.count, "error")
+        prohibited this hair_colour from being saved:
+      %ul
+        - @hair_colour.errors.full_messages.each do |msg|
+          %li #{msg}
+  %div.field
+    = f.label :hair_colour
+    %br/
+    = f.text_field :hair_colour
+  %div.actions
+    = f.submit

@@ -1,0 +1,12 @@
+- @title = @castbook.full_name
+
+%div.columnCastImage
+  %div.castImage
+    = image_tag @castbook.image_path,
+                alt: @castbook.full_name,
+                title: @castbook.full_name,
+                size: '261x300'
+
+%div.columnCastDetails
+  = render partial: 'shared/castdetails',
+           locals: {c: @castbook, show_family_link: true}

@@ -1,0 +1,12 @@
+- @title = 'Cast Edit'
+
+%h2
+  Editing Person:
+  = @person.full_name
+%p
+  Change any details using the form below and then click the
+  update button to save the changes.
+
+= render 'form'
+
+= link_to 'Back', people_path

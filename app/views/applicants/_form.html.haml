@@ -1,0 +1,104 @@
+= form_for(@applicant) do |f|
+  - if @applicant.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@applicant.errors.count, "error")
+        prohibited this application from being sent:
+      %ul
+        - @applicant.errors.full_messages.each do |msg|
+          %li #{msg}
+
+  %div.applicantDetails
+    %fieldset
+      %legend Candidate's Details
+      %div.field
+        = f.label :first_name, class: 'appLabel'
+        = f.text_field :first_name
+      %div.field
+        = f.label :last_name, class: 'appLabel'
+        = f.text_field :last_name
+      %div.field
+        = f.label 'Street', class: 'appLabel'
+        = f.text_field :address_line_1
+      %div.field
+        = f.label 'Town', class: 'appLabel'
+        = f.text_field :address_line_2
+      %div.field
+        = f.label 'City', class: 'appLabel'
+        = f.text_field :address_line_3
+      %div.field
+        = f.label 'Region', class: 'appLabel'
+        = f.text_field :address_line_4
+      %div.field
+        = f.label :postcode, class: 'appLabel'
+        = f.text_field :postcode
+      %div.field
+        = f.label :date_of_birth, class: 'appLabel'
+        = f.date_select :date_of_birth,
+            order: [:day, :month, :year],
+            start_year: Date.today.year - 90
+      %div.field
+        = f.label :gender, class: 'appLabel'
+        = f.select(:gender, options_for_select([['Male'],['Female']]))
+      %div.field
+        = f.label :height_feet, 'Height', class: 'appLabel'
+        = f.select(:height_feet, options_for_select( (0..7).to_a ))
+        feet
+        = f.select(:height_inches, options_for_select( (0..11).to_a ))
+        inches
+      %div.field
+        = f.label :hair_colour, class: 'appLabel'
+        = f.select(:hair_colour, options_for_select(@hair_colour))
+      %div.field
+        = f.label :eye_colour, class: 'appLabel'
+        = f.select(:eye_colour, options_for_select(@eye_colour))
+      %div.field
+        = f.label 'Skills, Music / Drama Exams, Hobbies', class: 'appLabel'
+        = f.text_area :skills
+
+      %fieldset
+        %legend Parent or Guardian Contact Details
+        First Parent or Guardian
+        %div.field
+          = f.label 'Name', class: 'appLabel'
+          = f.text_field :gaurdian_name_1
+        %div.field
+          = f.label 'Telephone', class: 'appLabel'
+          = f.text_field :gaurdian_telephone_1
+        %div.field
+          = f.label 'Email address', class: 'appLabel'
+          = f.text_field :email_address
+        %br/
+        Second Parent or Guardian
+        %div.field
+          = f.label 'Name', class: 'appLabel'
+          = f.text_field :gaurdian_name_2
+        %div.field
+          = f.label 'Telephone', class: 'appLabel'
+          = f.text_field :gaurdian_telephone_2
+        %br/
+        Third Parent or Guardian
+        %div.field
+          = f.label 'Name', class: 'appLabel'
+          = f.text_field :gaurdian_name_3
+        %div.field
+          = f.label 'Telephone', class: 'appLabel'
+          = f.text_field :gaurdian_telephone_3
+      %fieldset
+        %legend Pro/Amateur Performance Credits
+        %div.field
+          = f.label :stage_credits, class: 'appLabel'
+          = f.text_area :stage_credits
+        %div.field
+          = f.label :tv_credits, class: 'appLabel'
+          = f.text_area :tv_credits
+        %div.field
+          = f.label :film_credits, class: 'appLabel'
+          = f.text_area :film_credits
+        %div.field
+          = f.label :other_credits,
+            'Other (voice overs; radio; modelling etc...)',
+            class: 'appLabel'
+          = f.text_area :other_credits
+        %div.actions
+          = f.submit 'Submit Application'

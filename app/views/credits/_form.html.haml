@@ -1,0 +1,22 @@
+= form_for(@credit) do |f|
+  - if @credit.errors.any?
+    %div#error_explanation
+      %h2 = pluralize(@credit.errors.count, "error")  prohibited this credit from being saved:
+      %ul
+        - @credit.errors.full_messages.each do |msg|
+          %li #{msg}
+
+  %div.field
+    = f.label :Person_id
+    %br/
+    = f.text_field :Person_id
+  %div.field
+    = f.label :display_order
+    %br/
+    = f.number_field :display_order
+  %div.field
+    = f.label :credit_text
+    %br/
+    = f.text_field :credit_text
+  %div.field
+    = f.submit

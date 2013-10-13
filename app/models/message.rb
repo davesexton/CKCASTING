@@ -7,7 +7,7 @@ class Message
   attr_accessor :name, :email, :message
 
   validates :name, :email, :message, :presence => true
-  validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => false
+  validates :email, format: { with: %r{.+@.+\..+} }, allow_blank: false
 
   def initialize(attributes = {})
     attributes.each do |name, value|

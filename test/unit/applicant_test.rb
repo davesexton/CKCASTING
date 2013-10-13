@@ -121,15 +121,6 @@ class ApplicantTest < ActiveSupport::TestCase
     applicant.gaurdian_telephone_3 = '0123-4567890'
     assert applicant.valid?
 
-    applicant.fax = 'xxx'
-    assert applicant.invalid?, 'invalid fax allowed'
-    applicant.fax = '99-999-9999'
-    assert applicant.invalid?, 'invalid fax allowed'
-    assert_equal "number is invalid",
-                 applicant.errors[:fax].join(';')
-    applicant.fax = '0123-4567890'
-    assert applicant.valid?
-
   end
 
 end

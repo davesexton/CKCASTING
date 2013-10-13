@@ -1,0 +1,30 @@
+- @title = 'Join Us'
+- @description = 'Join the cast at CK Casting'
+
+%div.joinDetail
+%p
+  If you would like to become a member of CK Casting
+  you can do so by either of two methods. The first is
+  to post in a completed registration form using the
+  link below to print off a form. The second method is to
+  complete an online form, again use the links below.
+  Before registering make sure you have read our terms
+  and conditions first.
+
+  %div
+    = link_to(image_tag('mouse_icon.gif',
+                         alt: 'Join online',
+                         size: '59x60'), new_applicant_path)
+    = link_to 'Online application form', new_applicant_path
+
+  %div
+    = link_to(image_tag('doc_icon.gif',
+                         alt: 'Join online',
+                         size: '59x60'), '/registration.pdf')
+    = link_to 'Printable form', '/registration.pdf'
+
+  %div
+    = link_to(image_tag('doc_icon.gif',
+                         alt: 'Terms and conditions',
+                         size: '59x60'), '/terms.pdf')
+    = link_to 'Terms and conditions', '/terms.pdf'

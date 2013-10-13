@@ -1,0 +1,27 @@
+= form_for(@skill) do |f|
+  - if @skill.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@skill.errors.count, 'error')
+        prohibited this skill from being saved:
+      %ul
+        - @skill.errors.full_messages.each do |msg|
+          %li #{msg}
+
+  %div.field
+    = f.label :Person_id
+    %br/
+    = f.text_field :Person_id
+
+  %div.field
+    = f.label :display_order
+    %br/
+    = f.number_field :display_order
+
+  %div.field
+    = f.label :skill_text
+    %br/
+    = f.text_field :skill_text
+
+  %div.actions
+    = f.submit

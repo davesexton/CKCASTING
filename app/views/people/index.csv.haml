@@ -1,0 +1,3 @@
+"ID","First Name","Last Name","Date of Birth","Age","Height","Hair Colour","Eye Colour","Gender","Skills","Postcode","Latitude","Longitude","Telephone Number","Email Address","Family","Status","Last Viewed At","View Count","Created At","Updated At"
+- @people.each do |p|
+  "#{p.id}","#{raw p.first_name}","#{raw p.last_name}","#{p.date_of_birth_string}","#{p.age}","#{p.height_string}","#{p.hair_colour}","#{p.eye_colour}","#{p.gender}","#{raw p.skill_list}","#{p.postcode}","#{p.latitude}","#{p.longitude}","#{p.telephone_number}","#{p.email_address}","#{raw p.family.title if p.family}","#{p.status}","#{p.last_viewed_at_string}","#{p.view_count}","#{p.created_at_string}","#{p.updated_at_string}"

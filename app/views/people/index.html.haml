@@ -1,0 +1,73 @@
+- @title = 'Cast Manager'
+
+%h2 Cast Manager
+%div.pageDesc
+  %p
+    Listed below are all cast members, active and inactive. Use the link
+    below to switch between active and inactive. Cast members cannot be
+    deleted only made inactive which will prevent them from being
+    displayed on the website. Use the name link to edit an individual's
+    details or use the new person link in the table header to create a
+    new cast member.
+
+%div.actionColumn
+  %p
+    Show:
+    %a#ShowHide Inactive
+    %br/
+    Download:
+    = link_to 'CSV', people_path(format: 'csv')
+    |
+    = link_to 'Excel', people_path(format: 'xls')
+    %br/
+    Create:
+    = link_to 'New Person', new_person_path
+
+%div.infoColumn
+  %p Summary: #{@summary} cast members.
+
+%table.casttable
+  %tr
+    %th
+    %th Name
+    %th Date of Birth
+    %th Height
+    %th Hair Colour
+    %th Eye Colour
+    %th Gender
+    %th Last Viewed
+    %th View Count
+    %th Status
+
+  - @people.each do |p|
+    %tr{class: p.status == 'Active' ? 'castShow' : 'castHide'}
+      %td
+        = image_tag p.thumbnail_path, size: '52x60'
+      %td
+        = link_to p.full_name, edit_person_path(p)
+      %td
+        = p.date_of_birth_string
+      %td
+        = p.height_string
+      %td
+        = p.hair_colour
+      %td
+        = p.eye_colour
+      %td
+        = p.gender
+      %td
+        = p.last_viewed_at_string
+      %td
+        = p.view_count
+      - if p.status == 'Active'
+        %td
+          = link_to 'Deactivate',
+            deactivate_person_path(p),
+            data: {confirm: 'Are you sure?'},
+            method: :post
+      - else
+        %td
+          = link_to 'Activate',
+            activate_person_path(p),
+            data: {confirm: 'Are you sure?'},
+            method: :post

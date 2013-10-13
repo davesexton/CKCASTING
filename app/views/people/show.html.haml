@@ -1,0 +1,54 @@
+%p#notice
+  = notice
+%p
+  %b First name:
+  = @person.first_name
+%p
+  %b Last name:
+  = @person.last_name
+%p
+  %b Date of birth:
+  = @person.date_of_birth
+%p
+  %b Height feet:
+  = @person.height_feet
+%p
+  %b Height inches:
+  = @person.height_inches
+%p
+  %b Hair colour:
+  = @person.hair_colour
+%p
+  %b Eye colour:
+  = @person.eye_colour
+%p
+  %b Gender:
+  = @person.gender
+%p
+  %b Postcode:
+  = @person.postcode
+%p
+  %b Latitude:
+  = @person.latitude
+%p
+  %b Longitude:
+  = @person.longitude
+%p
+  %b Telephone number:
+  = @person.telephone_number
+%p
+  %b Email address:
+  = @person.email_address
+%p
+  %b Status:
+  = @person.status
+%p
+  %b Last viewed at:
+  = @person.last_viewed_at
+%p
+  %b View count:
+  = @person.view_count
+
+= link_to 'Edit', edit_person_path(@person)
+|
+= link_to 'Back', people_path

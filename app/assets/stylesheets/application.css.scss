@@ -89,15 +89,6 @@ header {
   @include append(1);
   @include last;
   position: relative;
-  hgroup {
-    h1 {
-      font-size: 1em;
-      color: #cccccc;
-    }
-    position: relative;
-    top: 130px;
-    left: 180px;
-  }
   background-image: url('/images/header.png');
   height: 220px;
   #logo {
@@ -127,40 +118,24 @@ footer {
 nav {
   height: 35px;
   position: absolute;
-  top: 160px;
-  left: 230px;
+  top: 170px;
+  left: 210px;
   * {
     font-family: Verdana;
-  }
-  div {
-    float: left;
-    padding: 0px 5px 6px 5px;
-    border: {
-      style: solid;
-      width: 0px 0px 4px 0px;
-      color: #EEEEEE;
-    }
-    margin-right: 5px;
-    font: {
-      size: 1em;
-      family: Verdana;
-    }
-    a {
-      text-decoration: none;
-      color: #ffffff;
-      &:visited {
-        color: #ffffff;
-      }
-    }
-    &:hover {
-      border-color: #0000AA;
-    }
-  }
-  .activeNav {
     color: #cccccc;
-    border-color: #660000;
-    &:hover {
-      border-color: #660000;
+    font-weight: bold;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline;
+      margin-right: 6px;
+      a {
+        color: #aaaaaa;
+        font-weight: bold;
+      }
     }
   }
 }
@@ -253,4 +228,8 @@ $default-box-shadow-v-offset: 4px;
 
 #flashHolder {
   position: relative;
+}
+.nowrap {
+  white-space: nowrap;
+  vertical-align: text-top;
 }

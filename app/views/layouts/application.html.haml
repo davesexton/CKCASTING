@@ -1,0 +1,45 @@
+!!! 5
+%html{data: {web_property_id: APP_CONFIG['ga_id']}}
+  %head
+    %title
+      CK Casting
+      = " - #{@title}" unless @title == nil
+    - if @description
+      %meta{name: 'description', content: @description}
+    %meta{name: 'keywords',
+          content: 'cast agency,casting agency,child performers,child actors,child singers,child dancers'}
+    %meta{name: 'author', content: 'Dave Sexton'}
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    = favicon_link_tag
+
+  %body{class: controller.controller_name}
+    %div#container.container
+      %header
+        = link_to(image_tag('logo.png',
+          alt: 'logo',
+          title: 'logo',
+          size: '198x230'), root_path, {id: 'logo'})
+        %nav
+          %ul
+            %li
+              = link_to_unless_current "Home", root_path
+            %li
+              = link_to_unless_current "Cast Book", castbook_path
+            %li
+              = link_to_unless_current "Family Groups", family_groups_path
+            %li
+              = link_to_unless_current "Join Us", join_path
+            %li
+              = link_to_unless_current "Contact Us", contact_path
+
+      %section#main
+        - if notice
+          %div#notice
+            %div #{notice}
+
+        = yield
+
+      %footer
+        Copyright © 2008 CK Casting Agency

@@ -1,0 +1,10 @@
+- @title = 'Family Groups'
+- @description = 'View our current rosta of cast family groups online'
+
+%p
+  Many of our cast are members have sibblings that are also members,
+  click the images below to view their details as a family group.
+
+%div#castThumbs
+  = render partial: 'shared/castlist',
+           locals: {castlist: @family_groups}

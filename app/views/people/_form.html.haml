@@ -1,0 +1,102 @@
+= form_for(@person) do |f|
+  - if @person.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@person.errors.count, "error")
+        prohibited this person from being saved:
+      %ul
+        - @person.errors.full_messages.each do |msg|
+          %li #{msg}
+
+  %div.imageColumn
+    %div.castThumb
+      = image_tag f.object.thumbnail_path
+
+  %div.fieldColumn
+    %div.field
+      = f.label :first_name
+      = f.text_field :first_name
+
+    %div.field
+      = f.label :last_names
+      = f.text_field :last_name
+
+    %div.field
+      = f.label :status
+      = f.select :status, ['Active', 'Inactive'],
+                 {selected: f.object.status},
+                 {class: 'longSelect'}
+
+    %div.field
+      = f.label :image_upload, 'New image'
+      = f.file_field 'image_upload'
+
+    %div.fieldHelp
+      The ideal image size is 261 pixels wide by 300 pixels tall.
+      Images outside this range will be automatticlly resized and
+      croped to fit.
+
+    %div.field
+      = f.label :date_of_birth
+      = f.date_select :date_of_birth,
+          order: [:day, :month, :year],
+          start_year: Date.today.year - 90,
+          end_year: Date.today.year
+
+    %div.field
+      = f.label :height_feet, 'Height'
+      = f.select :height_feet,
+                 @heights_feet,
+                 selected: f.object.height_feet
+      &nbsp;ft&nbsp;
+      = f.select :height_inches, @heights_inches,
+                 selected: f.object.height_inches
+      &nbsp;in
+
+    %div.field
+      = f.label :hair_colour
+      = f.select :hair_colour,
+                 @hair_colours,
+                 {selected: f.object.hair_colour},
+                 {class: 'longSelect'}
+
+    %div.field
+      = f.label :eye_colour
+      = f.select :eye_colour,
+                 @eye_colours,
+                 {selected: f.object.eye_colour},
+                 {class: 'longSelect'}
+
+    %div.field
+      = f.label :gender
+      = f.select :gender, ['Male', 'Female'],
+                 {selected: f.object.gender},
+                 {class: 'longSelect'}
+
+    %div.field
+      = f.label :postcode
+      = f.text_field :postcode, size: 10
+
+    %div.field
+      = f.label :telephone_number
+      = f.text_field :telephone_number
+
+    %div.field
+      = f.label :email_address
+      = f.text_field :email_address
+
+    %div.field
+      = f.label :skill_list,
+                'Skills (comma seperated list)',
+                class: 'longLabel'
+      %br/
+      = f.text_field :skill_list
+
+    %div.field
+      = f.label :credit_list,
+                'Credits (one per line)',
+                class: 'longLabel'
+      = f.text_area :credit_list, wrap: 'off', cols: 120
+
+    %div.actions
+      = f.submit 'Update Changes'

@@ -1,0 +1,17 @@
+%p#notice #{notice}
+
+%p
+  %b People:
+  = @skill.Person_id
+
+%p
+  %b Display order:
+  = @skill.display_order
+
+%p
+  %b Skill text:
+  = @skill.skill_text
+
+= link_to 'Edit', edit_skill_path(@skill)
+|
+= link_to 'Back', skills_path

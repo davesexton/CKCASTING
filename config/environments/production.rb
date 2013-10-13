@@ -59,7 +59,7 @@ Ckcasting::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.delivery_method = :smtp
-  smtp_settings = YAML.load_file(Rails.root.join('config').join('config.yml'))[Rails.env]['mailer']
+  smtp_settings = YAML.load_file(Rails.root.join('config','config.yml'))[Rails.env]['mailer']
   config.action_mailer.smtp_settings = {
     address: smtp_settings['address'],
     port: smtp_settings['port'],

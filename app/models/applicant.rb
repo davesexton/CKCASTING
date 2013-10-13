@@ -24,10 +24,23 @@ class Applicant < ActiveRecord::Base
     message: "is invalid"}
 
   validates :gaurdian_telephone_1, :gaurdian_telephone_2,
-            :gaurdian_telephone_3, :fax, format: {
+            :gaurdian_telephone_3, format: {
     allow_nil: true,
     with: /(\s*\(?0\d{4}\)?(\s*|-)\d{3}(\s*|-)\d{3}\s*)|(\s*\(?0\d{3}\)?(\s*|-)\d{3}(\s*|-)\d{4}\s*)|(\s*(7|8)(\d{7}|\d{3}(\-|\s{1})\d{4})\s*)/,
     message: "number is invalid"}
 
   include Backup
+
+  def height_string
+    "#{height_feet}ft #{height_inches}in"
+  end
+
+  def date_of_birth_string
+    date_of_birth.strftime("%d-%b-%Y") if date_of_birth
+  end
+
+  def created_at_string
+    created_at.strftime("%d-%b-%Y")
+  end
+
 end

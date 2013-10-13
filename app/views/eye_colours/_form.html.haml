@@ -1,0 +1,15 @@
+= form_for(@eye_colour) do |f|
+  - if @eye_colour.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@eye_colour.errors.count, "error")
+        prohibited this eye_colour from being saved:
+      %ul
+        - @eye_colour.errors.full_messages.each do |msg|
+          %li #{msg}
+  %div.field
+    = f.label :eye_colour
+    %br/
+    = f.text_field :eye_colour
+  %div.field
+    = f.submit

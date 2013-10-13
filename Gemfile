@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -24,14 +24,16 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'rmagick', '>= 2.13.1'
-gem 'will_paginate', '~> 3.0.3'
+gem 'rmagick', '>= 2.13.2'
+gem 'will_paginate', '~> 3.0.4'
 gem 'prawn'
+gem 'haml'
+gem 'haml-rails'
 
 gem 'debugger', group: [:development, :test]
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

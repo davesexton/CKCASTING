@@ -9,36 +9,11 @@ Ckcasting::Application.routes.draw do
   resources :users
   resources :families
   resources :applicants
-
-  root :to => 'home#index'
-
-  match 'castbook/castlist' => 'castbook#castlist'
-  match 'castbook/(:id)' => 'castbook#index'
-  match 'castbook/cast/(:id)' => 'castbook#show', as: :cast
-  match 'home' => 'home#index'
-  match 'join' => 'join#index'
-  get 'backup' => 'admin#backup'
-  get 'header' => 'admin#header'
-  post 'header' => 'admin#update'
-  get 'contact' => 'contact#index'
-  post 'contact' => 'contact#send_message'
-
-  get 'applicant' => 'applicant#index'
-  #post 'applicant' => 'applicant#send_mail'
-
-  match 'family_groups' => 'family_groups#index'
-  match 'family_groups/family/(:id)' => 'family_groups#show'
-
-  match 'admin' => 'admin#index'
-
-  resources :applicants
-  #resources :home
-
-  resources :credits
-  resources :uesrs
-
   resources :skills
-
+  resources :credits
+  resources :applicants
+  resources :eye_colours
+  resources :hair_colours
   resources :people do
     member do
       post 'deactivate'
@@ -46,12 +21,23 @@ Ckcasting::Application.routes.draw do
     end
   end
 
-  resources :eye_colours
+  get 'castbook/castlist' => 'castbook#castlist'
+  get 'castbook' => 'castbook#index'
+  get 'castbook/cast/(:id)' => 'castbook#show', as: :cast
+  get 'join' => 'join#index'
+  get 'backup' => 'admin#backup'
+  get 'header' => 'admin#header'
+  post 'header' => 'admin#update'
+  get 'contact' => 'contact#index'
+  post 'contact' => 'contact#send_message'
 
-  resources :hair_colours
+  get 'applicant' => 'applicant#index'
+  get 'admin' => 'admin#index'
 
-  get "home/index"
+  get 'family_groups' => 'family_groups#index'
+  get 'family_groups/family/(:id)' => 'family_groups#show', as: :family_groups_family
 
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

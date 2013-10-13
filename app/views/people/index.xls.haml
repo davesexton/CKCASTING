@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+%Workbook{'xmlns' => 'urn:schemas-microsoft-com:office:spreadsheet',
+          'xmlns:o' => 'urn:schemas-microsoft-com:office:office',
+          'xmlns:x' => 'urn:schemas-microsoft-com:office:excel',
+          'xmlns:ss' => 'urn:schemas-microsoft-com:office:spreadsheet',
+          'xmlns:html' => 'http://www.w3.org/TR/REC-html40'}
+  %Worksheet{'ss:Name' => 'People'}
+    %Table
+      %Row
+        %Cell
+          %Data{'ss:Type' => 'String'} ID
+        %Cell
+          %Data{'ss:Type' => 'String'} First Name
+        %Cell
+          %Data{'ss:Type' => 'String'} Last Name
+        %Cell
+          %Data{'ss:Type' => 'String'} Date of Birth
+        %Cell
+          %Data{'ss:Type' => 'String'} Age
+        %Cell
+          %Data{'ss:Type' => 'String'} Height
+        %Cell
+          %Data{'ss:Type' => 'String'} Hair Colour
+        %Cell
+          %Data{'ss:Type' => 'String'} Eye Colour
+        %Cell
+          %Data{'ss:Type' => 'String'} Gender
+        %Cell
+          %Data{'ss:Type' => 'String'} Skills
+        %Cell
+          %Data{'ss:Type' => 'String'} Postcode
+        %Cell
+          %Data{'ss:Type' => 'String'} Latitude
+        %Cell
+          %Data{'ss:Type' => 'String'} Longitude
+        %Cell
+          %Data{'ss:Type' => 'String'} Telephone Number
+        %Cell
+          %Data{'ss:Type' => 'String'} Email Address
+        %Cell
+          %Data{'ss:Type' => 'String'} Family
+        %Cell
+          %Data{'ss:Type' => 'String'} Status
+        %Cell
+          %Data{'ss:Type' => 'String'} Last Viewed At
+        %Cell
+          %Data{'ss:Type' => 'String'} View Count
+        %Cell
+          %Data{'ss:Type' => 'String'} Created At
+        %Cell
+          %Data{'ss:Type' => 'String'} Updated At
+
+      - @people.each do |p|
+        %Row
+          %Cell
+            %Data{'ss:Type' => 'Number'} #{p.id}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.first_name}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.last_name}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.date_of_birth_string}
+          %Cell
+            %Data{'ss:Type' => 'Number'} #{p.age}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.height_string}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.hair_colour}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.eye_colour}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.gender}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.skill_list}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.postcode}
+          %Cell
+            %Data{'ss:Type' => 'Number'} #{p.latitude}
+          %Cell
+            %Data{'ss:Type' => 'Number'} #{p.longitude}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.telephone_number}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.email_address}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.family.title if p.family}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.status}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.last_viewed_at_string}
+          %Cell
+            %Data{'ss:Type' => 'Number'} #{p.view_count}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.created_at_string}
+          %Cell
+            %Data{'ss:Type' => 'String'} #{p.updated_at_string}
+
+  %Worksheet{'ss:Name' => 'Credits'}
+    %Table
+      %Row
+        %Cell
+          %Data{'ss:Type' => 'String'} First Name
+        %Cell
+          %Data{'ss:Type' => 'String'} Last Name
+        %Cell
+          %Data{'ss:Type' => 'String'} Credit
+
+      - @people.each do |p|
+        - p.credits.order(:display_order).each do |c|
+          %Row
+            %Cell
+              %Data{'ss:Type' => 'String'} #{p.first_name}
+            %Cell
+              %Data{'ss:Type' => 'String'} #{p.last_name}
+            %Cell
+              %Data{'ss:Type' => 'Number'} #{c.display_order}
+            %Cell
+              %Data{'ss:Type' => 'String'} #{c.credit_text}

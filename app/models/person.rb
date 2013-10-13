@@ -66,6 +66,26 @@ class Person < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def height_string
+    "#{height_feet}ft #{height_inches}in"
+  end
+
+  def date_of_birth_string
+    date_of_birth.strftime("%d-%b-%Y") if date_of_birth
+  end
+
+  def last_viewed_at_string
+    last_viewed_at.strftime("%d-%b-%Y") if last_viewed_at
+  end
+
+  def created_at_string
+    created_at.strftime("%d-%b-%Y")
+  end
+
+  def updated_at_string
+    updated_at.strftime("%d-%b-%Y")
+  end
+
   def update_location
     if !self.postcode.blank? and (self.latitude.blank? or self.longitude.blank?)
       loc = get_location
@@ -264,7 +284,7 @@ class Person < ActiveRecord::Base
 
   def last_viewed
     update_last_viewed_at unless self[:last_viewed_at]
-    last_viewed_at
+    last_viewed_at.strftime("%d-%b-%Y")
   end
 
   def self.get_hair_colours
@@ -331,8 +351,8 @@ class Person < ActiveRecord::Base
   def get_location
     begin
       require 'open-uri'
-      pc = self.postcode.gsub(' ','+')
-      doc = open("http://www.maps.google.com?q=#{pc}").read
+      pc = postcode.gsub(' ','+')
+      doc = open("https://maps.google.com?q=#{pc}").read
 
       lat = doc.to_s.scan(/var viewport_center_lat=(\d*\.\d*);/)[0][0]
       lng = doc.to_s.scan(/var viewport_center_lng=(\d*\.\d*);/)[0][0]

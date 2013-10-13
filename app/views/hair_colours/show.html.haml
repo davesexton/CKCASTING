@@ -1,0 +1,9 @@
+%p#notice = notice
+
+%p
+  %b Hair colour:
+  = @hair_colour.hair_colour
+
+= link_to 'Edit', edit_hair_colour_path(@hair_colour)
+|
+= link_to 'Back', hair_colours_path

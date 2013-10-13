@@ -14,11 +14,12 @@
   fieldset {
     border: solid 1px #cccccc;
     padding: 0px;
+    margin-bottom: 10px;
     input {
-      margin-left:20px;
+      margin-left:5px;
     }
     .reset {
-      margin-left:20px;
+      margin-left:5px;
       &:hover {
         cursor: pointer;
       }
@@ -38,6 +39,9 @@
     @include column(13);
     @include last;
     @include prepend-top(1.5em);
+    td {
+      vertical-align: text-top;
+    }
   }
   .viewStat {
     font: {
@@ -54,7 +58,7 @@
     margin-top: 3px;
   }
   .filterOption{
-     margin-top: 2px;
+    margin-top: 2px;
   }
   .castImgLabel {
     text-align: center;

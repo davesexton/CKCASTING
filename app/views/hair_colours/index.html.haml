@@ -1,0 +1,25 @@
+%h1 Listing hair_colours
+
+%table
+  %tr
+    %th Hair colour
+    %th
+    %th
+    %th
+
+  - @hair_colours.each do |hair_colour|
+    %tr
+      %td
+        = hair_colour.hair_colour
+      %td
+        = link_to 'Show', hair_colour
+      %td
+        = link_to 'Edit', edit_hair_colour_path(hair_colour)
+      %td
+        = link_to 'Destroy',
+                  hair_colour,
+                  data: {confirm: 'Are you sure?'},
+                  method: :delete
+
+%br/
+= link_to 'New Hair colour', new_hair_colour_path

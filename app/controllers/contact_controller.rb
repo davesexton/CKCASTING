@@ -14,6 +14,6 @@ class ContactController < ApplicationController
     else
       flash[:alert] = 'Message not sent, please fill in all fields'
     end
-    redirect_to home_url
+    redirect_to root_url
   end
 end
