@@ -2,11 +2,12 @@ class User < ActiveRecord::Base
 
   include Backup
 
-  validates :name, presence: true,
-                   uniqueness: true,
-                   format: {with: /(?=[a-zA-Z]{6,})/,
-                            message: 'must be at least 6 characters and contain only upper and lowercase letters'
-                   }
+  validates :name,
+    presence: true,
+    uniqueness: true,
+    format:
+      {with: /(?=[a-zA-Z]{6,})/,
+       message: 'must be at least 6 characters and contain only upper and lowercase letters'}
 
   validates :password, format: {
     with: /^.*(?=.{8,}).*$/,

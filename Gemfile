@@ -44,7 +44,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-group :development do
+group :development,:production do
   gem 'wirble'
   gem 'hirb'
 end
