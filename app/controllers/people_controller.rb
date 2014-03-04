@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @people }
       format.csv
-      format.xls
+      format.xml
     end
   end
 
