@@ -8,7 +8,11 @@ class PeopleController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @people }
       format.csv
-      format.xml
+      format.xml do
+        stream = render_to_string(template: 'people/index' )
+        send_data(stream, type: 'applicatiom/xml',
+                          filename: 'castlist.xls')
+        end
     end
   end
 
