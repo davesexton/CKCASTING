@@ -155,7 +155,7 @@ DEPENDENCIES
   hpricot
   jquery-rails
   mysql2
-  prawn
+  prawn (~> 0.12.0)
   rails (= 3.2.14)
   rmagick (>= 2.13.2)
   sass-rails (~> 3.2.6)

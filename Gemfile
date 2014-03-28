@@ -26,7 +26,7 @@ end
 gem 'jquery-rails'
 gem 'rmagick', '>= 2.13.2'
 gem 'will_paginate', '~> 3.0.4'
-gem 'prawn'
+gem 'prawn', '~> 0.12.0'
 gem 'haml'
 gem 'haml-rails'
 
