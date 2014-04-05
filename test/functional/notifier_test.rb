@@ -25,7 +25,7 @@ class NotifierTest < ActionMailer::TestCase
     assert_equal "CK Casting Application For New Applicant", mail.subject
     assert_equal ["to@example.com"], mail.to
     assert_equal ["from@example.com"], mail.from
-    assert_match "Application recieved", mail.body.encoded
+    assert_match "Application received", mail.body.encoded
   end
 
   test "contact_acknowledge" do
