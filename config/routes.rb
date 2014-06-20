@@ -26,6 +26,7 @@ Ckcasting::Application.routes.draw do
   get 'castbook/cast/(:id)' => 'castbook#show', as: :cast
   get 'join' => 'join#index'
   get 'backup' => 'admin#backup'
+  get 'carousel' => 'home#carousel'
   get 'header' => 'admin#header'
   post 'header' => 'admin#update'
   get 'contact' => 'contact#index'

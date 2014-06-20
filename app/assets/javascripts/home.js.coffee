@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+# Remove HTML5 selectors
 #IE8 fixes
 d = document
 d.createElement 'header'
@@ -25,7 +26,6 @@ scroll = ->
     $(this).css('margin-top', 'auto')
   )
 
-imgs = []
 
 $ ->
   h = ($('#scroller li:first').outerHeight() * -1)
@@ -47,7 +47,21 @@ $ ->
 
 $ ->
   if $('.home').length > 0
-    $('#carouselImages').ready ->
+    imgs = []
+    carouselCount = 0
+    carouselTotal = 21
+    carouselImages = []
+    $.getJSON '/carousel.json', (data)->
+      carouselTotal = data.length
+      for item in data
+        i = new Image()
+        i.src = item.src
+        i.path = item.path
+        i.onload = ->
+          carouselCount++
+          runCarousel() if carouselCount == carouselTotal
+        carouselImages.push i
+    runCarousel = ->
 
 #Global variables
 #----------------------------------------
@@ -139,16 +153,9 @@ $ ->
 
 #initalise image objects
 #----------------------------------------
-      imgSet = $('#carouselImages img')
-      totImgs = imgSet.length
-      imgSet.each((i, e) ->
-        regex = new RegExp(/\d+(?=\.jpg)/)
-        id = '/castbook/cast/' + regex.exec(e.src)[0]
-        angle = i * ((Math.PI * 2) / totImgs)
-        img = new imgObj(e, angle, id)
-
-        imgs.push img
-      )
+      $(carouselImages).each (i, e) ->
+        angle = i * ((Math.PI * 2) / carouselImages.length)
+        imgs.push new imgObj(e, angle, e.path)
 
 #animate function
 #----------------------------------------
@@ -161,7 +168,7 @@ $ ->
         for img, i in imgs
           img.draw context, speed
 
-          if i == Math.round(totImgs / 2)
+          if i == Math.round(carouselImages.length / 2)
             #context.fillStyle = "rgba(0, 0, 0, 1)"
             context.globalCompositeOperation = 'destination-over'
             #context.fillText 'click here', mouseX, moseY

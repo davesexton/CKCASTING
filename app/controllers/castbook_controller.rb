@@ -13,26 +13,31 @@ class CastbookController < ApplicationController
     h = Hash.new(0)
     f = Hash.new(0)
     Person.active.each {|v| h.store(v.age_group_id, h[v.age_group_id]+1) }
-    (Person.age_groups.map {|p| [p[:id], p[:text]] }).each{|k, v| f.store(k, "#{v} (#{h[k]})") }
+    (Person.age_groups.map {|p| [p[:id], p[:text]] })
+      .each{|k, v| f.store(k, "#{v} (#{h[k]})") }
     @age_group = f
 
 # data for height checkboxes
     h = Hash.new(0)
     f = Hash.new(0)
-    Person.active.each {|v| h.store(v.height_group_id, h[v.height_group_id]+1) }
-    (Person.height_groups.map {|p| [p[:id], p[:text]] }).each{|k, v| f.store(k, "#{v} (#{h[k]})") }
+    Person.active.each{|v| h.store(v.height_group_id, h[v.height_group_id]+1) }
+    (Person.height_groups.map{|p| [p[:id], p[:text]] })
+      .each{|k, v| f.store(k, "#{v} (#{h[k]})") }
     @height_group = f
 
 # data for hair colour checkboxes
     h = Hash.new(0)
     f = Hash.new(0)
-    Person.active.where('hair_colour IS NOT NULL').each {|v| h.store(v.hair_colour_group, h[v.hair_colour_group]+1) }
+    Person.active.where('hair_colour IS NOT NULL')
+      .each {|v| h.store(v.hair_colour_group, h[v.hair_colour_group]+1) }
     h.each{|k, v| f.store(k, "#{k} (#{v})") }
     @hair_group = f.sort
 
 # data for eye colour checkboxes
     f = Hash.new(0)
-    Person.active.where('eye_colour IS NOT NULL').count(group: :eye_colour).each{|k, v| f.store(k,"#{k} (#{v})")}
+    Person.active.where('eye_colour IS NOT NULL')
+      .count(group: :eye_colour)
+      .each{|k, v| f.store(k,"#{k} (#{v})")}
     @eye_group = f.sort
 
     respond_to do |format|

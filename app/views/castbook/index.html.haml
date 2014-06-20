@@ -37,7 +37,7 @@
         Height Group:
         - @height_group.each do |k, v|
           %div.filterOption
-            %input{type: 'checkbox', name: 'height[]', value: "= k ", id: "height_#{k}"}
+            %input{type: 'checkbox', name: 'height[]', value: k, id: "height_#{k}"}
             %label{for: "height_#{k}"} #{v}
             %br/
 

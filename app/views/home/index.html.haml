@@ -12,13 +12,19 @@
   %p
     CK Casting offers so much more...
   %ul
-    %li A specialised agency, solely representing children, young adults, siblings and twins.
+    %li
+      A specialised agency, solely representing children, young adults, siblings
+      and twins.
     %li A site designed exclusively for casting professionals.
     %li Highly-experienced and trained child actors, singers and dancers.
     %li Children attend regular classes to maintain a high standard of performance.
     %li All children are based within easy access to Central London.
-    %li We are happy to arrange performance licences as required, quickly and free of charge.
-    %li We are constantly updating our files with new children joining throughout the year.
+    %li
+      We are happy to arrange performance licences as required, quickly and free
+      of charge.
+    %li
+      We are constantly updating our files with new children joining throughout
+      the year.
 
 %div#news
   %div#newsHeading LATEST NEWS
@@ -39,6 +45,3 @@
 %div
   %canvas#carousel{width: '858', height: '200'}
 
-%div#carouselImages
-  - @carousel.each do |c|
-    = image_tag c.carousel_path, id: "img#{c.id}"

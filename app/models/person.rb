@@ -102,6 +102,7 @@ class Person < ActiveRecord::Base
     end
   end
 
+#TODO full_url should be url, url should be path
   def full_url
     "www.ckcasting.co.uk/castbook/cast/#{id}"
   end
@@ -110,10 +111,15 @@ class Person < ActiveRecord::Base
     "/castbook/cast/#{id}"
   end
 
+  def path
+    "/castbook/cast/#{id}"
+  end
+
   def pdf_name
     full_name.downcase.gsub(/[^a-z-]+/, '_')
   end
 
+#TODO use hash for image name
   def image_path
     path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
     if FileTest.exist?(path)
