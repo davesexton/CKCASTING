@@ -116,8 +116,8 @@ class Person < ActiveRecord::Base
   end
 
   def image_path
-    path = Rails.root.join('public', 'cast_images', image_name)
-    if FileTest.exist?(path)
+    path = Rails.root.join('public', 'cast_images', (image_name || ''))
+    if image_name != nil && FileTest.exist?(path)
       "/cast_images/#{image_name}"
     else
       'default_cast_image.jpg'
