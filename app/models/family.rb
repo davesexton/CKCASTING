@@ -33,42 +33,44 @@ class Family < ActiveRecord::Base
   end
 
   def url
+    "www.ckcasting.co.uk/family_groups/family/#{id}"
+  end
+
+  def path
     "/family_groups/family/#{id}"
   end
 
   def image_path
-    path = Rails.root.join('public', 'family_images', "#{id}.jpg")
-    if FileTest.exist?(path)
-      "/family_images/#{id}.jpg?timestamp=#{Time.now.to_i}"
+    path = Rails.root.join('public', 'family_images', (image_name || ''))
+    if image_name != nil && FileTest.exist?(path)
+      "/family_images/#{image_name}"
     else
       'default_cast_image.jpg'
     end
   end
 
   def thumbnail_path
-    if FileTest.exist?(Rails.root.join('public', 'family_images', "#{id}.jpg"))
-      path = Rails.root.join('public', 'family_thumbs', "#{id}.jpg")
-      make_family_thumbnail unless FileTest.exist?(path)
-      "/family_thumbs/#{id}.jpg?timestamp=#{Time.now.to_i}"
+    path = Rails.root.join('public', 'family_images', (image_name || ''))
+    if image_name != nil && FileTest.exist?(path)
+      "/family_thumbnail/#{image_name}"
     else
       'default_cast_image_thumb.jpg'
     end
   end
 
   def image_upload=(img)
-    self.file_type = img.content_type.chomp
-    require 'RMagick'
+    if img
+      require 'RMagick'
+      self.file_type = img.content_type.chomp
+      img.rewind
+      img = Magick::Image::from_blob(img.read).first
+      img.resize_to_fill!(261, 300)
+      #img = img.quantize(256, Magick::GRAYColorspace)
 
-    img.rewind
-    img = Magick::Image::from_blob(img.read).first
-    img.resize_to_fill!(261, 300)
-    #img = img.quantize(256, Magick::GRAYColorspace)
-
-    file_name = Rails.root.join('public', 'family_images', "#{self.id}.jpg")
-    img.write(file_name)
-
-    make_family_thumbnail
-
+      self.image_name = "#{Time.now.to_i.to_s}.jpg"
+      file_name = Rails.root.join('public', 'family_images', self.image_name)
+      img.write(file_name)
+    end
   end
 
   def members=(list)
@@ -85,20 +87,8 @@ class Family < ActiveRecord::Base
   end
 
   def get_available_people
-    Person.where('family_id = ? OR family_id IS NULL', self.id).order([:last_name, :first_name])
-  end
-
-  private
-
-  def make_family_thumbnail
-    require 'RMagick'
-
-    path = Rails.root.join('public', 'family_images', "#{id}.jpg")
-    thumb = Rails.root.join('public', 'family_thumbs', "#{id}.jpg")
-
-    img = Magick::Image::read(path).first
-    img.crop_resized!(137, 158, Magick::NorthGravity)
-    img.write(thumb)
+    Person.where('family_id = ? OR family_id IS NULL', self.id)
+      .order([:last_name, :first_name])
   end
 
 end

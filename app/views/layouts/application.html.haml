@@ -21,12 +21,12 @@
 
   %body{class: controller.controller_name}
     %div#container.container
-      %header
+      %div#header
         = link_to(image_tag('logo.png',
           alt: 'logo',
           title: 'logo',
           size: '198x230'), root_path, {id: 'logo'})
-        %nav
+        %div#nav
           %ul
             %li
               = link_to_unless_current "Home", root_path
@@ -39,12 +39,12 @@
             %li
               = link_to_unless_current "Contact Us", contact_path
 
-      %section#main
+      %div#main
         - if notice
           %div#notice
             %div #{notice}
 
         = yield
 
-      %footer
+      %div#footer
         Copyright © 2008 CK Casting Agency

@@ -24,6 +24,8 @@ Ckcasting::Application.routes.draw do
   get 'castbook/castlist' => 'castbook#castlist'
   get 'castbook' => 'castbook#index'
   get 'castbook/cast/(:id)' => 'castbook#show', as: :cast
+  get 'cast_thumbnail/(:image_name)' => 'castbook#cast_thumbnail'
+  get 'cast_carousel/(:image_name)' => 'castbook#cast_carousel'
   get 'join' => 'join#index'
   get 'backup' => 'admin#backup'
   get 'carousel' => 'home#carousel'
@@ -37,6 +39,7 @@ Ckcasting::Application.routes.draw do
 
   get 'family_groups' => 'family_groups#index'
   get 'family_groups/family/(:id)' => 'family_groups#show', as: :family_groups_family
+  get 'family_thumbnail/(:image_name)' => 'family_groups#family_thumbnail'
 
   root :to => 'home#index'
 

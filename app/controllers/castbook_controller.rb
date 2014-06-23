@@ -12,7 +12,7 @@ class CastbookController < ApplicationController
 # data for age checkboxes
     h = Hash.new(0)
     f = Hash.new(0)
-    Person.active.each {|v| h.store(v.age_group_id, h[v.age_group_id]+1) }
+    Person.active.each{|v| h.store(v.age_group_id, h[v.age_group_id]+1) }
     (Person.age_groups.map {|p| [p[:id], p[:text]] })
       .each{|k, v| f.store(k, "#{v} (#{h[k]})") }
     @age_group = f
@@ -29,7 +29,7 @@ class CastbookController < ApplicationController
     h = Hash.new(0)
     f = Hash.new(0)
     Person.active.where('hair_colour IS NOT NULL')
-      .each {|v| h.store(v.hair_colour_group, h[v.hair_colour_group]+1) }
+      .each{|v| h.store(v.hair_colour_group, h[v.hair_colour_group]+1) }
     h.each{|k, v| f.store(k, "#{k} (#{v})") }
     @hair_group = f.sort
 
@@ -68,9 +68,6 @@ class CastbookController < ApplicationController
 
 # Add family group
     if params[:family]
-#      cons[0] += ' AND family_id NOT ? '
-#      cons << nil
-
       cons[0] += ' AND family_id > ? '
       cons << 0
     end
@@ -121,7 +118,9 @@ class CastbookController < ApplicationController
     @pages = (Person.where(cons).active.count / page_size) + 1
     session[:page] = '1' if session[:page].to_i > @pages
 
-    castlist = Person.where(cons).active.order('date_of_birth DESC').paginate(page: params[:page], per_page: 16)
+    castlist = Person.where(cons)
+      .active.order('date_of_birth DESC')
+      .paginate(page: params[:page], per_page: 16)
     render partial: 'shared/castlist', locals: {castlist: castlist}
   end
 
@@ -161,6 +160,45 @@ class CastbookController < ApplicationController
       redirect_to controller: 'castbook'
     end
 
+  end
+
+  def cast_thumbnail
+    respond_to do |format|
+      format.jpg do
+        require 'RMagick'
+        path = Rails.root.join('public', 'cast_images', "#{params[:image_name]}.jpg")
+        path = Rails.root.join('public', 'images', 'default_cast_image.jpg' ) unless
+            FileTest.exists?(path)
+        img = Magick::Image::read(path).first
+        img.crop_resized!(137, 158, Magick::NorthGravity)
+        send_data img.to_blob, type: img.mime_type, disposition: :inline
+      end
+      format.any {render text: 'Not found', status: 404}
+    end
+
+  end
+
+  def cast_carousel
+    respond_to do |format|
+      format.jpg do
+        require 'RMagick'
+        path = Rails.root.join('public', 'cast_images', "#{params[:image_name]}.jpg")
+        path = Rails.root.join('public', 'images', 'default_cast_image.jpg' ) unless
+            FileTest.exists?(path)
+        img = Magick::Image::read(path).first
+        img.crop_resized!(101, 116, Magick::NorthGravity)
+        comp = Magick::ImageList.new
+        comp << img << img.wet_floor(0.5, 1)
+        comp = comp.append(true)
+        bg = Magick::Image.new(comp.columns, comp.rows) do
+          self.background_color = "#FFFFFF"
+        end
+        comp = bg.composite(comp, Magick::NorthGravity, Magick::OverCompositeOp)
+        send_data comp.to_blob{self.format = 'jpg'},
+          type: comp.mime_type, disposition: :inline
+      end
+      format.any {render text: 'Not found', status: 404}
+    end
   end
 
   private
@@ -225,7 +263,7 @@ class CastbookController < ApplicationController
         text "#{c1}Height:#{ce} #{cast.height_feet}' #{cast.height_inches}\"",
              inline_format: true
         move_down 15
-        text "#{c1}URL:#{ce} <link href='#{cast.full_url}'>#{cast.full_url}</link>",
+        text "#{c1}URL:#{ce} <link href='#{cast.url}'>#{cast.url}</link>",
              inline_format: true
         move_down 15
 

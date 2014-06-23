@@ -95,11 +95,11 @@ class PersonTest < ActiveSupport::TestCase
   test "check urls are correct" do
     person = @good_person
     assert_equal "www.ckcasting.co.uk/castbook/cast/#{person.id}",
-                  person.full_url
-                  'invalid full url'
+                  person.url
+                  'invalid url'
     assert_equal "/castbook/cast/#{person.id}",
-                  person.url,
-                  'invalid full url'
+                  person.path,
+                  'invalid path'
     assert_equal "default_cast_image.jpg",
                   person.image_path,
                   'invalid image url'

@@ -84,7 +84,7 @@ h1 {
   font-size: 1.25em;
   color: #111111;
 }
-header {
+#header {
   @include column(23);
   @include append(1);
   @include last;
@@ -97,7 +97,7 @@ header {
     top: 0px;
   }
 }
-footer {
+#footer {
   @include column(24);
   @include last;
   text-align: center;
@@ -115,7 +115,7 @@ footer {
   padding-top: 10px;
   background-image: image-url('content.png');
 }
-nav {
+#nav {
   height: 35px;
   position: absolute;
   top: 170px;

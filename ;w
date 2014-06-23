@@ -15,19 +15,17 @@ class FamilyGroupsController < ApplicationController
   end
 
   def family_thumbnail
-    respond_to do |format|
-      format.jpg do
-        require 'RMagick'
-        path = Rails.root.join('public', 'family_images', "#{params[:image_name]}.jpg")
-        path = Rails.root.join('public', 'images', 'default_cast_image.jpg' ) unless
-            FileTest.exists?(path)
-        img = Magick::Image::read(path).first
-        img.crop_resized!(137, 158, Magick::NorthGravity)
-        send_data img.to_blob, type: img.mime_type, disposition: :inline
+    if Family.exists?(params[:id])
+      respond_to do |format|
+        format.jpg do
+          require 'RMagick'
+          image_path = Family.find(params[:id]).image_name
+          img = Magick::Image::read(
+            Rails.root.join('public', 'family_images', image_path)).first
+          img.crop_resized!(137, 158, Magick::NorthGravity)
+          send_data img.to_blob, type: img.mime_type, disposition: :inline
+        end
       end
-      format.any {render text: 'Not found', status: 404}
     end
-
   end
-
 end

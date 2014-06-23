@@ -1,8 +1,9 @@
 class Person < ActiveRecord::Base
-  attr_reader :full_name, :full_url, :url, :iamge_path,
+  attr_reader :full_name, :url, :path, :iamge_path,
               :thumnail_path, :carousel_path, :skill_list,
               :age_group, :age_group_id, :height_group,
-              :height_group_id, :hair_colour_group, :has_image, :age
+              :height_group_id, :hair_colour_group,
+              :has_image, :age
   attr_writer :image_upload
   attr_accessor :file_type
 
@@ -102,13 +103,8 @@ class Person < ActiveRecord::Base
     end
   end
 
-#TODO full_url should be url, url should be path
-  def full_url
-    "www.ckcasting.co.uk/castbook/cast/#{id}"
-  end
-
   def url
-    "/castbook/cast/#{id}"
+    "www.ckcasting.co.uk/castbook/cast/#{id}"
   end
 
   def path
@@ -119,56 +115,50 @@ class Person < ActiveRecord::Base
     full_name.downcase.gsub(/[^a-z-]+/, '_')
   end
 
-#TODO use hash for image name
   def image_path
-    path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
+    path = Rails.root.join('public', 'cast_images', image_name)
     if FileTest.exist?(path)
-      "/cast_images/#{id}.jpg?timestamp=#{Time.now.to_i}"
+      "/cast_images/#{image_name}"
     else
       'default_cast_image.jpg'
     end
   end
 
   def pdf_image_path
-    "public/cast_images/#{id}.jpg"
+    "public/cast_images/#{image_name}"
   end
 
   def thumbnail_path
-    if FileTest.exist?(Rails.root.join('public', 'cast_images', "#{id}.jpg"))
-      path = Rails.root.join('public', 'cast_thumbs', "#{id}.jpg")
-      make_cast_thumbnail unless FileTest.exist?(path)
-      "/cast_thumbs/#{id}.jpg?timestamp=#{Time.now.to_i}"
+    path = Rails.root.join('public', 'cast_images', (image_name || ''))
+    if image_name != nil && FileTest.exist?(path)
+      "/cast_thumbnail/#{image_name}"
     else
       'default_cast_image_thumb.jpg'
     end
   end
 
   def carousel_path
-    path = Rails.root.join('public', 'cast_carousel', "#{id}.jpg")
-    make_cast_carousel unless FileTest.exist?(path)
-    "/cast_carousel/#{id}.jpg?timestamp=#{Time.now.to_i}"
+    "/cast_carousel/#{image_name}"
   end
 
   def self.has_image
     path = Rails.root.join('public', 'cast_images', '*.jpg')
-    ids = Dir[path].map {|f| f.match('\d+')[0]}
-    where(id: ids)
+    image_names = Dir[path].map {|f| f.match('\d+\.jpg$')[0]}
+    where(image_name: image_names)
   end
 
   def image_upload=(img)
-    if id && img
-      self.file_type = img.content_type.chomp
-
+    if img
       require 'RMagick'
+      self.file_type = img.content_type.chomp
       img.rewind
       img = Magick::Image::from_blob(img.read).first
       img.resize_to_fill!(261, 300)
       #img = img.quantize(256, Magick::GRAYColorspace)
 
-      file_name = Rails.root.join('public', 'cast_images', "#{self.id}.jpg")
+      self.image_name = "#{Time.now.to_i.to_s}.jpg"
+      file_name = Rails.root.join('public', 'cast_images', self.image_name)
       img.write(file_name)
-      make_cast_carousel
-      make_cast_thumbnail
     end
   end
 
@@ -311,37 +301,6 @@ class Person < ActiveRecord::Base
 
   private
 
-  def make_cast_thumbnail
-    require 'RMagick'
-
-    path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
-    thumb = Rails.root.join('public', 'cast_thumbs', "#{id}.jpg")
-    img = Magick::Image::read(path).first
-    img.crop_resized!(137, 158, Magick::NorthGravity)
-    img.write(thumb)
-  end
-
-  def make_cast_carousel
-    require 'RMagick'
-
-    path = Rails.root.join('public', 'cast_images', "#{id}.jpg")
-    carousel = Rails.root.join('public', 'cast_carousel', "#{id}.jpg")
-
-    if File.exist?(path)
-      results = Magick::ImageList.new
-
-      img = Magick::Image::read(path).first
-      img.crop_resized!(101, 116, Magick::NorthGravity)
-
-      results << img << img.wet_floor(0.5, 1)
-      result = results.append(true)
-      bg = Magick::Image.new(result.columns, result.rows) {self.background_color = "#FFFFFF"}
-      final = bg.composite(result, Magick::NorthGravity, Magick::OverCompositeOp)
-
-      final.write(carousel)
-    end
-  end
-
   def date_of_birth_cannot_be_in_the_furtue
     if !date_of_birth.blank? and date_of_birth >= Date.today
       errors.add(:date_of_birth, "date of birth can't be greater than today")
@@ -350,7 +309,8 @@ class Person < ActiveRecord::Base
 
   def date_of_birth_cannot_give_age_over_100
     if !date_of_birth.blank? and date_of_birth <= 100.years.ago.to_date
-      errors.add(:date_of_birth, "date of birth can't be more than 100 years in the past")
+      errors.add(:date_of_birth,
+                 "date of birth can't be more than 100 years in the past")
     end
   end
 
