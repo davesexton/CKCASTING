@@ -73,7 +73,7 @@ class PeopleController < ApplicationController
         @person.image_upload = params[:person][:image_upload]
         @person.save
         format.html { redirect_to people_url,
-                      notice: "Cast member #{@person.full_name} was successfully created" }
+                    notice: "Cast member #{@person.full_name} was successfully created" }
         format.json { render json: @person,
                       status: :created, location: @person }
       else
@@ -95,7 +95,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
       if @person.update_attributes(params[:person])
         format.html { redirect_to people_url,
-                      notice: "Cast member #{@person.full_name} was successfully updated." }
+                  notice: "Cast member #{@person.full_name} was successfully updated." }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -124,7 +124,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to people_url,
-                    notice: "Cast member #{@person.full_name} was successfully deactivated." }
+              notice: "Cast member #{@person.full_name} was successfully deactivated." }
       format.json { head :ok }
     end
   end
@@ -136,7 +136,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to people_url,
-                    notice: "Cast member #{@person.full_name} was successfully activated." }
+                notice: "Cast member #{@person.full_name} was successfully activated." }
       format.json { head :ok }
     end
   end
