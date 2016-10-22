@@ -2,7 +2,9 @@
 db/*.sqlite3
 db/seeds.rb
 log/*.log
+*.log
 tmp/
+/.vagrant
 .sass-cache/
 config/config.yml
 config/database.yml

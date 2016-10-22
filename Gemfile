@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.22'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'mysql2'
+#gem 'mysql2'
 gem 'hpricot'
 
 # Gems used only for assets and not required
@@ -29,8 +29,11 @@ gem 'will_paginate', '~> 3.0.4'
 gem 'prawn', '~> 0.12.0'
 gem 'haml'
 gem 'haml-rails'
+gem 'pry-rails'
+gem 'compass-blueprint'
 
-gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test]
+gem 'byebug'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -44,7 +47,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-group :development,:production do
-  gem 'wirble'
-  gem 'hirb'
-end
+#group :development,:production do
+#  gem 'wirble'
+#  gem 'hirb'
+#end
